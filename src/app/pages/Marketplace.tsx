@@ -106,12 +106,12 @@ export function Marketplace() {
 
       {/* Tabs Produto / Serviço */}
       <div className="mb-8">
-        <div className="flex gap-1 bg-gray-100 p-1 rounded-xl w-fit">
+        <div className="flex gap-1 bg-gray-100 p-1 rounded-full w-fit">
           {["Todos", "Produto", "Serviço"].map((tab) => (
             <button
               key={tab}
               onClick={() => { setSelectedType(tab); setCurrentPage(1); }}
-              className={`px-6 py-2 rounded-lg text-sm font-medium transition-all ${
+              className={`px-6 py-2 rounded-full text-sm font-medium transition-all ${
                 selectedType === tab
                   ? "bg-white text-coral shadow-sm"
                   : "text-muted-foreground hover:text-foreground"
@@ -215,14 +215,14 @@ export function Marketplace() {
               <div className="flex items-center justify-center gap-2 mb-3">
                 <button
                   onClick={() => decrementQuantity(product.id)}
-                  className="w-8 h-8 rounded-lg border-2 border-border hover:border-coral flex items-center justify-center transition-colors"
+                  className="w-8 h-8 rounded-full border-2 border-border hover:border-coral flex items-center justify-center transition-colors"
                 >
                   <Minus className="w-4 h-4" />
                 </button>
                 <span className="text-sm font-semibold w-8 text-center">{getQuantity(product.id)}</span>
                 <button
                   onClick={() => incrementQuantity(product.id)}
-                  className="w-8 h-8 rounded-lg border-2 border-border hover:border-coral flex items-center justify-center transition-colors"
+                  className="w-8 h-8 rounded-full border-2 border-border hover:border-coral flex items-center justify-center transition-colors"
                 >
                   <Plus className="w-4 h-4" />
                 </button>
@@ -241,7 +241,7 @@ export function Marketplace() {
                     });
                   }
                 }}
-                className="w-full bg-coral text-white py-2 px-3 rounded-lg hover:opacity-90 transition-opacity flex items-center justify-center gap-1.5 text-sm"
+                className="w-full bg-coral text-white py-2 px-3 rounded-full hover:opacity-90 transition-opacity flex items-center justify-center gap-1.5 text-sm"
               >
                 <ShoppingCart className="w-3.5 h-3.5" />
                 Adicionar
@@ -257,7 +257,7 @@ export function Marketplace() {
           <button
             onClick={() => handlePageChange(currentPage - 1)}
             disabled={currentPage === 1}
-            className="p-2 rounded-lg border-2 border-border hover:border-coral disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+            className="p-2 rounded-full border-2 border-border hover:border-coral disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
           >
             <ChevronLeft className="w-5 h-5" />
           </button>
@@ -266,7 +266,7 @@ export function Marketplace() {
             <button
               key={page}
               onClick={() => handlePageChange(page)}
-              className={`w-10 h-10 rounded-lg border-2 transition-all ${
+              className={`w-10 h-10 rounded-full border-2 transition-all ${
                 currentPage === page
                   ? "border-coral bg-coral text-white"
                   : "border-border hover:border-coral"
@@ -279,7 +279,7 @@ export function Marketplace() {
           <button
             onClick={() => handlePageChange(currentPage + 1)}
             disabled={currentPage === totalPages}
-            className="p-2 rounded-lg border-2 border-border hover:border-coral disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+            className="p-2 rounded-full border-2 border-border hover:border-coral disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
           >
             <ChevronRight className="w-5 h-5" />
           </button>

@@ -252,7 +252,7 @@ export function NewHome() {
                 name="q"
                 type="text"
                 placeholder="Ex: gerir pessoal, transportar mercadoria, equipamento médico..."
-                className="w-full pl-16 pr-6 py-5 text-base border-2 border-border rounded-2xl focus:outline-none focus:border-coral transition-colors shadow-lg"
+                className="w-full pl-16 pr-6 py-5 text-base border-2 border-border rounded-full focus:outline-none focus:border-coral transition-colors shadow-lg"
               />
               <button type="submit" className="absolute right-2 top-1/2 -translate-y-1/2 bg-coral text-white px-8 py-3 rounded-full hover:opacity-90 transition-opacity">
                 Pesquisar
@@ -370,7 +370,7 @@ export function NewHome() {
               </p>
               <button
                 onClick={() => setLoginModalOpen(true)}
-                className="inline-flex items-center gap-2 bg-coral text-white px-6 py-3 rounded-xl hover:opacity-90 transition-opacity shadow-xl"
+                className="inline-flex items-center gap-2 bg-coral text-white px-6 py-3 rounded-full hover:opacity-90 transition-opacity shadow-xl"
               >
                 Solicitar
                 <ArrowRight className="w-4 h-4" />
@@ -394,7 +394,7 @@ export function NewHome() {
               </p>
               <button
                 onClick={() => setLoginModalOpen(true)}
-                className="inline-flex items-center gap-2 bg-coral text-white px-6 py-3 rounded-xl hover:opacity-90 transition-opacity shadow-xl"
+                className="inline-flex items-center gap-2 bg-coral text-white px-6 py-3 rounded-full hover:opacity-90 transition-opacity shadow-xl"
               >
                 Registar Empresa
                 <ArrowRight className="w-4 h-4" />
@@ -485,14 +485,14 @@ export function NewHome() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <button
                 onClick={handlePedirFinanciamento}
-                className="bg-white text-coral px-8 py-4 rounded-xl hover:shadow-2xl transition-shadow inline-flex items-center justify-center gap-2"
+                className="bg-white text-coral px-8 py-4 rounded-full hover:shadow-2xl transition-shadow inline-flex items-center justify-center gap-2"
               >
                 Pedir Financiamento
                 <ArrowRight className="w-5 h-5" />
               </button>
               <Link
                 to="/empresas"
-                className="bg-white/10 border-2 border-white/30 backdrop-blur-sm px-8 py-4 rounded-xl hover:bg-white/20 transition-colors inline-flex items-center justify-center gap-2"
+                className="bg-white/10 border-2 border-white/30 backdrop-blur-sm px-8 py-4 rounded-full hover:bg-white/20 transition-colors inline-flex items-center justify-center gap-2"
               >Saber Mais</Link>
             </div>
           </div>
