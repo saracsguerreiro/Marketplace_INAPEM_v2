@@ -194,7 +194,7 @@ export function NewHome() {
         </div>
 
         {/* Coluna esquerda — texto */}
-        <div className="relative z-10 w-full lg:w-[48%] px-6 sm:px-10 lg:px-16 py-12 flex flex-col justify-between min-h-[520px]">
+        <div className="relative z-10 w-full lg:w-[48%] px-6 sm:px-10 lg:px-16 py-10 flex flex-col justify-between min-h-[420px]">
           <div>
             <span className="inline-flex items-center gap-2 bg-[#1a1a1a] text-white text-xs px-4 py-1.5 rounded-full mb-8">
               <span className="w-1.5 h-1.5 bg-coral rounded-full"></span>
