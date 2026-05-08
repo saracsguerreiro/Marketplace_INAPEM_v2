@@ -48,13 +48,13 @@ export function Layout() {
   return (
     <div className="min-h-screen bg-background">
       {/* ── NAV PILL FLUTUANTE ── */}
-      <nav className="bg-[#f2f0eb] sticky top-0 z-50 px-4 sm:px-6 lg:px-8 py-3">
+      <nav className="bg-white sticky top-0 z-50 px-4 sm:px-6 lg:px-8 py-3 border-b border-gray-100">
         <div className="max-w-7xl mx-auto flex items-center justify-between gap-4">
 
           {/* Pill esquerda: logo + links */}
-          <div className="flex items-center bg-[#1a1a1a] text-white rounded-full px-4 py-2 gap-6">
+          <div className="flex items-center bg-[#1a1a1a] text-white rounded-full px-4 py-2 gap-5">
             <Link to="/" className="flex items-center gap-2 flex-shrink-0">
-              <img src={inapemLogo} alt="INAPEM" className="h-7 object-contain brightness-0 invert" />
+              <img src={inapemLogo} alt="INAPEM" className="h-7 object-contain" />
             </Link>
             <div className="hidden md:flex items-center gap-1">
               {navigation.map((item) => {
@@ -88,6 +88,22 @@ export function Layout() {
                 )}
               </Link>
             )}
+
+            {/* Seletor de língua */}
+            <div className="hidden md:flex items-center gap-1 bg-gray-100 rounded-full p-1">
+              <button
+                onClick={() => setLanguage("PT")}
+                className={`px-3 py-1 rounded-full text-xs transition-colors ${
+                  language === "PT" ? "bg-[#1a1a1a] text-white" : "text-gray-500 hover:text-gray-800"
+                }`}
+              >PT</button>
+              <button
+                onClick={() => setLanguage("EN")}
+                className={`px-3 py-1 rounded-full text-xs transition-colors ${
+                  language === "EN" ? "bg-[#1a1a1a] text-white" : "text-gray-500 hover:text-gray-800"
+                }`}
+              >EN</button>
+            </div>
 
             {userType ? (
               <button

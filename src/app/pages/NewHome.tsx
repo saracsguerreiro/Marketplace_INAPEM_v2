@@ -160,79 +160,75 @@ export function NewHome() {
       {showWelcome && <WelcomePopup onClose={handleWelcomeClose} />}
 
       {/* HERO BANNER — split layout */}
-      <section className="bg-[#f2f0eb] min-h-[calc(100vh-64px)] flex items-center overflow-hidden px-4 sm:px-6 lg:px-8 py-10">
-        <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+      <section className="bg-white overflow-hidden relative min-h-[calc(100vh-64px)] flex items-center">
 
-          {/* Coluna esquerda — texto */}
-          <div className="flex flex-col justify-between min-h-[480px] lg:min-h-[560px] py-6">
-            <div>
-              <span className="inline-flex items-center gap-2 bg-[#1a1a1a] text-white text-xs px-4 py-1.5 rounded-full mb-8">
-                <span className="w-1.5 h-1.5 bg-coral rounded-full"></span>
-                Marketplace Oficial INAPEM
-              </span>
+        {/* Imagem direita — estende-se até ao topo, sem margem */}
+        <div className="hidden lg:block absolute top-0 right-0 w-[52%] h-full">
+          <img
+            src={bannerImage}
+            alt="Business Growth"
+            className="w-full h-full object-cover rounded-bl-3xl"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent rounded-bl-3xl" />
 
-              <h1 className="text-4xl md:text-5xl lg:text-6xl leading-[1.1] text-[#1a1a1a] mb-6">
-                Impulsione o seu negócio com{" "}
-                <span className="relative inline-block">
-                  <span className="relative z-10 text-coral">Financiamento</span>
-                  <span className="absolute inset-x-0 bottom-1 h-3 bg-coral/15 rounded-full -z-0"></span>
-                </span>{" "}
-                Inteligente
-              </h1>
-
-              <p className="text-[#555] text-base md:text-lg leading-relaxed max-w-md">
-                Encontre produtos e serviços de fornecedores certificados. Peça financiamento e pague directamente ao fornecedor — sem intermediários.
-              </p>
-            </div>
-
-            {/* Botão CTA — totalmente arredondado */}
-            <div className="mt-10">
-              <button
-                onClick={handlePedirFinanciamento}
-                className="inline-flex items-center gap-4 bg-[#1a1a1a] text-white rounded-full pl-7 pr-3 py-3 text-sm font-medium hover:bg-[#333] transition-colors group"
-              >
-                Pedir Financiamento
-                <span className="w-9 h-9 bg-white text-[#1a1a1a] rounded-full flex items-center justify-center flex-shrink-0 group-hover:bg-coral group-hover:text-white transition-colors">
-                  <ArrowRight className="w-4 h-4" />
-                </span>
-              </button>
-            </div>
+          {/* Badges flutuantes */}
+          <div className="absolute top-12 left-8 bg-white/85 backdrop-blur-sm rounded-full px-4 py-2 flex items-center gap-2 shadow-lg">
+            <span className="w-7 h-7 bg-[#1a1a1a] rounded-full flex items-center justify-center text-white text-xs">✦</span>
+            <span className="text-sm font-medium text-[#1a1a1a]">Fornecedores Certificados</span>
           </div>
 
-          {/* Coluna direita — imagem com badges */}
-          <div className="relative hidden lg:block h-[560px]">
-            <div className="absolute inset-0 rounded-3xl overflow-hidden">
-              <img
-                src={bannerImage}
-                alt="Business Growth"
-                className="w-full h-full object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
-            </div>
-
-            {/* Badges flutuantes */}
-            <div className="absolute top-10 left-6 bg-white/80 backdrop-blur-sm rounded-full px-4 py-2 flex items-center gap-2 shadow-lg">
-              <span className="w-7 h-7 bg-[#1a1a1a] rounded-full flex items-center justify-center text-white text-xs">✦</span>
-              <span className="text-sm font-medium text-[#1a1a1a]">Fornecedores Certificados</span>
-            </div>
-
-            <div className="absolute top-28 right-8 bg-white/80 backdrop-blur-sm rounded-full px-4 py-2 flex items-center gap-2 shadow-lg">
-              <span className="w-7 h-7 bg-coral rounded-full flex items-center justify-center text-white text-xs">$</span>
-              <span className="text-sm font-medium text-[#1a1a1a]">Financiamento PME</span>
-            </div>
-
-            <div className="absolute top-1/2 left-8 -translate-y-1/2 bg-white/90 backdrop-blur-sm rounded-full px-4 py-2.5 flex items-center gap-2 shadow-lg border border-white">
-              <span className="w-8 h-8 bg-green-600 rounded-full flex items-center justify-center text-white text-xs">✓</span>
-              <span className="text-sm font-semibold text-[#1a1a1a]">Pagamento Facilitado</span>
-            </div>
-
-            <div className="absolute bottom-16 right-6 bg-white/70 backdrop-blur-sm rounded-full px-4 py-2 flex items-center gap-2 shadow-md opacity-80">
-              <span className="w-7 h-7 bg-blue-600 rounded-full flex items-center justify-center text-white text-xs">↗</span>
-              <span className="text-sm font-medium text-[#1a1a1a]">+1.200 Produtos</span>
-            </div>
+          <div className="absolute top-32 right-10 bg-white/85 backdrop-blur-sm rounded-full px-4 py-2 flex items-center gap-2 shadow-lg">
+            <span className="w-7 h-7 bg-coral rounded-full flex items-center justify-center text-white text-xs">$</span>
+            <span className="text-sm font-medium text-[#1a1a1a]">Financiamento PME</span>
           </div>
 
+          <div className="absolute top-1/2 left-8 -translate-y-1/2 bg-white/90 backdrop-blur-sm rounded-full px-4 py-2.5 flex items-center gap-2 shadow-lg">
+            <span className="w-8 h-8 bg-green-600 rounded-full flex items-center justify-center text-white text-xs">✓</span>
+            <span className="text-sm font-semibold text-[#1a1a1a]">Pagamento Facilitado</span>
+          </div>
+
+          <div className="absolute bottom-20 right-8 bg-white/75 backdrop-blur-sm rounded-full px-4 py-2 flex items-center gap-2 shadow-md">
+            <span className="w-7 h-7 bg-blue-600 rounded-full flex items-center justify-center text-white text-xs">↗</span>
+            <span className="text-sm font-medium text-[#1a1a1a]">+1.200 Produtos</span>
+          </div>
         </div>
+
+        {/* Coluna esquerda — texto */}
+        <div className="relative z-10 w-full lg:w-[48%] px-6 sm:px-10 lg:px-16 py-16 flex flex-col justify-between min-h-[calc(100vh-64px)]">
+          <div>
+            <span className="inline-flex items-center gap-2 bg-[#1a1a1a] text-white text-xs px-4 py-1.5 rounded-full mb-8">
+              <span className="w-1.5 h-1.5 bg-coral rounded-full"></span>
+              Marketplace Oficial INAPEM
+            </span>
+
+            <h1 className="text-3xl md:text-4xl leading-[1.15] text-[#1a1a1a] mb-5">
+              Impulsione o seu negócio com{" "}
+              <span className="relative inline-block">
+                <span className="relative z-10 text-coral">Financiamento</span>
+                <span className="absolute inset-x-0 bottom-0.5 h-2.5 bg-coral/15 rounded-full -z-0"></span>
+              </span>{" "}
+              Inteligente
+            </h1>
+
+            <p className="text-[#666] text-sm md:text-base leading-relaxed max-w-sm">
+              Encontre produtos e serviços de fornecedores certificados. Peça financiamento e pague directamente ao fornecedor — sem intermediários.
+            </p>
+          </div>
+
+          {/* Botão CTA — totalmente arredondado */}
+          <div className="mt-10">
+            <button
+              onClick={handlePedirFinanciamento}
+              className="inline-flex items-center gap-4 bg-[#1a1a1a] text-white rounded-full pl-7 pr-3 py-3 text-sm font-medium hover:bg-[#333] transition-colors group"
+            >
+              Pedir Financiamento
+              <span className="w-9 h-9 bg-white text-[#1a1a1a] rounded-full flex items-center justify-center flex-shrink-0 group-hover:bg-coral group-hover:text-white transition-colors">
+                <ArrowRight className="w-4 h-4" />
+              </span>
+            </button>
+          </div>
+        </div>
+
       </section>
 
       {/* CAMPO DE PESQUISA GRANDE */}
