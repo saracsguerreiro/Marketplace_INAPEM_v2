@@ -47,155 +47,93 @@ export function Layout() {
 
   return (
     <div className="min-h-screen bg-background">
-      <nav className="bg-primary text-primary-foreground sticky top-0 z-50 shadow-lg">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <Link to="/" className="flex items-center gap-3">
-              <img src={inapemLogo} alt="INAPEM" className="h-10" />
+      {/* ── NAV PILL FLUTUANTE ── */}
+      <nav className="bg-[#f2f0eb] sticky top-0 z-50 px-4 sm:px-6 lg:px-8 py-3">
+        <div className="max-w-7xl mx-auto flex items-center justify-between gap-4">
+
+          {/* Pill esquerda: logo + links */}
+          <div className="flex items-center bg-[#1a1a1a] text-white rounded-full px-4 py-2 gap-6">
+            <Link to="/" className="flex items-center gap-2 flex-shrink-0">
+              <img src={inapemLogo} alt="INAPEM" className="h-7 object-contain brightness-0 invert" />
             </Link>
-
-            <button
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="md:hidden p-2 rounded-lg hover:bg-primary-foreground/10"
-            >
-              <Menu className="w-6 h-6" />
-            </button>
-
-            <div className="hidden md:flex items-center gap-6">
+            <div className="hidden md:flex items-center gap-1">
               {navigation.map((item) => {
                 const isActive = location.pathname === item.path;
                 return (
                   <Link
                     key={item.name}
                     to={item.path}
-                    className={`px-3 py-2 rounded-lg transition-colors ${
-                      isActive
-                        ? "text-coral"
-                        : "hover:text-coral/80"
+                    className={`px-3 py-1.5 rounded-full text-sm transition-colors whitespace-nowrap ${
+                      isActive ? "bg-white/20 text-white" : "text-white/70 hover:text-white"
                     }`}
                   >
                     {item.name}
                   </Link>
                 );
               })}
-            </div>
-
-            <div className="hidden md:flex items-center gap-4">
-              {(userType === "fornecedor" || userType === "empresa") && <NotificationBell />}
-
-              {userType !== "gestor" && (
-                <Link to="/carrinho" className="p-2 rounded-lg hover:bg-primary-foreground/10 transition-colors relative">
-                  <ShoppingCart className="w-5 h-5" />
-                  {totalItems > 0 && (
-                    <span className="absolute -top-1 -right-1 bg-coral text-white text-xs w-5 h-5 rounded-full flex items-center justify-center">
-                      {totalItems}
-                    </span>
-                  )}
-                </Link>
-              )}
-
-              <div className="flex items-center gap-1 bg-primary-foreground/10 rounded-lg p-1">
-                <button
-                  onClick={() => setLanguage("PT")}
-                  className={`px-3 py-1 rounded text-sm transition-colors ${
-                    language === "PT"
-                      ? "bg-coral text-white"
-                      : "hover:bg-primary-foreground/10"
-                  }`}
-                >
-                  PT
-                </button>
-                <button
-                  onClick={() => setLanguage("EN")}
-                  className={`px-3 py-1 rounded text-sm transition-colors ${
-                    language === "EN"
-                      ? "bg-coral text-white"
-                      : "hover:bg-primary-foreground/10"
-                  }`}
-                >
-                  EN
-                </button>
-              </div>
-
-              {userType ? (
-                <button
-                  onClick={logout}
-                  className="flex items-center gap-2 px-4 py-2 bg-gray-200 text-foreground rounded-lg hover:bg-gray-300 transition-colors"
-                >
-                  <LogOut className="w-4 h-4" />
-                  Sair
-                </button>
-              ) : (
-                <button
-                  onClick={() => setLoginModalOpen(true)}
-                  className="flex items-center gap-2 px-4 py-2 bg-coral text-white rounded-lg hover:opacity-90 transition-opacity"
-                >
-                  <LogIn className="w-4 h-4" />
-                  Entrar
-                </button>
-              )}
             </div>
           </div>
 
-          {mobileMenuOpen && (
-            <div className="md:hidden pb-4 space-y-1">
-              {navigation.map((item) => {
-                const isActive = location.pathname === item.path;
-                return (
-                  <Link
-                    key={item.name}
-                    to={item.path}
-                    onClick={() => setMobileMenuOpen(false)}
-                    className={`flex items-center gap-2 px-4 py-3 rounded-lg transition-colors ${
-                      isActive
-                        ? "bg-primary-foreground/20"
-                        : "hover:bg-primary-foreground/10"
-                    }`}
-                  >
-                    {item.name}
-                  </Link>
-                );
-              })}
-              <div className="flex items-center gap-3 px-4 py-3">
-                <Link
-                  to="/carrinho"
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="p-2 rounded-lg hover:bg-primary-foreground/10 transition-colors relative flex-1"
-                >
-                  <ShoppingCart className="w-5 h-5 mx-auto" />
-                  {totalItems > 0 && (
-                    <span className="absolute top-0 right-1/3 bg-coral text-white text-xs w-5 h-5 rounded-full flex items-center justify-center">
-                      {totalItems}
-                    </span>
-                  )}
-                </Link>
-                {userType ? (
-                  <button
-                    onClick={() => {
-                      logout();
-                      setMobileMenuOpen(false);
-                    }}
-                    className="flex items-center justify-center gap-2 px-4 py-2 bg-gray-200 text-foreground rounded-lg hover:bg-gray-300 transition-colors flex-1"
-                  >
-                    <LogOut className="w-4 h-4" />
-                    Sair
-                  </button>
-                ) : (
-                  <button
-                    onClick={() => {
-                      setLoginModalOpen(true);
-                      setMobileMenuOpen(false);
-                    }}
-                    className="flex items-center justify-center gap-2 px-4 py-2 bg-coral text-white rounded-lg hover:opacity-90 transition-opacity flex-1"
-                  >
-                    <LogIn className="w-4 h-4" />
-                    Entrar
-                  </button>
+          {/* Direita: ações */}
+          <div className="flex items-center gap-3">
+            {(userType === "fornecedor" || userType === "empresa") && <NotificationBell />}
+
+            {userType !== "gestor" && (
+              <Link to="/carrinho" className="relative p-2 text-[#1a1a1a] hover:text-coral transition-colors">
+                <ShoppingCart className="w-5 h-5" />
+                {totalItems > 0 && (
+                  <span className="absolute -top-1 -right-1 bg-coral text-white text-xs w-5 h-5 rounded-full flex items-center justify-center">
+                    {totalItems}
+                  </span>
                 )}
-              </div>
-            </div>
-          )}
+              </Link>
+            )}
+
+            {userType ? (
+              <button
+                onClick={logout}
+                className="flex items-center gap-2 bg-[#1a1a1a] text-white rounded-full px-5 py-2.5 text-sm hover:bg-[#333] transition-colors"
+              >
+                <LogOut className="w-4 h-4" />
+                Sair
+              </button>
+            ) : (
+              <button
+                onClick={() => setLoginModalOpen(true)}
+                className="flex items-center gap-2 bg-[#1a1a1a] text-white rounded-full px-5 py-2.5 text-sm hover:bg-[#333] transition-colors"
+              >
+                Entrar
+                <span className="w-6 h-6 bg-white text-[#1a1a1a] rounded-full flex items-center justify-center flex-shrink-0">
+                  <LogIn className="w-3 h-3" />
+                </span>
+              </button>
+            )}
+
+            {/* Menu mobile */}
+            <button
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="md:hidden p-2 rounded-full bg-[#1a1a1a] text-white"
+            >
+              <Menu className="w-5 h-5" />
+            </button>
+          </div>
         </div>
+
+        {/* Mobile menu */}
+        {mobileMenuOpen && (
+          <div className="md:hidden mt-3 bg-[#1a1a1a] rounded-2xl p-4 space-y-1">
+            {navigation.map((item) => (
+              <Link
+                key={item.name}
+                to={item.path}
+                onClick={() => setMobileMenuOpen(false)}
+                className="block px-4 py-2.5 text-white/80 hover:text-white hover:bg-white/10 rounded-xl text-sm transition-colors"
+              >
+                {item.name}
+              </Link>
+            ))}
+          </div>
+        )}
       </nav>
 
       <main>
