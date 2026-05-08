@@ -30,7 +30,7 @@ export function CompanyDashboard() {
 
   return (
     <div className="min-h-screen"
-      style={{ background: "linear-gradient(135deg, #a5b4fc 0%, #c4b5fd 25%, #f9a8d4 50%, #93c5fd 75%, #c4b5fd 100%)" }}>
+      style={{ background: "linear-gradient(135deg, #6366f1 0%, #f97316 40%, #6b7280 75%, #1a1a1a 100%)" }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
 
         {/* Header */}
