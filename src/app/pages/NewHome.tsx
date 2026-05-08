@@ -178,17 +178,17 @@ export function NewHome() {
           </div>
 
           <div className="absolute top-32 right-10 bg-white/85 backdrop-blur-sm rounded-full px-4 py-2 flex items-center gap-2 shadow-lg">
-            <span className="w-7 h-7 bg-coral rounded-full flex items-center justify-center text-white text-xs">$</span>
+            <span className="w-7 h-7 bg-[#1a1a1a] rounded-full flex items-center justify-center text-white text-xs">$</span>
             <span className="text-sm font-medium text-[#1a1a1a]">Financiamento PME</span>
           </div>
 
           <div className="absolute top-1/2 left-8 -translate-y-1/2 bg-white/90 backdrop-blur-sm rounded-full px-4 py-2.5 flex items-center gap-2 shadow-lg">
-            <span className="w-8 h-8 bg-green-600 rounded-full flex items-center justify-center text-white text-xs">✓</span>
+            <span className="w-8 h-8 bg-[#1a1a1a] rounded-full flex items-center justify-center text-white text-xs">✓</span>
             <span className="text-sm font-semibold text-[#1a1a1a]">Pagamento Facilitado</span>
           </div>
 
           <div className="absolute bottom-20 right-8 bg-white/75 backdrop-blur-sm rounded-full px-4 py-2 flex items-center gap-2 shadow-md">
-            <span className="w-7 h-7 bg-blue-600 rounded-full flex items-center justify-center text-white text-xs">↗</span>
+            <span className="w-7 h-7 bg-[#1a1a1a] rounded-full flex items-center justify-center text-white text-xs">↗</span>
             <span className="text-sm font-medium text-[#1a1a1a]">+1.200 Produtos</span>
           </div>
         </div>
