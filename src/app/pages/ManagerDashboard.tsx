@@ -84,8 +84,8 @@ const recentDecisions = [
 
 type Tab = "overview" | "empresas" | "fornecedores" | "financiamentos" | "relatorios";
 
-const card: React.CSSProperties = { background: "rgba(255,255,255,0.35)", backdropFilter: "blur(16px)" };
-const inner: React.CSSProperties = { background: "rgba(255,255,255,0.5)" };
+const card: React.CSSProperties = { background: "rgba(255,255,255,0.45)", backdropFilter: "blur(16px)", WebkitBackdropFilter: "blur(16px)" };
+const inner: React.CSSProperties = { background: "rgba(255,255,255,0.6)" };
 
 // ── Componente principal ────────────────────────────────────────────
 
@@ -108,7 +108,7 @@ export function ManagerDashboard() {
 
   return (
     <div className="min-h-screen"
-      style={{ background: "linear-gradient(135deg, #c7d2fe 0%, #e0e7ff 25%, #fce7f3 50%, #dbeafe 75%, #ede9fe 100%)" }}>
+      style={{ background: "linear-gradient(135deg, #a5b4fc 0%, #c4b5fd 25%, #f9a8d4 50%, #93c5fd 75%, #c4b5fd 100%)" }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
 
         {/* Header */}
