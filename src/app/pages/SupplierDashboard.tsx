@@ -175,7 +175,7 @@ export function SupplierDashboard() {
       <div className="bg-card border border-border rounded-lg p-6">
         <div className="flex justify-between items-center mb-6">
           <h2>Vendas Recentes</h2>
-          <button className="bg-coral text-coral-foreground px-4 py-2 rounded-lg hover:opacity-90 transition-opacity">
+          <button className="bg-coral text-coral-foreground px-4 py-2 rounded-full hover:opacity-90 transition-opacity">
             Adicionar Produto
           </button>
         </div>

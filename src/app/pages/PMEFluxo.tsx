@@ -117,7 +117,7 @@ function Step1({ onNext }: { onNext: () => void }) {
         </div>
       </div>
 
-      <button onClick={onNext} className="w-full mt-6 bg-coral text-white py-4 rounded-xl hover:opacity-90 transition-opacity flex items-center justify-center gap-2">
+      <button onClick={onNext} className="w-full mt-6 bg-coral text-white py-4 rounded-full hover:opacity-90 transition-opacity flex items-center justify-center gap-2">
         Continuar
         <ArrowRight className="w-5 h-5" />
       </button>
@@ -289,7 +289,7 @@ function Step2({ onNext, onBack }: { onNext: () => void; onBack: () => void }) {
               <p className="text-sm font-semibold text-green-700">Análise concluída com sucesso</p>
               <p className="text-xs text-green-600">{fields.length} campos extraídos de <span className="font-medium">{fileName}</span></p>
             </div>
-            <button onClick={() => { setPhase("idle"); setFileName(null); setProgress(0); setMsgIndex(0); }} className="ml-auto p-1 hover:bg-green-100 rounded-lg transition-colors">
+            <button onClick={() => { setPhase("idle"); setFileName(null); setProgress(0); setMsgIndex(0); }} className="ml-auto p-1 hover:bg-green-100 rounded-full transition-colors">
               <X className="w-4 h-4 text-green-600" />
             </button>
           </div>
@@ -337,7 +337,7 @@ function Step2({ onNext, onBack }: { onNext: () => void; onBack: () => void }) {
       )}
 
       <div className="flex gap-3 mt-6">
-        <button onClick={onBack} className="flex-1 bg-secondary text-secondary-foreground py-4 rounded-xl hover:bg-secondary/80 transition-colors">
+        <button onClick={onBack} className="flex-1 bg-secondary text-secondary-foreground py-4 rounded-full hover:bg-secondary/80 transition-colors">
           Voltar
         </button>
         <button
@@ -393,8 +393,8 @@ function Step3({ onNext, onBack }: { onNext: () => void; onBack: () => void }) {
       </div>
 
       <div className="flex gap-3 mt-6">
-        <button onClick={onBack} className="flex-1 bg-secondary text-secondary-foreground py-4 rounded-xl hover:bg-secondary/80 transition-colors">Voltar</button>
-        <button onClick={onNext} className="flex-1 bg-coral text-white py-4 rounded-xl hover:opacity-90 transition-opacity flex items-center justify-center gap-2">
+        <button onClick={onBack} className="flex-1 bg-secondary text-secondary-foreground py-4 rounded-full hover:bg-secondary/80 transition-colors">Voltar</button>
+        <button onClick={onNext} className="flex-1 bg-coral text-white py-4 rounded-full hover:opacity-90 transition-opacity flex items-center justify-center gap-2">
           Submeter Candidatura
         </button>
       </div>
@@ -448,7 +448,7 @@ function Step4({ onNext }: { onNext: () => void }) {
         </p>
       </div>
 
-      <button onClick={onNext} className="w-full bg-coral text-white py-4 rounded-xl hover:opacity-90 transition-opacity flex items-center justify-center gap-2 font-semibold">
+      <button onClick={onNext} className="w-full bg-coral text-white py-4 rounded-full hover:opacity-90 transition-opacity flex items-center justify-center gap-2 font-semibold">
         <ShoppingBag className="w-5 h-5" />
         Explorar o Marketplace enquanto aguarda
       </button>
@@ -500,13 +500,13 @@ function Step5({ onNext, onBack }: { onNext: () => void; onBack: () => void }) {
         ))}
       </div>
 
-      <Link to="/marketplace" className="block w-full bg-secondary text-secondary-foreground py-3 rounded-xl text-center hover:bg-secondary/80 transition-colors mb-4">
+      <Link to="/marketplace" className="block w-full bg-secondary text-secondary-foreground py-3 rounded-full text-center hover:bg-secondary/80 transition-colors mb-4">
         + Adicionar Mais Produtos
       </Link>
 
       <div className="flex gap-3">
-        <button onClick={onBack} className="flex-1 bg-secondary text-secondary-foreground py-4 rounded-xl hover:bg-secondary/80 transition-colors">Voltar</button>
-        <button onClick={onNext} className="flex-1 bg-coral text-white py-4 rounded-xl hover:opacity-90 transition-opacity">Confirmar Encomenda</button>
+        <button onClick={onBack} className="flex-1 bg-secondary text-secondary-foreground py-4 rounded-full hover:bg-secondary/80 transition-colors">Voltar</button>
+        <button onClick={onNext} className="flex-1 bg-coral text-white py-4 rounded-full hover:opacity-90 transition-opacity">Confirmar Encomenda</button>
       </div>
     </div>
   );
@@ -551,8 +551,8 @@ function Step6({ onNext, onBack }: { onNext: () => void; onBack: () => void }) {
       </div>
 
       <div className="flex gap-3">
-        <button onClick={onBack} className="flex-1 bg-secondary text-secondary-foreground py-4 rounded-xl hover:bg-secondary/80 transition-colors">Voltar</button>
-        <button onClick={onNext} className="flex-1 bg-coral text-white py-4 rounded-xl hover:opacity-90 transition-opacity flex items-center justify-center gap-2">
+        <button onClick={onBack} className="flex-1 bg-secondary text-secondary-foreground py-4 rounded-full hover:bg-secondary/80 transition-colors">Voltar</button>
+        <button onClick={onNext} className="flex-1 bg-coral text-white py-4 rounded-full hover:opacity-90 transition-opacity flex items-center justify-center gap-2">
           <FileText className="w-5 h-5" />
           Confirmar e Finalizar
         </button>

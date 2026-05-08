@@ -205,18 +205,18 @@ export function ManagerDashboard() {
                   <p className="text-xs text-muted-foreground">NIF: {c.nif} · {c.sector} · {c.docs} documentos · {c.date}</p>
                 </div>
                 <div className="flex items-center gap-2">
-                  <button className="text-xs flex items-center gap-1 px-3 py-1.5 border border-border rounded-lg hover:border-coral transition-colors">
+                  <button className="text-xs flex items-center gap-1 px-3 py-1.5 border border-border rounded-full hover:border-coral transition-colors">
                     <Eye className="w-3 h-3" /> Ver docs
                   </button>
                   <button
                     onClick={() => decide(c.id, "aprovado")}
-                    className={`text-xs px-3 py-1.5 rounded-lg font-medium transition-colors ${decisions[c.id] === "aprovado" ? "bg-green-600 text-white" : "bg-green-50 text-green-700 hover:bg-green-100"}`}
+                    className={`text-xs px-3 py-1.5 rounded-full font-medium transition-colors ${decisions[c.id] === "aprovado" ? "bg-green-600 text-white" : "bg-green-50 text-green-700 hover:bg-green-100"}`}
                   >
                     {decisions[c.id] === "aprovado" ? "✓ Aprovado" : "Aprovar"}
                   </button>
                   <button
                     onClick={() => decide(c.id, "rejeitado")}
-                    className={`text-xs px-3 py-1.5 rounded-lg font-medium transition-colors ${decisions[c.id] === "rejeitado" ? "bg-red-600 text-white" : "bg-red-50 text-red-600 hover:bg-red-100"}`}
+                    className={`text-xs px-3 py-1.5 rounded-full font-medium transition-colors ${decisions[c.id] === "rejeitado" ? "bg-red-600 text-white" : "bg-red-50 text-red-600 hover:bg-red-100"}`}
                   >
                     {decisions[c.id] === "rejeitado" ? "✗ Rejeitado" : "Rejeitar"}
                   </button>
@@ -245,18 +245,18 @@ export function ManagerDashboard() {
                   <p className="text-xs text-muted-foreground">NIF: {f.nif} · {f.category} · {f.products} produtos submetidos · {f.date}</p>
                 </div>
                 <div className="flex items-center gap-2">
-                  <button className="text-xs flex items-center gap-1 px-3 py-1.5 border border-border rounded-lg hover:border-coral transition-colors">
+                  <button className="text-xs flex items-center gap-1 px-3 py-1.5 border border-border rounded-full hover:border-coral transition-colors">
                     <Eye className="w-3 h-3" /> Ver perfil
                   </button>
                   <button
                     onClick={() => decide(f.id, "aprovado")}
-                    className={`text-xs px-3 py-1.5 rounded-lg font-medium transition-colors ${decisions[f.id] === "aprovado" ? "bg-green-600 text-white" : "bg-green-50 text-green-700 hover:bg-green-100"}`}
+                    className={`text-xs px-3 py-1.5 rounded-full font-medium transition-colors ${decisions[f.id] === "aprovado" ? "bg-green-600 text-white" : "bg-green-50 text-green-700 hover:bg-green-100"}`}
                   >
                     {decisions[f.id] === "aprovado" ? "✓ Aprovado" : "Aprovar"}
                   </button>
                   <button
                     onClick={() => decide(f.id, "rejeitado")}
-                    className={`text-xs px-3 py-1.5 rounded-lg font-medium transition-colors ${decisions[f.id] === "rejeitado" ? "bg-red-600 text-white" : "bg-red-50 text-red-600 hover:bg-red-100"}`}
+                    className={`text-xs px-3 py-1.5 rounded-full font-medium transition-colors ${decisions[f.id] === "rejeitado" ? "bg-red-600 text-white" : "bg-red-50 text-red-600 hover:bg-red-100"}`}
                   >
                     {decisions[f.id] === "rejeitado" ? "✗ Rejeitado" : "Rejeitar"}
                   </button>

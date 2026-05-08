@@ -254,7 +254,7 @@ export function NewHome() {
                 placeholder="Ex: gerir pessoal, transportar mercadoria, equipamento médico..."
                 className="w-full pl-16 pr-6 py-5 text-base border-2 border-border rounded-2xl focus:outline-none focus:border-coral transition-colors shadow-lg"
               />
-              <button type="submit" className="absolute right-2 top-1/2 -translate-y-1/2 bg-coral text-white px-8 py-3 rounded-xl hover:opacity-90 transition-opacity">
+              <button type="submit" className="absolute right-2 top-1/2 -translate-y-1/2 bg-coral text-white px-8 py-3 rounded-full hover:opacity-90 transition-opacity">
                 Pesquisar
               </button>
             </div>
@@ -342,7 +342,7 @@ export function NewHome() {
                   </div>
                   <div className="flex items-center justify-between">
                     <div className="font-extrabold text-coral">{product.price.toLocaleString()} Kz</div>
-                    <button className="w-9 h-9 bg-coral/10 hover:bg-coral hover:text-white text-coral rounded-xl flex items-center justify-center transition-colors">
+                    <button className="w-9 h-9 bg-coral/10 hover:bg-coral hover:text-white text-coral rounded-full flex items-center justify-center transition-colors">
                       <ShoppingCart className="w-4 h-4" />
                     </button>
                   </div>
