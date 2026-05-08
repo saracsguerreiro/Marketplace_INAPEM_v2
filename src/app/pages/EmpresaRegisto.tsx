@@ -66,7 +66,7 @@ export function EmpresaRegisto() {
                     id="company-name"
                     type="text"
                     placeholder="Nome da sua empresa"
-                    className="w-full px-4 py-3 border-2 border-border rounded-xl focus:outline-none focus:border-coral transition-colors"
+                    className="w-full px-4 py-3 border-2 border-border rounded-full focus:outline-none focus:border-coral transition-colors"
                     required
                   />
                 </div>
@@ -78,7 +78,7 @@ export function EmpresaRegisto() {
                     id="nif"
                     type="text"
                     placeholder="Número de identificação fiscal"
-                    className="w-full px-4 py-3 border-2 border-border rounded-xl focus:outline-none focus:border-coral transition-colors"
+                    className="w-full px-4 py-3 border-2 border-border rounded-full focus:outline-none focus:border-coral transition-colors"
                     required
                   />
                 </div>
@@ -92,7 +92,7 @@ export function EmpresaRegisto() {
                   id="contact-name"
                   type="text"
                   placeholder="Nome completo"
-                  className="w-full px-4 py-3 border-2 border-border rounded-xl focus:outline-none focus:border-coral transition-colors"
+                  className="w-full px-4 py-3 border-2 border-border rounded-full focus:outline-none focus:border-coral transition-colors"
                   required
                 />
               </div>
@@ -107,7 +107,7 @@ export function EmpresaRegisto() {
               id="email"
               type="email"
               placeholder="empresa@email.com"
-              className="w-full px-4 py-3 border-2 border-border rounded-xl focus:outline-none focus:border-coral transition-colors"
+              className="w-full px-4 py-3 border-2 border-border rounded-full focus:outline-none focus:border-coral transition-colors"
               required
             />
           </div>
@@ -120,7 +120,7 @@ export function EmpresaRegisto() {
               id="password"
               type="password"
               placeholder="••••••••"
-              className="w-full px-4 py-3 border-2 border-border rounded-xl focus:outline-none focus:border-coral transition-colors"
+              className="w-full px-4 py-3 border-2 border-border rounded-full focus:outline-none focus:border-coral transition-colors"
               required
             />
           </div>
@@ -134,7 +134,7 @@ export function EmpresaRegisto() {
                 id="confirm-password"
                 type="password"
                 placeholder="••••••••"
-                className="w-full px-4 py-3 border-2 border-border rounded-xl focus:outline-none focus:border-coral transition-colors"
+                className="w-full px-4 py-3 border-2 border-border rounded-full focus:outline-none focus:border-coral transition-colors"
                 required
               />
             </div>

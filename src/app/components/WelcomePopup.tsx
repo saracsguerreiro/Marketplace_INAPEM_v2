@@ -85,14 +85,14 @@ export function WelcomePopup({ onClose }: WelcomePopupProps) {
             placeholder="Email ou NIF"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="flex-1 px-4 py-2.5 border-2 border-border rounded-lg text-sm outline-none focus:border-coral transition-colors"
+            className="flex-1 px-4 py-2.5 border-2 border-border rounded-full text-sm outline-none focus:border-coral transition-colors"
           />
           <input
             type="password"
             placeholder="Palavra-passe"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            className="flex-1 px-4 py-2.5 border-2 border-border rounded-lg text-sm outline-none focus:border-coral transition-colors"
+            className="flex-1 px-4 py-2.5 border-2 border-border rounded-full text-sm outline-none focus:border-coral transition-colors"
           />
           <button
             onClick={() => onClose("login")}

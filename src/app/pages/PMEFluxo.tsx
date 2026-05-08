@@ -83,29 +83,29 @@ function Step1({ onNext }: { onNext: () => void }) {
       <div className="space-y-4">
         <div>
           <label className="block text-xs mb-1.5">Nome da Empresa <span className="text-coral">*</span></label>
-          <input type="text" placeholder="Ex: TecnoLuanda Lda" className="w-full px-4 py-3 border-2 border-border rounded-xl text-sm outline-none focus:border-coral transition-colors" />
+          <input type="text" placeholder="Ex: TecnoLuanda Lda" className="w-full px-4 py-3 border-2 border-border rounded-full text-sm outline-none focus:border-coral transition-colors" />
         </div>
         <div className="grid grid-cols-2 gap-4">
           <div>
             <label className="block text-xs mb-1.5">NIF <span className="text-coral">*</span></label>
-            <input type="text" placeholder="000000000" className="w-full px-4 py-3 border-2 border-border rounded-xl text-sm outline-none focus:border-coral transition-colors" />
+            <input type="text" placeholder="000000000" className="w-full px-4 py-3 border-2 border-border rounded-full text-sm outline-none focus:border-coral transition-colors" />
           </div>
           <div>
             <label className="block text-xs mb-1.5">Telefone <span className="text-coral">*</span></label>
-            <input type="tel" placeholder="+244 900 000 000" className="w-full px-4 py-3 border-2 border-border rounded-xl text-sm outline-none focus:border-coral transition-colors" />
+            <input type="tel" placeholder="+244 900 000 000" className="w-full px-4 py-3 border-2 border-border rounded-full text-sm outline-none focus:border-coral transition-colors" />
           </div>
         </div>
         <div>
           <label className="block text-xs mb-1.5">Email Empresarial <span className="text-coral">*</span></label>
-          <input type="email" placeholder="empresa@exemplo.ao" className="w-full px-4 py-3 border-2 border-border rounded-xl text-sm outline-none focus:border-coral transition-colors" />
+          <input type="email" placeholder="empresa@exemplo.ao" className="w-full px-4 py-3 border-2 border-border rounded-full text-sm outline-none focus:border-coral transition-colors" />
         </div>
         <div>
           <label className="block text-xs mb-1.5">Morada Completa <span className="text-coral">*</span></label>
-          <input type="text" placeholder="Rua, Número, Bairro, Cidade" className="w-full px-4 py-3 border-2 border-border rounded-xl text-sm outline-none focus:border-coral transition-colors" />
+          <input type="text" placeholder="Rua, Número, Bairro, Cidade" className="w-full px-4 py-3 border-2 border-border rounded-full text-sm outline-none focus:border-coral transition-colors" />
         </div>
         <div>
           <label className="block text-xs mb-1.5">Setor de Atividade <span className="text-coral">*</span></label>
-          <select className="w-full px-4 py-3 border-2 border-border rounded-xl text-sm outline-none focus:border-coral transition-colors">
+          <select className="w-full px-4 py-3 border-2 border-border rounded-full text-sm outline-none focus:border-coral transition-colors">
             <option>Selecione...</option>
             <option>Comércio</option>
             <option>Serviços</option>
@@ -375,11 +375,11 @@ function Step3({ onNext, onBack }: { onNext: () => void; onBack: () => void }) {
       <div className="space-y-4">
         <div>
           <label className="block text-xs mb-1.5">Valor do Crédito Solicitado <span className="text-coral">*</span></label>
-          <input type="text" defaultValue="250.000 Kz" className="w-full px-4 py-3 border-2 border-border rounded-xl text-sm outline-none focus:border-coral transition-colors" />
+          <input type="text" defaultValue="250.000 Kz" className="w-full px-4 py-3 border-2 border-border rounded-full text-sm outline-none focus:border-coral transition-colors" />
         </div>
         <div>
           <label className="block text-xs mb-1.5">Prazo de Pagamento <span className="text-coral">*</span></label>
-          <select className="w-full px-4 py-3 border-2 border-border rounded-xl text-sm outline-none focus:border-coral transition-colors">
+          <select className="w-full px-4 py-3 border-2 border-border rounded-full text-sm outline-none focus:border-coral transition-colors">
             <option>12 meses</option>
             <option>18 meses</option>
             <option>24 meses</option>
@@ -388,7 +388,7 @@ function Step3({ onNext, onBack }: { onNext: () => void; onBack: () => void }) {
         </div>
         <div>
           <label className="block text-xs mb-1.5">Finalidade do Crédito <span className="text-coral">*</span></label>
-          <textarea placeholder="Descreva para que vai utilizar este financiamento..." rows={3} className="w-full px-4 py-3 border-2 border-border rounded-xl text-sm outline-none focus:border-coral transition-colors resize-none" />
+          <textarea placeholder="Descreva para que vai utilizar este financiamento..." rows={3} className="w-full px-4 py-3 border-2 border-border rounded-full text-sm outline-none focus:border-coral transition-colors resize-none" />
         </div>
       </div>
 

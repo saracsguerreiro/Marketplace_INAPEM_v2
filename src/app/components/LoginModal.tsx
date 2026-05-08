@@ -64,14 +64,14 @@ export function LoginModal({ isOpen, onClose, onLogin }: LoginModalProps) {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="seu@email.com"
-              className="w-full px-4 py-3 border-2 border-border rounded-xl focus:outline-none focus:border-coral transition-colors"
+              className="w-full px-4 py-3 border-2 border-border rounded-full focus:outline-none focus:border-coral transition-colors"
               required
             />
           </div>
 
           <div>
             <label htmlFor="password" className="block mb-2 text-sm">
-              Senha
+              Palavra-passe
             </label>
             <input
               id="password"
@@ -79,7 +79,7 @@ export function LoginModal({ isOpen, onClose, onLogin }: LoginModalProps) {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               placeholder="••••••••"
-              className="w-full px-4 py-3 border-2 border-border rounded-xl focus:outline-none focus:border-coral transition-colors"
+              className="w-full px-4 py-3 border-2 border-border rounded-full focus:outline-none focus:border-coral transition-colors"
               required
             />
           </div>
@@ -90,7 +90,7 @@ export function LoginModal({ isOpen, onClose, onLogin }: LoginModalProps) {
               <span className="text-muted-foreground">Lembrar-me</span>
             </label>
             <button type="button" className="text-coral hover:underline">
-              Esqueceu a senha?
+              Esqueceu a palavra-passe?
             </button>
           </div>
 

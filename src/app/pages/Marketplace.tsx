@@ -132,7 +132,7 @@ export function Marketplace() {
             placeholder="Pesquisar produtos e serviços..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full pl-12 pr-4 py-4 border-2 border-border rounded-xl focus:outline-none focus:border-coral transition-colors text-base"
+            className="w-full pl-12 pr-4 py-4 border-2 border-border rounded-full focus:outline-none focus:border-coral transition-colors text-base"
           />
         </div>
       </div>
