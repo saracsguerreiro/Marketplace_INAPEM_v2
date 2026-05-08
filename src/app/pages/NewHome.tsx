@@ -160,16 +160,16 @@ export function NewHome() {
       {showWelcome && <WelcomePopup onClose={handleWelcomeClose} />}
 
       {/* HERO BANNER — split layout */}
-      <section className="bg-white overflow-hidden relative min-h-[calc(100vh-64px)] flex items-center">
+      <section className="bg-white overflow-hidden relative flex items-center py-10">
 
-        {/* Imagem direita — estende-se até ao topo, sem margem */}
-        <div className="hidden lg:block absolute top-0 right-0 w-[52%] h-full">
+        {/* Imagem direita */}
+        <div className="hidden lg:block absolute top-4 right-4 w-[52%] h-[calc(100%-2rem)]">
           <img
             src={bannerImage}
             alt="Business Growth"
-            className="w-full h-full object-cover rounded-bl-3xl"
+            className="w-full h-full object-cover rounded-3xl"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent rounded-bl-3xl" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent rounded-3xl" />
 
           {/* Badges flutuantes */}
           <div className="absolute top-12 left-8 bg-white/85 backdrop-blur-sm rounded-full px-4 py-2 flex items-center gap-2 shadow-lg">
@@ -194,7 +194,7 @@ export function NewHome() {
         </div>
 
         {/* Coluna esquerda — texto */}
-        <div className="relative z-10 w-full lg:w-[48%] px-6 sm:px-10 lg:px-16 py-16 flex flex-col justify-between min-h-[calc(100vh-64px)]">
+        <div className="relative z-10 w-full lg:w-[48%] px-6 sm:px-10 lg:px-16 py-12 flex flex-col justify-between min-h-[520px]">
           <div>
             <span className="inline-flex items-center gap-2 bg-[#1a1a1a] text-white text-xs px-4 py-1.5 rounded-full mb-8">
               <span className="w-1.5 h-1.5 bg-coral rounded-full"></span>
@@ -219,10 +219,10 @@ export function NewHome() {
           <div className="mt-10">
             <button
               onClick={handlePedirFinanciamento}
-              className="inline-flex items-center gap-4 bg-[#1a1a1a] text-white rounded-full pl-7 pr-3 py-3 text-sm font-medium hover:bg-[#333] transition-colors group"
+              className="inline-flex items-center gap-4 bg-coral text-white rounded-full pl-7 pr-3 py-3 text-sm font-medium hover:opacity-90 transition-opacity group"
             >
               Pedir Financiamento
-              <span className="w-9 h-9 bg-white text-[#1a1a1a] rounded-full flex items-center justify-center flex-shrink-0 group-hover:bg-coral group-hover:text-white transition-colors">
+              <span className="w-9 h-9 bg-white text-coral rounded-full flex items-center justify-center flex-shrink-0">
                 <ArrowRight className="w-4 h-4" />
               </span>
             </button>
