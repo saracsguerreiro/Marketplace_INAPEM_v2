@@ -1,5 +1,5 @@
 import { CreditCard, ShoppingBag, TrendingUp, Clock } from "lucide-react";
-import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts";
+import { AreaChart, Area, XAxis, YAxis, Tooltip, ResponsiveContainer, defs, linearGradient, stop } from "recharts";
 import { InsightsPanel } from "../components/InsightsPanel";
 
 const spendingData = [
@@ -17,6 +17,7 @@ export function CompanyDashboard() {
       label: "Crédito Disponível",
       value: "75.000 Kz",
       trend: "+15%",
+      trendUp: true,
       color: "text-blue-600",
       bg: "bg-blue-100",
     },
@@ -25,24 +26,27 @@ export function CompanyDashboard() {
       label: "Compras Este Mês",
       value: "25.000 Kz",
       trend: "+8%",
-      color: "text-green-600",
-      bg: "bg-green-100",
+      trendUp: true,
+      color: "text-violet-600",
+      bg: "bg-violet-100",
     },
     {
       icon: TrendingUp,
       label: "Total Financiado",
       value: "150.000 Kz",
       trend: "+22%",
-      color: "text-purple-600",
-      bg: "bg-purple-100",
+      trendUp: true,
+      color: "text-indigo-600",
+      bg: "bg-indigo-100",
     },
     {
       icon: Clock,
       label: "Próximo Vencimento",
       value: "15 Mai",
       trend: "5.200 Kz",
-      color: "text-orange-600",
-      bg: "bg-orange-100",
+      trendUp: false,
+      color: "text-rose-500",
+      bg: "bg-rose-100",
     },
   ];
 
@@ -66,146 +70,121 @@ export function CompanyDashboard() {
   ];
 
   const recentOrders = [
-    {
-      id: "1",
-      date: "02 Mai 2026",
-      product: "Consultoria Marketing",
-      amount: 280000,
-      status: "Processando",
-    },
-    {
-      id: "2",
-      date: "28 Abr 2026",
-      product: "Licenças Software",
-      amount: 185000,
-      status: "Entregue",
-    },
+    { id: "1", date: "02 Mai 2026", product: "Consultoria Marketing", amount: 280000, status: "Processando" },
+    { id: "2", date: "28 Abr 2026", product: "Licenças Software", amount: 185000, status: "Entregue" },
   ];
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-      <div className="mb-8">
-        <h1 className="mb-2">Dashboard - Empresa</h1>
-        <p className="text-muted-foreground">Visão geral das suas finanças e compras</p>
-      </div>
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-violet-50">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
 
-      <InsightsPanel insights={[
-        {
-          type: "up",
-          title: "Tecnologia em alta",
-          description: "Gastou 32% mais em Tecnologia este mês face ao mês anterior. É a sua categoria com maior crescimento.",
-          action: "Ver produtos de Tecnologia",
-        },
-        {
-          type: "alert",
-          title: "Prestações a vencer",
-          description: "Tem 2 prestações a vencer nos próximos 10 dias — total de 10.400 Kz. Garanta saldo suficiente.",
-          action: "Ver financiamentos",
-        },
-        {
-          type: "tip",
-          title: "Oportunidade de poupança",
-          description: "Empresas com o seu perfil poupam em média 18% ao consolidar compras de Equipamentos num único pedido.",
-          action: "Explorar Equipamentos",
-        },
-        {
-          type: "up",
-          title: "Crédito bem utilizado",
-          description: "Utilizou 75% do crédito disponível de forma eficiente. O seu histórico de pagamentos está em excelente estado.",
-        },
-      ]} />
-
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-        {stats.map((stat) => {
-          const Icon = stat.icon;
-          return (
-            <div key={stat.label} className="bg-card border border-border rounded-lg p-6">
-              <div className="flex items-start justify-between mb-4">
-                <div className={`${stat.bg} p-3 rounded-lg`}>
-                  <Icon className={`w-6 h-6 ${stat.color}`} />
-                </div>
-                <span className="text-sm text-green-600">{stat.trend}</span>
-              </div>
-              <div className="text-2xl mb-1">{stat.value}</div>
-              <div className="text-sm text-muted-foreground">{stat.label}</div>
-            </div>
-          );
-        })}
-      </div>
-
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
-        <div className="bg-card border border-border rounded-lg p-6">
-          <h2 className="mb-6">Histórico de Gastos</h2>
-          <ResponsiveContainer width="100%" height={250}>
-            <AreaChart data={spendingData}>
-              <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="month" />
-              <YAxis />
-              <Tooltip />
-              <Area
-                type="monotone"
-                dataKey="value"
-                stroke="#030213"
-                fill="#030213"
-                fillOpacity={0.1}
-                name="Gastos"
-              />
-            </AreaChart>
-          </ResponsiveContainer>
+        {/* Header */}
+        <div className="mb-8">
+          <p className="text-xs font-semibold text-violet-500 uppercase tracking-widest mb-1">Dashboard</p>
+          <h1 className="text-2xl font-bold text-gray-800 mb-1">Bem-vindo de volta</h1>
+          <p className="text-sm text-gray-400">Visão geral das suas finanças e compras</p>
         </div>
 
-        <div className="bg-card border border-border rounded-lg p-6">
-          <h2 className="mb-6">Financiamentos Ativos</h2>
-          <div className="space-y-4">
-            {activeLoans.map((loan) => (
-              <div key={loan.id} className="bg-secondary rounded-lg p-4">
-                <div className="flex justify-between items-start mb-2">
-                  <div>
-                    <div className="font-medium">{loan.product}</div>
-                    <div className="text-sm text-muted-foreground">
-                      Parcela {loan.installments}
-                    </div>
+        <InsightsPanel insights={[
+          { type: "up", title: "Tecnologia em alta", description: "Gastou 32% mais em Tecnologia este mês face ao mês anterior.", action: "Ver produtos" },
+          { type: "alert", title: "Prestações a vencer", description: "Tem 2 prestações a vencer nos próximos 10 dias — total de 10.400 Kz.", action: "Ver financiamentos" },
+          { type: "tip", title: "Oportunidade de poupança", description: "Poupe 18% ao consolidar compras de Equipamentos num único pedido.", action: "Explorar" },
+          { type: "up", title: "Crédito bem utilizado", description: "Utilizou 75% do crédito disponível de forma eficiente." },
+        ]} />
+
+        {/* KPI Cards */}
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+          {stats.map((stat) => {
+            const Icon = stat.icon;
+            return (
+              <div key={stat.label} className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-sm p-5">
+                <div className="flex items-center justify-between mb-4">
+                  <div className={`${stat.bg} p-2.5 rounded-full`}>
+                    <Icon className={`w-5 h-5 ${stat.color}`} />
                   </div>
-                  <span className="text-xs bg-green-100 text-green-700 px-2 py-1 rounded">
-                    {loan.status}
+                  <span className={`text-xs font-semibold px-2 py-0.5 rounded-full ${stat.trendUp ? "bg-green-50 text-green-600" : "bg-rose-50 text-rose-500"}`}>
+                    {stat.trend}
                   </span>
                 </div>
-                <div className="flex justify-between text-sm">
-                  <span className="text-muted-foreground">Próximo pagamento:</span>
-                  <span>{loan.nextPayment}</span>
-                </div>
+                <div className="text-xl font-bold text-gray-800 mb-0.5">{stat.value}</div>
+                <div className="text-xs text-gray-400">{stat.label}</div>
               </div>
-            ))}
+            );
+          })}
+        </div>
+
+        {/* Charts Row */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-6">
+
+          {/* Área chart */}
+          <div className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-sm p-6">
+            <h3 className="text-sm font-semibold text-gray-700 mb-5">Histórico de Gastos</h3>
+            <ResponsiveContainer width="100%" height={220}>
+              <AreaChart data={spendingData} margin={{ top: 5, right: 10, left: -20, bottom: 0 }}>
+                <defs>
+                  <linearGradient id="gradBlue" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="5%" stopColor="#6366f1" stopOpacity={0.25} />
+                    <stop offset="95%" stopColor="#6366f1" stopOpacity={0} />
+                  </linearGradient>
+                </defs>
+                <XAxis dataKey="month" tick={{ fontSize: 11, fill: "#9ca3af" }} axisLine={false} tickLine={false} />
+                <YAxis tick={{ fontSize: 11, fill: "#9ca3af" }} axisLine={false} tickLine={false} />
+                <Tooltip contentStyle={{ borderRadius: "12px", border: "none", boxShadow: "0 4px 20px rgba(0,0,0,0.08)", fontSize: 12 }} />
+                <Area type="monotone" dataKey="value" stroke="#6366f1" strokeWidth={2.5} fill="url(#gradBlue)" name="Gastos (Kz)" />
+              </AreaChart>
+            </ResponsiveContainer>
+          </div>
+
+          {/* Financiamentos */}
+          <div className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-sm p-6">
+            <h3 className="text-sm font-semibold text-gray-700 mb-5">Financiamentos Ativos</h3>
+            <div className="space-y-3">
+              {activeLoans.map((loan) => (
+                <div key={loan.id} className="bg-slate-50 rounded-2xl p-4">
+                  <div className="flex justify-between items-start mb-3">
+                    <div>
+                      <div className="font-semibold text-sm text-gray-800">{loan.product}</div>
+                      <div className="text-xs text-gray-400 mt-0.5">Parcela {loan.installments}</div>
+                    </div>
+                    <span className="text-xs bg-green-100 text-green-600 px-3 py-1 rounded-full font-medium">
+                      {loan.status}
+                    </span>
+                  </div>
+                  <div className="flex justify-between text-xs text-gray-400">
+                    <span>Próximo pagamento</span>
+                    <span className="font-medium text-gray-600">{loan.nextPayment}</span>
+                  </div>
+                  <div className="mt-2 h-1.5 bg-gray-100 rounded-full overflow-hidden">
+                    <div className="h-full bg-indigo-400 rounded-full" style={{ width: loan.installments === "6/12" ? "50%" : "12.5%" }} />
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
-      </div>
 
-      <div className="bg-card border border-border rounded-lg p-6">
-        <h2 className="mb-6">Pedidos Recentes</h2>
-        <div className="overflow-x-auto">
+        {/* Table */}
+        <div className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-sm p-6">
+          <h3 className="text-sm font-semibold text-gray-700 mb-5">Pedidos Recentes</h3>
           <table className="w-full">
             <thead>
-              <tr className="border-b border-border">
-                <th className="text-left py-3 px-4">Data</th>
-                <th className="text-left py-3 px-4">Produto</th>
-                <th className="text-left py-3 px-4">Valor</th>
-                <th className="text-left py-3 px-4">Status</th>
+              <tr>
+                <th className="text-left text-xs text-gray-400 font-medium pb-3 px-2">Data</th>
+                <th className="text-left text-xs text-gray-400 font-medium pb-3 px-2">Produto</th>
+                <th className="text-left text-xs text-gray-400 font-medium pb-3 px-2">Valor</th>
+                <th className="text-left text-xs text-gray-400 font-medium pb-3 px-2">Estado</th>
               </tr>
             </thead>
             <tbody>
               {recentOrders.map((order) => (
-                <tr key={order.id} className="border-b border-border">
-                  <td className="py-4 px-4 text-muted-foreground">{order.date}</td>
-                  <td className="py-4 px-4">{order.product}</td>
-                  <td className="py-4 px-4">{order.amount.toLocaleString()} Kz</td>
-                  <td className="py-4 px-4">
-                    <span
-                      className={`text-xs px-2 py-1 rounded ${
-                        order.status === "Entregue"
-                          ? "bg-green-100 text-green-700"
-                          : "bg-yellow-100 text-yellow-700"
-                      }`}
-                    >
+                <tr key={order.id} className="border-t border-gray-50">
+                  <td className="py-3.5 px-2 text-xs text-gray-400">{order.date}</td>
+                  <td className="py-3.5 px-2 text-sm font-medium text-gray-700">{order.product}</td>
+                  <td className="py-3.5 px-2 text-sm font-semibold text-gray-800">{order.amount.toLocaleString()} Kz</td>
+                  <td className="py-3.5 px-2">
+                    <span className={`text-xs px-3 py-1 rounded-full font-medium ${
+                      order.status === "Entregue" ? "bg-green-100 text-green-600" : "bg-amber-100 text-amber-600"
+                    }`}>
                       {order.status}
                     </span>
                   </td>
@@ -214,6 +193,7 @@ export function CompanyDashboard() {
             </tbody>
           </table>
         </div>
+
       </div>
     </div>
   );

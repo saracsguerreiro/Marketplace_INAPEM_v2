@@ -104,31 +104,32 @@ export function ManagerDashboard() {
   ];
 
   return (
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-violet-50">
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
       {/* Header */}
       <div className="mb-8 flex items-center justify-between">
         <div>
           <div className="flex items-center gap-2 mb-1">
-            <Shield className="w-5 h-5 text-coral" />
-            <span className="text-xs text-coral font-semibold uppercase tracking-wide">Gestor INAPEM</span>
+            <Shield className="w-5 h-5 text-violet-500" />
+            <span className="text-xs text-violet-500 font-semibold uppercase tracking-widest">Gestor INAPEM</span>
           </div>
-          <h1 className="mb-1">Painel de Gestão</h1>
-          <p className="text-muted-foreground text-sm">Gerencie registos, financiamentos e análises de risco</p>
+          <h1 className="text-2xl font-bold text-gray-800 mb-1">Painel de Gestão</h1>
+          <p className="text-sm text-gray-400">Gerencie registos, financiamentos e análises de risco</p>
         </div>
-        <div className="text-right text-xs text-muted-foreground">
-          <div className="font-semibold text-foreground">Gestor: Admin INAPEM</div>
+        <div className="text-right text-xs text-gray-400">
+          <div className="font-semibold text-gray-700">Admin INAPEM</div>
           <div>Última sessão: hoje, 09:14</div>
         </div>
       </div>
 
       {/* Tabs */}
-      <div className="flex gap-1 bg-gray-100 p-1 rounded-xl mb-8 overflow-x-auto">
+      <div className="flex gap-1 bg-white/60 backdrop-blur-sm p-1 rounded-2xl mb-8 overflow-x-auto shadow-sm">
         {tabs.map(({ key, label, icon: Icon }) => (
           <button
             key={key}
             onClick={() => setTab(key)}
-            className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all whitespace-nowrap flex-1 justify-center ${
-              tab === key ? "bg-white text-coral shadow-sm" : "text-muted-foreground hover:text-foreground"
+            className={`flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all whitespace-nowrap flex-1 justify-center ${
+              tab === key ? "bg-white text-violet-600 shadow-sm" : "text-gray-400 hover:text-gray-700"
             }`}
           >
             <Icon className="w-4 h-4" />
@@ -147,12 +148,12 @@ export function ManagerDashboard() {
               { label: "Financiamentos em Análise",value: pendingFinancing.length,   color: "text-purple-600", bg: "bg-purple-50",  icon: FileText    },
               { label: "Aprovações Hoje",          value: 3,                         color: "text-green-600",  bg: "bg-green-50",   icon: CheckCircle },
             ].map(({ label, value, color, bg, icon: Icon }) => (
-              <div key={label} className="bg-white border-2 border-border rounded-2xl p-5">
-                <div className={`w-10 h-10 ${bg} rounded-xl flex items-center justify-center mb-3`}>
+              <div key={label} className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-sm p-5">
+                <div className={`w-10 h-10 ${bg} rounded-full flex items-center justify-center mb-3`}>
                   <Icon className={`w-5 h-5 ${color}`} />
                 </div>
                 <div className={`text-3xl font-extrabold ${color} mb-1`}>{value}</div>
-                <div className="text-xs text-muted-foreground">{label}</div>
+                <div className="text-xs text-gray-400">{label}</div>
               </div>
             ))}
           </div>
@@ -165,11 +166,11 @@ export function ManagerDashboard() {
           ]} />
 
           {/* Decisões recentes */}
-          <div className="bg-white border-2 border-border rounded-2xl p-6">
-            <h3 className="mb-4 flex items-center gap-2"><Clock className="w-4 h-4 text-coral" /> Decisões Recentes</h3>
-            <div className="space-y-3">
+          <div className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-sm p-6">
+            <h3 className="text-sm font-semibold text-gray-700 mb-4 flex items-center gap-2"><Clock className="w-4 h-4 text-violet-500" /> Decisões Recentes</h3>
+            <div className="space-y-1">
               {recentDecisions.map((d) => (
-                <div key={d.id} className="flex items-center justify-between py-3 border-b border-border last:border-0">
+                <div key={d.id} className="flex items-center justify-between py-3 border-t border-gray-50 first:border-0">
                   <div>
                     <p className="text-sm font-semibold">{d.company}</p>
                     <p className="text-xs text-muted-foreground">{d.id} · {d.date} · Score: {d.score}</p>
@@ -189,7 +190,7 @@ export function ManagerDashboard() {
 
       {/* ── EMPRESAS ── */}
       {tab === "empresas" && (
-        <div className="bg-white border-2 border-border rounded-2xl overflow-hidden">
+        <div className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-sm overflow-hidden">
           <div className="p-6 border-b border-border flex items-center justify-between">
             <h3 className="flex items-center gap-2"><Building2 className="w-4 h-4 text-coral" /> Registos de Empresas Pendentes</h3>
             <span className="text-xs bg-orange-100 text-orange-700 px-2 py-1 rounded-full">{pendingCompanies.length} pendentes</span>
@@ -229,7 +230,7 @@ export function ManagerDashboard() {
 
       {/* ── FORNECEDORES ── */}
       {tab === "fornecedores" && (
-        <div className="bg-white border-2 border-border rounded-2xl overflow-hidden">
+        <div className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-sm overflow-hidden">
           <div className="p-6 border-b border-border flex items-center justify-between">
             <h3 className="flex items-center gap-2"><ShoppingBag className="w-4 h-4 text-coral" /> Registos de Fornecedores Pendentes</h3>
             <span className="text-xs bg-blue-100 text-blue-700 px-2 py-1 rounded-full">{pendingSuppliers.length} pendentes</span>
@@ -468,6 +469,7 @@ export function ManagerDashboard() {
           </div>
         </div>
       )}
+    </div>
     </div>
   );
 }
