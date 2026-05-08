@@ -50,7 +50,7 @@ export function Login() {
 
           <button
             type="submit"
-            className="w-full bg-coral text-white py-3 rounded-xl hover:opacity-90 transition-opacity"
+            className="w-full bg-coral text-white py-3 rounded-full hover:opacity-90 transition-opacity"
           >
             Entrar
           </button>

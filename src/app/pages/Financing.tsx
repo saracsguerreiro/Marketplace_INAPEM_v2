@@ -173,7 +173,7 @@ export function Financing() {
 
               <button
                 onClick={() => setFormStep(2)}
-                className="w-full bg-coral text-coral-foreground py-4 rounded-lg hover:opacity-90 transition-opacity mt-6"
+                className="w-full bg-coral text-coral-foreground py-4 rounded-full hover:opacity-90 transition-opacity mt-6"
               >
                 Continuar
               </button>
@@ -202,7 +202,7 @@ export function Financing() {
               </div>
               <button
                 onClick={() => setFormStep(1)}
-                className="w-full bg-secondary text-secondary-foreground py-4 rounded-lg hover:bg-secondary/80 transition-colors mt-6"
+                className="w-full bg-secondary text-secondary-foreground py-4 rounded-full hover:bg-secondary/80 transition-colors mt-6"
               >
                 Nova Solicitação
               </button>

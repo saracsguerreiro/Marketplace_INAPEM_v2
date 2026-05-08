@@ -174,14 +174,14 @@ export function ProductDetail() {
             <div className="flex items-center gap-4">
               <button
                 onClick={decrementQuantity}
-                className="w-12 h-12 rounded-xl border-2 border-border hover:border-coral flex items-center justify-center transition-colors"
+                className="w-12 h-12 rounded-full border-2 border-border hover:border-coral flex items-center justify-center transition-colors"
               >
                 <Minus className="w-5 h-5" />
               </button>
               <span className="text-2xl font-semibold w-16 text-center">{quantity}</span>
               <button
                 onClick={incrementQuantity}
-                className="w-12 h-12 rounded-xl border-2 border-border hover:border-coral flex items-center justify-center transition-colors"
+                className="w-12 h-12 rounded-full border-2 border-border hover:border-coral flex items-center justify-center transition-colors"
               >
                 <Plus className="w-5 h-5" />
               </button>
@@ -194,13 +194,13 @@ export function ProductDetail() {
           <div className="space-y-3 mb-8">
             <button
               onClick={handleSolicitarFinanciamento}
-              className="w-full bg-coral text-white py-4 rounded-xl text-center hover:opacity-90 transition-opacity font-semibold"
+              className="w-full bg-coral text-white py-4 rounded-full text-center hover:opacity-90 transition-opacity font-semibold"
             >
               Solicitar Financiamento
             </button>
             <button
               onClick={handleAddToCart}
-              className="w-full bg-white border-2 border-coral text-coral py-4 rounded-xl hover:bg-coral hover:text-white transition-colors flex items-center justify-center gap-2 font-semibold"
+              className="w-full bg-white border-2 border-coral text-coral py-4 rounded-full hover:bg-coral hover:text-white transition-colors flex items-center justify-center gap-2 font-semibold"
             >
               <ShoppingCart className="w-5 h-5" />
               Adicionar ao Carrinho

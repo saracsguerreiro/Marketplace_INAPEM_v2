@@ -63,14 +63,14 @@ export function Home() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
                 to="/pme/fluxo"
-                className="bg-coral text-coral-foreground px-8 py-4 rounded-lg inline-flex items-center justify-center gap-2 hover:opacity-90 transition-opacity shadow-lg shadow-coral/30"
+                className="bg-coral text-coral-foreground px-8 py-4 rounded-full inline-flex items-center justify-center gap-2 hover:opacity-90 transition-opacity shadow-lg shadow-coral/30"
               >
                 Pedir Financiamento
                 <ArrowRight className="w-5 h-5" />
               </Link>
               <Link
                 to="/marketplace"
-                className="bg-transparent border-2 border-primary-foreground px-8 py-4 rounded-lg inline-flex items-center justify-center gap-2 hover:bg-primary-foreground/10 transition-colors"
+                className="bg-transparent border-2 border-primary-foreground px-8 py-4 rounded-full inline-flex items-center justify-center gap-2 hover:bg-primary-foreground/10 transition-colors"
               >
                 Explorar Marketplace
               </Link>

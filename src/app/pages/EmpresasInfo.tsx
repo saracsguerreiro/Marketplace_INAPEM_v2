@@ -73,14 +73,14 @@ export function EmpresasInfo() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <button
                 onClick={handleSolicitarFinanciamento}
-                className="bg-coral text-white px-6 py-3 rounded-xl inline-flex items-center justify-center gap-2 hover:opacity-90 transition-opacity shadow-xl"
+                className="bg-coral text-white px-6 py-3 rounded-full inline-flex items-center justify-center gap-2 hover:opacity-90 transition-opacity shadow-xl"
               >
                 Solicitar Financiamento
                 <ArrowRight className="w-4 h-4" />
               </button>
               <Link
                 to="/marketplace"
-                className="bg-white/10 border-2 border-white/30 backdrop-blur-sm text-white px-6 py-3 rounded-xl inline-flex items-center justify-center gap-2 hover:bg-white/20 transition-colors"
+                className="bg-white/10 border-2 border-white/30 backdrop-blur-sm text-white px-6 py-3 rounded-full inline-flex items-center justify-center gap-2 hover:bg-white/20 transition-colors"
               >
                 Ver Produtos e Serviços
               </Link>
@@ -157,14 +157,14 @@ export function EmpresasInfo() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
                 to="/empresas/registo"
-                className="bg-white text-coral px-8 py-4 rounded-xl hover:shadow-2xl transition-shadow inline-flex items-center justify-center gap-2 text-lg"
+                className="bg-white text-coral px-8 py-4 rounded-full hover:shadow-2xl transition-shadow inline-flex items-center justify-center gap-2 text-lg"
               >
                 Começar Agora
                 <ArrowRight className="w-5 h-5" />
               </Link>
               <Link
                 to="/marketplace"
-                className="bg-white/10 border-2 border-white/30 backdrop-blur-sm px-8 py-4 rounded-xl hover:bg-white/20 transition-colors inline-flex items-center justify-center gap-2 text-lg"
+                className="bg-white/10 border-2 border-white/30 backdrop-blur-sm px-8 py-4 rounded-full hover:bg-white/20 transition-colors inline-flex items-center justify-center gap-2 text-lg"
               >
                 Explorar Produtos
               </Link>

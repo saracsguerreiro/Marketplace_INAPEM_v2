@@ -34,7 +34,7 @@ export function FornecedorRegisto() {
         <div className="flex gap-2 mb-8 bg-gray-100 p-1 rounded-xl">
           <button
             onClick={() => setIsLogin(false)}
-            className={`flex-1 py-3 px-4 rounded-lg transition-all ${
+            className={`flex-1 py-3 px-4 rounded-full transition-all ${
               !isLogin
                 ? "bg-white shadow text-foreground"
                 : "text-muted-foreground hover:text-foreground"
@@ -44,7 +44,7 @@ export function FornecedorRegisto() {
           </button>
           <button
             onClick={() => setIsLogin(true)}
-            className={`flex-1 py-3 px-4 rounded-lg transition-all ${
+            className={`flex-1 py-3 px-4 rounded-full transition-all ${
               isLogin
                 ? "bg-white shadow text-foreground"
                 : "text-muted-foreground hover:text-foreground"
@@ -184,7 +184,7 @@ export function FornecedorRegisto() {
 
           <button
             type="submit"
-            className="w-full bg-coral text-white py-4 rounded-xl hover:opacity-90 transition-opacity flex items-center justify-center gap-2"
+            className="w-full bg-coral text-white py-4 rounded-full hover:opacity-90 transition-opacity flex items-center justify-center gap-2"
           >
             {isLogin ? "Entrar no Dashboard" : "Criar Conta e Continuar"}
             <ArrowRight className="w-5 h-5" />

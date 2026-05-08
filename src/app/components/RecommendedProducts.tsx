@@ -66,7 +66,7 @@ export function RecommendedProducts({ products, title, subtitle }: Props) {
                 <div className="font-extrabold text-coral text-sm">{product.price.toLocaleString()} Kz</div>
                 <button
                   onClick={() => addToCart({ id: product.id, name: product.name, price: product.price, supplier: product.supplier, image: product.image })}
-                  className="w-8 h-8 bg-coral/10 hover:bg-coral hover:text-white text-coral rounded-xl flex items-center justify-center transition-colors"
+                  className="w-8 h-8 bg-coral/10 hover:bg-coral hover:text-white text-coral rounded-full flex items-center justify-center transition-colors"
                 >
                   <ShoppingCart className="w-3.5 h-3.5" />
                 </button>

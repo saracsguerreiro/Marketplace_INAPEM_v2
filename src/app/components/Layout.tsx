@@ -143,7 +143,7 @@ export function Layout() {
                 key={item.name}
                 to={item.path}
                 onClick={() => setMobileMenuOpen(false)}
-                className="block px-4 py-2.5 text-white/80 hover:text-white hover:bg-white/10 rounded-xl text-sm transition-colors"
+                className="block px-4 py-2.5 text-white/80 hover:text-white hover:bg-white/10 rounded-full text-sm transition-colors"
               >
                 {item.name}
               </Link>

@@ -58,7 +58,7 @@ export function WelcomePopup({ onClose }: WelcomePopupProps) {
               <button
                 key={option.role}
                 onClick={() => onClose(option.role)}
-                className="w-full flex items-center gap-4 p-4 border-2 border-border rounded-xl hover:border-coral hover:bg-coral/5 transition-all group"
+                className="w-full flex items-center gap-4 p-4 border-2 border-border rounded-full hover:border-coral hover:bg-coral/5 transition-all group"
               >
                 <div className="w-11 h-11 bg-gray-bg rounded-xl flex items-center justify-center flex-shrink-0 group-hover:bg-coral/10 transition-colors">
                   <Icon className="w-6 h-6" />
@@ -96,7 +96,7 @@ export function WelcomePopup({ onClose }: WelcomePopupProps) {
           />
           <button
             onClick={() => onClose("login")}
-            className="px-5 bg-primary text-primary-foreground rounded-lg text-sm hover:opacity-90 transition-opacity"
+            className="px-5 bg-primary text-primary-foreground rounded-full text-sm hover:opacity-90 transition-opacity"
           >
             Entrar
           </button>

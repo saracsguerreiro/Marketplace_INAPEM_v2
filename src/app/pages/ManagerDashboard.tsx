@@ -298,7 +298,7 @@ export function ManagerDashboard() {
                     )}
                     <button
                       onClick={() => setExpandedFinancing(expanded ? null : f.id)}
-                      className="p-1.5 hover:bg-gray-100 rounded-lg transition-colors"
+                      className="p-1.5 hover:bg-gray-100 rounded-full transition-colors"
                     >
                       {expanded ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
                     </button>
@@ -380,13 +380,13 @@ export function ManagerDashboard() {
                       <div className="flex gap-3">
                         <button
                           onClick={() => decide(f.id, "rejeitado")}
-                          className="flex-1 flex items-center justify-center gap-2 bg-red-50 text-red-600 border-2 border-red-200 py-3 rounded-xl hover:bg-red-100 transition-colors font-semibold"
+                          className="flex-1 flex items-center justify-center gap-2 bg-red-50 text-red-600 border-2 border-red-200 py-3 rounded-full hover:bg-red-100 transition-colors font-semibold"
                         >
                           <XCircle className="w-4 h-4" /> Rejeitar Pedido
                         </button>
                         <button
                           onClick={() => decide(f.id, "aprovado")}
-                          className="flex-1 flex items-center justify-center gap-2 bg-green-600 text-white py-3 rounded-xl hover:bg-green-700 transition-colors font-semibold"
+                          className="flex-1 flex items-center justify-center gap-2 bg-green-600 text-white py-3 rounded-full hover:bg-green-700 transition-colors font-semibold"
                         >
                           <CheckCircle className="w-4 h-4" /> Aprovar Pedido
                         </button>

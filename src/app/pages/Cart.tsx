@@ -36,7 +36,7 @@ export function Cart() {
         </p>
         <Link
           to="/marketplace"
-          className="inline-flex items-center gap-2 bg-coral text-white px-8 py-4 rounded-xl hover:opacity-90 transition-opacity"
+          className="inline-flex items-center gap-2 bg-coral text-white px-8 py-4 rounded-full hover:opacity-90 transition-opacity"
         >
           Explorar Produtos e Serviços
           <ArrowRight className="w-5 h-5" />
@@ -73,7 +73,7 @@ export function Cart() {
                   </div>
                   <button
                     onClick={() => removeFromCart(item.id)}
-                    className="p-2 hover:bg-red-50 rounded-lg text-red-600 transition-colors"
+                    className="p-2 hover:bg-red-50 rounded-full text-red-600 transition-colors"
                   >
                     <Trash2 className="w-5 h-5" />
                   </button>
@@ -83,14 +83,14 @@ export function Cart() {
                   <div className="flex items-center gap-3">
                     <button
                       onClick={() => updateQuantity(item.id, item.quantity - 1)}
-                      className="w-8 h-8 rounded-lg border-2 border-border hover:border-coral flex items-center justify-center transition-colors"
+                      className="w-8 h-8 rounded-full border-2 border-border hover:border-coral flex items-center justify-center transition-colors"
                     >
                       <Minus className="w-4 h-4" />
                     </button>
                     <span className="w-12 text-center font-medium">{item.quantity}</span>
                     <button
                       onClick={() => updateQuantity(item.id, item.quantity + 1)}
-                      className="w-8 h-8 rounded-lg border-2 border-border hover:border-coral flex items-center justify-center transition-colors"
+                      className="w-8 h-8 rounded-full border-2 border-border hover:border-coral flex items-center justify-center transition-colors"
                     >
                       <Plus className="w-4 h-4" />
                     </button>
@@ -152,7 +152,7 @@ export function Cart() {
 
             <button
               onClick={handleSolicitarFinanciamento}
-              className="w-full bg-coral text-white py-4 rounded-xl hover:opacity-90 transition-opacity flex items-center justify-center gap-2 font-semibold mb-3"
+              className="w-full bg-coral text-white py-4 rounded-full hover:opacity-90 transition-opacity flex items-center justify-center gap-2 font-semibold mb-3"
             >
               Solicitar Financiamento
               <ArrowRight className="w-5 h-5" />

@@ -235,7 +235,7 @@ export function FinancingAssistant() {
                 <button
                   key={t}
                   onClick={() => handleTopicSelect(t)}
-                  className="text-sm bg-white border-2 border-border hover:border-coral hover:text-coral text-foreground px-3 py-2.5 rounded-xl transition-all font-medium"
+                  className="text-sm bg-white border-2 border-border hover:border-coral hover:text-coral text-foreground px-3 py-2.5 rounded-full transition-all font-medium"
                 >
                   {topicLabels[t]}
                 </button>
@@ -272,7 +272,7 @@ export function FinancingAssistant() {
               <button
                 onClick={() => sendMessage(input)}
                 disabled={!input.trim()}
-                className="bg-coral text-white w-9 h-9 rounded-xl flex items-center justify-center hover:opacity-90 transition-opacity disabled:opacity-40"
+                className="bg-coral text-white w-9 h-9 rounded-full flex items-center justify-center hover:opacity-90 transition-opacity disabled:opacity-40"
               >
                 <Send className="w-4 h-4" />
               </button>

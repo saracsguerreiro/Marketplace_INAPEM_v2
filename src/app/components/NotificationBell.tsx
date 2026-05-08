@@ -150,7 +150,7 @@ export function NotificationBell() {
     <div className="relative" ref={ref}>
       <button
         onClick={() => setOpen(!open)}
-        className="p-2 rounded-lg hover:bg-primary-foreground/10 transition-colors relative"
+        className="p-2 rounded-full hover:bg-primary-foreground/10 transition-colors relative"
         aria-label="Notificações"
       >
         <Bell className="w-5 h-5" />
@@ -182,7 +182,7 @@ export function NotificationBell() {
               )}
               <button
                 onClick={() => setOpen(false)}
-                className="p-1 rounded-lg hover:bg-gray-100 transition-colors"
+                className="p-1 rounded-full hover:bg-gray-100 transition-colors"
               >
                 <X className="w-4 h-4 text-muted-foreground" />
               </button>

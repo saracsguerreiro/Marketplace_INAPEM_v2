@@ -343,7 +343,7 @@ function Step2({ onNext, onBack }: { onNext: () => void; onBack: () => void }) {
         <button
           onClick={onNext}
           disabled={phase !== "done"}
-          className="flex-1 bg-coral text-white py-4 rounded-xl hover:opacity-90 transition-opacity flex items-center justify-center gap-2 disabled:opacity-40 disabled:cursor-not-allowed"
+          className="flex-1 bg-coral text-white py-4 rounded-full hover:opacity-90 transition-opacity flex items-center justify-center gap-2 disabled:opacity-40 disabled:cursor-not-allowed"
         >
           Confirmar Dados
           <ArrowRight className="w-5 h-5" />

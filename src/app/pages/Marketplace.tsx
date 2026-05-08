@@ -161,7 +161,7 @@ export function Marketplace() {
                   setSelectedCategory(cat.name);
                   setCurrentPage(1);
                 }}
-                className={`flex items-center gap-2 px-4 py-2 rounded-xl border-2 transition-all ${
+                className={`flex items-center gap-2 px-4 py-2 rounded-full border-2 transition-all ${
                   selectedCategory === cat.name
                     ? "border-coral bg-coral text-white"
                     : "border-border bg-white hover:border-coral"

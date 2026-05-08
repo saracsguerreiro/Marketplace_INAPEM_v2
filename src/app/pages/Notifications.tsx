@@ -99,7 +99,7 @@ export function Notifications() {
           <button
             key={f}
             onClick={() => setFilter(f)}
-            className={`px-4 py-2 rounded-xl text-sm font-medium border-2 transition-all capitalize ${
+            className={`px-4 py-2 rounded-full text-sm font-medium border-2 transition-all capitalize ${
               filter === f
                 ? "border-coral bg-coral text-white"
                 : "border-border bg-white text-muted-foreground hover:border-coral"
@@ -148,7 +148,7 @@ export function Notifications() {
                     </div>
                     <button
                       onClick={(e) => { e.stopPropagation(); remove(n.id); }}
-                      className="p-1 rounded-lg hover:bg-red-50 text-muted-foreground hover:text-red-500 transition-colors flex-shrink-0"
+                      className="p-1 rounded-full hover:bg-red-50 text-muted-foreground hover:text-red-500 transition-colors flex-shrink-0"
                     >
                       <Trash2 className="w-4 h-4" />
                     </button>
