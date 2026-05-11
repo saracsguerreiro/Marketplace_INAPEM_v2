@@ -10,8 +10,8 @@ const salesData = [
   { month: "Mai", sales: 48000 },
 ];
 
-const card: React.CSSProperties = { background: "rgba(255,255,255,0.45)", backdropFilter: "blur(16px)", WebkitBackdropFilter: "blur(16px)" };
-const inner: React.CSSProperties = { background: "rgba(255,255,255,0.6)" };
+const card: React.CSSProperties = { background: "#ffffff" };
+const inner: React.CSSProperties = { background: "#f3f4f6" };
 
 export function SupplierDashboard() {
   const stats = [
@@ -40,7 +40,7 @@ export function SupplierDashboard() {
 
   return (
     <div className="min-h-screen"
-      style={{ background: "linear-gradient(135deg, #6366f1 0%, #1a1a1a 55%, #6b7280 100%)" }}>
+      style={{ background: "#f9fafb" }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
 
         {/* Header */}

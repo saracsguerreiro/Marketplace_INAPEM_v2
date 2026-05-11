@@ -18,17 +18,8 @@ const iconMap = {
   tip:   { icon: Lightbulb     },
 };
 
-const panel: React.CSSProperties = {
-  background: "rgba(255,255,255,0.45)",
-  backdropFilter: "blur(16px)",
-  WebkitBackdropFilter: "blur(16px)",
-};
-
-const insightCard: React.CSSProperties = {
-  background: "rgba(255,255,255,0.55)",
-  backdropFilter: "blur(8px)",
-  WebkitBackdropFilter: "blur(8px)",
-};
+const panel: React.CSSProperties = { background: "#ffffff" };
+const insightCard: React.CSSProperties = { background: "#f3f4f6" };
 
 export function InsightsPanel({ insights }: Props) {
   return (

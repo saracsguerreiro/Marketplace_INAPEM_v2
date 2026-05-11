@@ -30,7 +30,7 @@ export function CompanyDashboard() {
 
   return (
     <div className="min-h-screen"
-      style={{ background: "linear-gradient(135deg, #6366f1 0%, #1a1a1a 55%, #6b7280 100%)" }}>
+      style={{ background: "#f9fafb" }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
 
         {/* Header */}
@@ -54,7 +54,7 @@ export function CompanyDashboard() {
             return (
               <div key={s.label}
                 className="rounded-2xl p-5 shadow-sm"
-                style={{ background: "rgba(255,255,255,0.45)", backdropFilter: "blur(16px)", WebkitBackdropFilter: "blur(16px)" }}>
+                style={{ background: "#ffffff" }}>
                 <div className="flex items-center justify-between mb-4">
                   <div className="w-9 h-9 rounded-full bg-white/60 flex items-center justify-center">
                     <Icon className="w-4 h-4 text-indigo-500" />
@@ -74,7 +74,7 @@ export function CompanyDashboard() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-6">
           {/* Area chart */}
           <div className="rounded-2xl p-6 shadow-sm"
-            style={{ background: "rgba(255,255,255,0.45)", backdropFilter: "blur(16px)", WebkitBackdropFilter: "blur(16px)" }}>
+            style={{ background: "#ffffff" }}>
             <h3 className="text-sm font-semibold text-gray-700 mb-5">Histórico de Gastos</h3>
             <ResponsiveContainer width="100%" height={200}>
               <AreaChart data={spendingData} margin={{ top: 5, right: 5, left: -25, bottom: 0 }}>
@@ -94,7 +94,7 @@ export function CompanyDashboard() {
 
           {/* Financiamentos */}
           <div className="rounded-2xl p-6 shadow-sm"
-            style={{ background: "rgba(255,255,255,0.45)", backdropFilter: "blur(16px)", WebkitBackdropFilter: "blur(16px)" }}>
+            style={{ background: "#ffffff" }}>
             <h3 className="text-sm font-semibold text-gray-700 mb-5">Financiamentos Ativos</h3>
             <div className="space-y-4">
               {activeLoans.map((loan) => (
@@ -121,7 +121,7 @@ export function CompanyDashboard() {
 
         {/* Table */}
         <div className="rounded-2xl p-6 shadow-sm"
-          style={{ background: "rgba(255,255,255,0.45)", backdropFilter: "blur(16px)", WebkitBackdropFilter: "blur(16px)" }}>
+          style={{ background: "#ffffff" }}>
           <h3 className="text-sm font-semibold text-gray-700 mb-5">Pedidos Recentes</h3>
           <table className="w-full">
             <thead>
