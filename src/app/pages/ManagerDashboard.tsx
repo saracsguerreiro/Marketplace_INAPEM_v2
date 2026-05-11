@@ -108,7 +108,7 @@ export function ManagerDashboard() {
 
   return (
     <div className="min-h-screen"
-      style={{ background: "linear-gradient(135deg, #6366f1 0%, #f97316 40%, #6b7280 75%, #1a1a1a 100%)" }}>
+      style={{ background: "linear-gradient(135deg, #6366f1 0%, #312e81 30%, #0f172a 65%, #1e40af 100%)" }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
 
         {/* Header */}
