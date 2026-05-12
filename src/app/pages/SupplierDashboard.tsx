@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Package, DollarSign, Users, TrendingUp, Plus, Trash2, X, Tag, Layers } from "lucide-react";
+import { Package, DollarSign, Users, TrendingUp, Plus, Trash2, X, ChevronDown, ChevronUp, CheckCircle2 } from "lucide-react";
 import { AreaChart, Area, XAxis, YAxis, Tooltip, ResponsiveContainer } from "recharts";
 import { InsightsPanel } from "../components/InsightsPanel";
 import { allProducts, Product } from "../data/products";
@@ -35,6 +35,7 @@ export function SupplierDashboard() {
   const [showModal, setShowModal] = useState(false);
   const [form, setForm] = useState(emptyForm);
   const [confirmDelete, setConfirmDelete] = useState<string | null>(null);
+  const [expandedId, setExpandedId] = useState<string | null>(null);
 
   const stats = [
     { icon: DollarSign, label: "Vendas Este Mês",  value: "48.000 Kz", trend: "+12%", up: true  },
@@ -273,48 +274,114 @@ export function SupplierDashboard() {
                 </button>
               </div>
             ) : (
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                {products.map((p) => (
-                  <div key={p.id} className="rounded-2xl overflow-hidden shadow-sm flex flex-col" style={card}>
-                    <div className="relative h-44 overflow-hidden bg-gray-100">
-                      <img
-                        src={p.image}
-                        alt={p.name}
-                        className="w-full h-full object-cover"
-                      />
-                      <div className="absolute top-3 left-3 flex gap-2">
-                        <span className="bg-white/90 text-indigo-600 text-xs font-semibold px-2.5 py-1 rounded-full flex items-center gap-1">
-                          <Layers className="w-3 h-3" />
-                          {p.category}
-                        </span>
-                        <span className={`text-xs font-semibold px-2.5 py-1 rounded-full ${
-                          p.type === "produto" ? "bg-indigo-100/90 text-indigo-700" : "bg-violet-100/90 text-violet-700"
-                        }`}>
-                          {p.type === "produto" ? "Produto" : "Serviço"}
-                        </span>
-                      </div>
-                    </div>
-                    <div className="p-4 flex flex-col flex-1">
-                      <h3 className="font-semibold text-gray-800 text-sm mb-1 leading-snug">{p.name}</h3>
-                      <p className="text-xs text-gray-400 line-clamp-2 flex-1 mb-3">{p.description}</p>
-                      <div className="flex items-center justify-between pt-3 border-t border-gray-100">
-                        <div>
-                          <div className="text-xs text-gray-400 flex items-center gap-1">
-                            <Tag className="w-3 h-3" /> Preço
-                          </div>
-                          <div className="text-base font-bold text-gray-800">{p.price.toLocaleString()} Kz</div>
+              <div className="rounded-2xl shadow-sm overflow-hidden" style={card}>
+                {/* List header */}
+                <div className="grid grid-cols-[64px_1fr_140px_120px_48px] gap-4 items-center px-5 py-3 border-b border-gray-100 bg-gray-50/60">
+                  <div />
+                  <span className="text-xs font-semibold text-gray-400 uppercase tracking-wide">Produto</span>
+                  <span className="text-xs font-semibold text-gray-400 uppercase tracking-wide">Preço</span>
+                  <span className="text-xs font-semibold text-gray-400 uppercase tracking-wide">Detalhes</span>
+                  <div />
+                </div>
+
+                {products.map((p, idx) => {
+                  const isExpanded = expandedId === p.id;
+                  return (
+                    <div key={p.id} className={idx !== 0 ? "border-t border-gray-100" : ""}>
+                      {/* Main row */}
+                      <div className="grid grid-cols-[64px_1fr_140px_120px_48px] gap-4 items-center px-5 py-4">
+                        {/* Photo */}
+                        <div className="w-16 h-16 rounded-xl overflow-hidden bg-gray-100 shrink-0">
+                          <img src={p.image} alt={p.name} className="w-full h-full object-cover" />
                         </div>
+
+                        {/* Name + description + badges */}
+                        <div className="min-w-0">
+                          <div className="flex items-center gap-2 mb-1 flex-wrap">
+                            <span className="text-sm font-semibold text-gray-800 leading-snug">{p.name}</span>
+                            <span className={`text-xs font-medium px-2 py-0.5 rounded-full shrink-0 ${
+                              p.type === "produto"
+                                ? "bg-indigo-100 text-indigo-600"
+                                : "bg-violet-100 text-violet-600"
+                            }`}>
+                              {p.type === "produto" ? "Produto" : "Serviço"}
+                            </span>
+                            <span className="text-xs font-medium px-2 py-0.5 rounded-full bg-gray-100 text-gray-500 shrink-0">
+                              {p.category}
+                            </span>
+                          </div>
+                          <p className="text-xs text-gray-400 leading-relaxed line-clamp-2">{p.description}</p>
+                        </div>
+
+                        {/* Price */}
+                        <div>
+                          <div className="text-base font-bold text-gray-800">{p.price.toLocaleString()} Kz</div>
+                          {p.reviews > 0 && (
+                            <div className="text-xs text-gray-400 mt-0.5">{p.reviews} avaliações</div>
+                          )}
+                        </div>
+
+                        {/* Expand toggle */}
+                        <button
+                          onClick={() => setExpandedId(isExpanded ? null : p.id)}
+                          className="flex items-center gap-1.5 text-xs text-indigo-500 hover:text-indigo-700 hover:bg-indigo-50 px-3 py-1.5 rounded-full transition-colors w-fit"
+                        >
+                          {isExpanded ? (
+                            <><ChevronUp className="w-3.5 h-3.5" /> Fechar</>
+                          ) : (
+                            <><ChevronDown className="w-3.5 h-3.5" /> Ver mais</>
+                          )}
+                        </button>
+
+                        {/* Remove */}
                         <button
                           onClick={() => setConfirmDelete(p.id)}
-                          className="flex items-center gap-1.5 text-xs text-rose-500 hover:text-rose-600 hover:bg-rose-50 px-3 py-1.5 rounded-full transition-colors"
+                          className="w-9 h-9 flex items-center justify-center rounded-full text-gray-300 hover:text-rose-500 hover:bg-rose-50 transition-colors"
+                          title="Remover produto"
                         >
-                          <Trash2 className="w-3.5 h-3.5" />
-                          Remover
+                          <Trash2 className="w-4 h-4" />
                         </button>
                       </div>
+
+                      {/* Expanded details */}
+                      {isExpanded && (
+                        <div className="px-5 pb-5 bg-gray-50/50 border-t border-gray-100">
+                          <div className="pt-4 grid grid-cols-1 md:grid-cols-2 gap-6">
+                            {/* Description full */}
+                            <div>
+                              <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2">Descrição completa</p>
+                              <p className="text-sm text-gray-600 leading-relaxed">{p.description}</p>
+                            </div>
+                            {/* Features */}
+                            {p.features.length > 0 && (
+                              <div>
+                                <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2">Características</p>
+                                <ul className="space-y-1.5">
+                                  {p.features.map((f, i) => (
+                                    <li key={i} className="flex items-start gap-2 text-sm text-gray-600">
+                                      <CheckCircle2 className="w-4 h-4 text-indigo-400 mt-0.5 shrink-0" />
+                                      {f}
+                                    </li>
+                                  ))}
+                                </ul>
+                              </div>
+                            )}
+                          </div>
+                          {/* Remove inside expanded */}
+                          <div className="mt-5 pt-4 border-t border-gray-200 flex justify-end">
+                            <button
+                              onClick={() => setConfirmDelete(p.id)}
+                              className="flex items-center gap-2 text-sm text-rose-500 hover:text-rose-600 hover:bg-rose-50 px-4 py-2 rounded-full transition-colors border border-rose-200"
+                            >
+                              <Trash2 className="w-4 h-4" />
+                              Remover produto
+                            </button>
+                          </div>
+                        </div>
+                      )}
                     </div>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
             )}
           </div>
