@@ -276,9 +276,11 @@ export function SupplierDashboard() {
             ) : (
               <div className="rounded-2xl shadow-sm overflow-hidden" style={card}>
                 {/* List header */}
-                <div className="grid grid-cols-[64px_1fr_140px_120px_48px] gap-4 items-center px-5 py-3 border-b border-gray-100 bg-gray-50/60">
+                <div className="grid grid-cols-[64px_1fr_110px_110px_130px_120px_48px] gap-4 items-center px-5 py-3 border-b border-gray-100 bg-gray-50/60">
                   <div />
                   <span className="text-xs font-semibold text-gray-400 uppercase tracking-wide">Produto</span>
+                  <span className="text-xs font-semibold text-gray-400 uppercase tracking-wide">Tipo</span>
+                  <span className="text-xs font-semibold text-gray-400 uppercase tracking-wide">Categoria</span>
                   <span className="text-xs font-semibold text-gray-400 uppercase tracking-wide">Preço</span>
                   <span className="text-xs font-semibold text-gray-400 uppercase tracking-wide">Detalhes</span>
                   <div />
@@ -289,28 +291,34 @@ export function SupplierDashboard() {
                   return (
                     <div key={p.id} className={idx !== 0 ? "border-t border-gray-100" : ""}>
                       {/* Main row */}
-                      <div className="grid grid-cols-[64px_1fr_140px_120px_48px] gap-4 items-center px-5 py-4">
+                      <div className="grid grid-cols-[64px_1fr_110px_110px_130px_120px_48px] gap-4 items-center px-5 py-4">
                         {/* Photo */}
                         <div className="w-16 h-16 rounded-xl overflow-hidden bg-gray-100 shrink-0">
                           <img src={p.image} alt={p.name} className="w-full h-full object-cover" />
                         </div>
 
-                        {/* Name + description + badges */}
+                        {/* Name + description */}
                         <div className="min-w-0">
-                          <div className="flex items-center gap-2 mb-1 flex-wrap">
-                            <span className="text-sm font-semibold text-gray-800 leading-snug">{p.name}</span>
-                            <span className={`text-xs font-medium px-2 py-0.5 rounded-full shrink-0 ${
-                              p.type === "produto"
-                                ? "bg-indigo-100 text-indigo-600"
-                                : "bg-violet-100 text-violet-600"
-                            }`}>
-                              {p.type === "produto" ? "Produto" : "Serviço"}
-                            </span>
-                            <span className="text-xs font-medium px-2 py-0.5 rounded-full bg-gray-100 text-gray-500 shrink-0">
-                              {p.category}
-                            </span>
-                          </div>
+                          <p className="text-sm font-semibold text-gray-800 leading-snug truncate mb-1">{p.name}</p>
                           <p className="text-xs text-gray-400 leading-relaxed line-clamp-2">{p.description}</p>
+                        </div>
+
+                        {/* Type */}
+                        <div>
+                          <span className={`inline-flex items-center text-xs font-medium px-2.5 py-1 rounded-full ${
+                            p.type === "produto"
+                              ? "bg-indigo-100 text-indigo-600"
+                              : "bg-violet-100 text-violet-600"
+                          }`}>
+                            {p.type === "produto" ? "Produto" : "Serviço"}
+                          </span>
+                        </div>
+
+                        {/* Category */}
+                        <div>
+                          <span className="inline-flex items-center text-xs font-medium px-2.5 py-1 rounded-full bg-gray-100 text-gray-600">
+                            {p.category}
+                          </span>
                         </div>
 
                         {/* Price */}
