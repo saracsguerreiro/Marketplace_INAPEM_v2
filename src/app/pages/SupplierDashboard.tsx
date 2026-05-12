@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { Package, DollarSign, Users, TrendingUp, Plus, Trash2, X, ChevronDown, ChevronUp, CheckCircle2, Briefcase } from "lucide-react";
+import { useState, useRef } from "react";
+import { Package, DollarSign, Users, TrendingUp, Plus, Trash2, X, ChevronDown, ChevronUp, CheckCircle2, Briefcase, Upload, Sparkles, ImageIcon, RefreshCw } from "lucide-react";
 import { AreaChart, Area, XAxis, YAxis, Tooltip, ResponsiveContainer } from "recharts";
 import { InsightsPanel } from "../components/InsightsPanel";
 import { Product } from "../data/products";
@@ -147,6 +147,7 @@ const emptyForm = {
   price: "",
   description: "",
   features: "",
+  image: "",
 };
 
 type ActiveTab = "overview" | "products" | "services";
@@ -300,6 +301,8 @@ export function SupplierDashboard() {
   const [form, setForm] = useState(emptyForm);
   const [confirmDelete, setConfirmDelete] = useState<string | null>(null);
   const [expandedId, setExpandedId] = useState<string | null>(null);
+  const [aiGenerating, setAiGenerating] = useState(false);
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   const productItems  = items.filter((i) => i.type === "produto");
   const serviceItems  = items.filter((i) => i.type === "serviço");
@@ -328,6 +331,31 @@ export function SupplierDashboard() {
     s === "Confirmado" ? "bg-blue-100/80 text-blue-600"   :
                          "bg-amber-100/80 text-amber-600";
 
+  function handleUpload(e: React.ChangeEvent<HTMLInputElement>) {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = (ev) => setForm((f) => ({ ...f, image: ev.target?.result as string }));
+    reader.readAsDataURL(file);
+  }
+
+  async function handleGenerateAI() {
+    const prompt = [
+      form.name || "produto empresarial",
+      form.category,
+      form.type === "serviço" ? "serviço profissional" : "produto",
+      "angola business marketplace, clean white background, professional product photo",
+    ].filter(Boolean).join(", ");
+
+    setAiGenerating(true);
+    // Use a unique seed so clicking "regenerate" gives a new image
+    const seed = Math.floor(Math.random() * 100000);
+    const url = `https://image.pollinations.ai/prompt/${encodeURIComponent(prompt)}?width=400&height=300&seed=${seed}&nologo=true`;
+    setForm((f) => ({ ...f, image: url }));
+    // Give the image time to load before hiding the spinner
+    setTimeout(() => setAiGenerating(false), 3000);
+  }
+
   function handleAdd() {
     if (!form.name.trim() || !form.price) return;
     const newItem: SupplierItem = {
@@ -340,7 +368,7 @@ export function SupplierDashboard() {
       rating: 0,
       reviews: 0,
       sold: 0,
-      image: "https://images.unsplash.com/photo-1554246247-6993b606e8b9?w=400&q=80",
+      image: form.image || "https://images.unsplash.com/photo-1554246247-6993b606e8b9?w=400&q=80",
       description: form.description.trim(),
       features: form.features.split("\n").map((f) => f.trim()).filter(Boolean),
     };
@@ -593,11 +621,78 @@ export function SupplierDashboard() {
               <h2 className="text-base font-semibold text-gray-800">
                 Novo {form.type === "serviço" ? "Serviço" : "Produto"}
               </h2>
-              <button onClick={() => { setShowModal(false); setForm(emptyForm); }} className="text-gray-400 hover:text-gray-600">
+              <button onClick={() => { setShowModal(false); setForm(emptyForm); setAiGenerating(false); }} className="text-gray-400 hover:text-gray-600">
                 <X className="w-5 h-5" />
               </button>
             </div>
             <div className="p-6 space-y-4">
+
+              {/* ── Foto ── */}
+              <div>
+                <label className="block text-xs font-medium text-gray-600 mb-2">Foto</label>
+
+                {/* Preview */}
+                <div className="relative w-full h-40 rounded-xl overflow-hidden bg-gray-100 mb-3 flex items-center justify-center">
+                  {form.image ? (
+                    <>
+                      <img
+                        src={form.image}
+                        alt="preview"
+                        className="w-full h-full object-cover"
+                        onError={() => setForm((f) => ({ ...f, image: "" }))}
+                      />
+                      {aiGenerating && (
+                        <div className="absolute inset-0 bg-white/70 flex flex-col items-center justify-center gap-2">
+                          <RefreshCw className="w-6 h-6 text-indigo-500 animate-spin" />
+                          <span className="text-xs text-indigo-600 font-medium">A gerar imagem...</span>
+                        </div>
+                      )}
+                      <button
+                        onClick={() => setForm((f) => ({ ...f, image: "" }))}
+                        className="absolute top-2 right-2 w-7 h-7 rounded-full bg-white/90 shadow flex items-center justify-center text-gray-500 hover:text-rose-500 transition-colors"
+                      >
+                        <X className="w-3.5 h-3.5" />
+                      </button>
+                    </>
+                  ) : (
+                    <div className="flex flex-col items-center gap-1 text-gray-300">
+                      <ImageIcon className="w-10 h-10" />
+                      <span className="text-xs">Sem imagem</span>
+                    </div>
+                  )}
+                </div>
+
+                {/* Action buttons */}
+                <div className="flex gap-2">
+                  <button
+                    type="button"
+                    onClick={() => fileInputRef.current?.click()}
+                    className="flex-1 flex items-center justify-center gap-2 border border-gray-200 text-gray-600 text-xs font-medium py-2.5 rounded-xl hover:bg-gray-50 transition-colors"
+                  >
+                    <Upload className="w-3.5 h-3.5" />
+                    Fazer upload
+                  </button>
+                  <button
+                    type="button"
+                    onClick={handleGenerateAI}
+                    disabled={aiGenerating}
+                    className="flex-1 flex items-center justify-center gap-2 bg-indigo-50 text-indigo-600 text-xs font-medium py-2.5 rounded-xl hover:bg-indigo-100 transition-colors disabled:opacity-60"
+                  >
+                    {aiGenerating
+                      ? <><RefreshCw className="w-3.5 h-3.5 animate-spin" /> A gerar...</>
+                      : <><Sparkles className="w-3.5 h-3.5" /> Gerar com IA</>
+                    }
+                  </button>
+                </div>
+                <input
+                  ref={fileInputRef}
+                  type="file"
+                  accept="image/*"
+                  className="hidden"
+                  onChange={handleUpload}
+                />
+              </div>
+
               <div>
                 <label className="block text-xs font-medium text-gray-600 mb-1.5">
                   Nome {form.type === "serviço" ? "do serviço" : "do produto"} *
@@ -673,7 +768,7 @@ export function SupplierDashboard() {
             </div>
             <div className="flex gap-3 p-6 border-t border-gray-100">
               <button
-                onClick={() => { setShowModal(false); setForm(emptyForm); }}
+                onClick={() => { setShowModal(false); setForm(emptyForm); setAiGenerating(false); }}
                 className="flex-1 border border-gray-200 text-gray-600 text-sm py-2.5 rounded-xl hover:bg-gray-50 transition-colors"
               >
                 Cancelar
