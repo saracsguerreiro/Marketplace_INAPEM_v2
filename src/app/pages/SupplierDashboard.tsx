@@ -627,6 +627,84 @@ export function SupplierDashboard() {
             </div>
             <div className="p-6 space-y-4">
 
+              {/* Nome */}
+              <div>
+                <label className="block text-xs font-medium text-gray-600 mb-1.5">
+                  Nome {form.type === "serviço" ? "do serviço" : "do produto"} *
+                </label>
+                <input
+                  type="text"
+                  value={form.name}
+                  onChange={(e) => setForm({ ...form, name: e.target.value })}
+                  placeholder={form.type === "serviço" ? "Ex: Consultoria Empresarial" : "Ex: Sistema ERP Completo"}
+                  className="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-300"
+                />
+              </div>
+
+              {/* Tipo + Categoria */}
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-xs font-medium text-gray-600 mb-1.5">Tipo</label>
+                  <select
+                    value={form.type}
+                    onChange={(e) => setForm({ ...form, type: e.target.value as Product["type"] })}
+                    className="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-300 bg-white"
+                  >
+                    <option value="produto">Produto</option>
+                    <option value="serviço">Serviço</option>
+                  </select>
+                </div>
+                <div>
+                  <label className="block text-xs font-medium text-gray-600 mb-1.5">Categoria *</label>
+                  <select
+                    value={form.category}
+                    onChange={(e) => setForm({ ...form, category: e.target.value })}
+                    className="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-300 bg-white"
+                  >
+                    {CATEGORIES.map((c) => <option key={c}>{c}</option>)}
+                  </select>
+                </div>
+              </div>
+
+              {/* Preço */}
+              <div>
+                <label className="block text-xs font-medium text-gray-600 mb-1.5">Preço (Kz) *</label>
+                <input
+                  type="number"
+                  value={form.price}
+                  onChange={(e) => setForm({ ...form, price: e.target.value })}
+                  placeholder="Ex: 450000"
+                  min={0}
+                  className="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-300"
+                />
+              </div>
+
+              {/* Descrição */}
+              <div>
+                <label className="block text-xs font-medium text-gray-600 mb-1.5">Descrição</label>
+                <textarea
+                  value={form.description}
+                  onChange={(e) => setForm({ ...form, description: e.target.value })}
+                  placeholder="Descreva o produto ou serviço..."
+                  rows={3}
+                  className="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-300 resize-none"
+                />
+              </div>
+
+              {/* Características */}
+              <div>
+                <label className="block text-xs font-medium text-gray-600 mb-1.5">
+                  Características <span className="text-gray-400">(uma por linha)</span>
+                </label>
+                <textarea
+                  value={form.features}
+                  onChange={(e) => setForm({ ...form, features: e.target.value })}
+                  placeholder={"Garantia de 2 anos\nSuporte técnico incluído\nInstalação gratuita"}
+                  rows={4}
+                  className="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-300 resize-none"
+                />
+              </div>
+
               {/* ── Foto ── */}
               <div>
                 <label className="block text-xs font-medium text-gray-600 mb-2">Foto</label>
@@ -675,8 +753,9 @@ export function SupplierDashboard() {
                   <button
                     type="button"
                     onClick={handleGenerateAI}
-                    disabled={aiGenerating}
-                    className="flex-1 flex items-center justify-center gap-2 bg-indigo-50 text-indigo-600 text-xs font-medium py-2.5 rounded-xl hover:bg-indigo-100 transition-colors disabled:opacity-60"
+                    disabled={aiGenerating || !form.name.trim() || !form.description.trim()}
+                    title={!form.name.trim() || !form.description.trim() ? "Preencha o nome e descrição primeiro" : "Gerar imagem com IA"}
+                    className="flex-1 flex items-center justify-center gap-2 bg-indigo-50 text-indigo-600 text-xs font-medium py-2.5 rounded-xl hover:bg-indigo-100 transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
                   >
                     {aiGenerating
                       ? <><RefreshCw className="w-3.5 h-3.5 animate-spin" /> A gerar...</>
@@ -684,85 +763,17 @@ export function SupplierDashboard() {
                     }
                   </button>
                 </div>
+                {(!form.name.trim() || !form.description.trim()) && (
+                  <p className="text-xs text-gray-400 mt-2 text-center">
+                    Preencha o nome e descrição para activar a geração por IA
+                  </p>
+                )}
                 <input
                   ref={fileInputRef}
                   type="file"
                   accept="image/*"
                   className="hidden"
                   onChange={handleUpload}
-                />
-              </div>
-
-              <div>
-                <label className="block text-xs font-medium text-gray-600 mb-1.5">
-                  Nome {form.type === "serviço" ? "do serviço" : "do produto"} *
-                </label>
-                <input
-                  type="text"
-                  value={form.name}
-                  onChange={(e) => setForm({ ...form, name: e.target.value })}
-                  placeholder={form.type === "serviço" ? "Ex: Consultoria Empresarial" : "Ex: Sistema ERP Completo"}
-                  className="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-300"
-                />
-              </div>
-
-              <div className="grid grid-cols-2 gap-4">
-                <div>
-                  <label className="block text-xs font-medium text-gray-600 mb-1.5">Tipo</label>
-                  <select
-                    value={form.type}
-                    onChange={(e) => setForm({ ...form, type: e.target.value as Product["type"] })}
-                    className="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-300 bg-white"
-                  >
-                    <option value="produto">Produto</option>
-                    <option value="serviço">Serviço</option>
-                  </select>
-                </div>
-                <div>
-                  <label className="block text-xs font-medium text-gray-600 mb-1.5">Categoria *</label>
-                  <select
-                    value={form.category}
-                    onChange={(e) => setForm({ ...form, category: e.target.value })}
-                    className="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-300 bg-white"
-                  >
-                    {CATEGORIES.map((c) => <option key={c}>{c}</option>)}
-                  </select>
-                </div>
-              </div>
-
-              <div>
-                <label className="block text-xs font-medium text-gray-600 mb-1.5">Preço (Kz) *</label>
-                <input
-                  type="number"
-                  value={form.price}
-                  onChange={(e) => setForm({ ...form, price: e.target.value })}
-                  placeholder="Ex: 450000"
-                  min={0}
-                  className="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-300"
-                />
-              </div>
-
-              <div>
-                <label className="block text-xs font-medium text-gray-600 mb-1.5">Descrição</label>
-                <textarea
-                  value={form.description}
-                  onChange={(e) => setForm({ ...form, description: e.target.value })}
-                  placeholder="Descreva o produto ou serviço..."
-                  rows={3}
-                  className="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-300 resize-none"
-                />
-              </div>
-
-              <div>
-                <label className="block text-xs font-medium text-gray-600 mb-1.5">
-                  Características <span className="text-gray-400">(uma por linha)</span>
-                </label>
-                <textarea
-                  value={form.features}
-                  onChange={(e) => setForm({ ...form, features: e.target.value })}
-                  placeholder={"Garantia de 2 anos\nSuporte técnico incluído\nInstalação gratuita"}
-                  rows={4}
-                  className="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-300 resize-none"
                 />
               </div>
             </div>
