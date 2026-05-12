@@ -339,21 +339,31 @@ export function SupplierDashboard() {
     reader.readAsDataURL(file);
   }
 
-  async function handleGenerateAI() {
+  function handleGenerateAI() {
     const prompt = [
-      form.name || "produto empresarial",
+      form.name,
+      form.description,
       form.category,
-      form.type === "serviço" ? "serviço profissional" : "produto",
-      "angola business marketplace, clean white background, professional product photo",
+      form.type === "serviço" ? "professional service business" : "product professional photo",
+      "clean background, high quality, business marketplace",
     ].filter(Boolean).join(", ");
 
     setAiGenerating(true);
-    // Use a unique seed so clicking "regenerate" gives a new image
-    const seed = Math.floor(Math.random() * 100000);
-    const url = `https://image.pollinations.ai/prompt/${encodeURIComponent(prompt)}?width=400&height=300&seed=${seed}&nologo=true`;
-    setForm((f) => ({ ...f, image: url }));
-    // Give the image time to load before hiding the spinner
-    setTimeout(() => setAiGenerating(false), 3000);
+    setForm((f) => ({ ...f, image: "" }));
+
+    const seed = Math.floor(Math.random() * 999999);
+    const url = `https://image.pollinations.ai/prompt/${encodeURIComponent(prompt)}?width=600&height=400&seed=${seed}&nologo=true&enhance=true`;
+
+    // Only show image after it finishes loading
+    const img = new Image();
+    img.onload = () => {
+      setForm((f) => ({ ...f, image: url }));
+      setAiGenerating(false);
+    };
+    img.onerror = () => {
+      setAiGenerating(false);
+    };
+    img.src = url;
   }
 
   function handleAdd() {
@@ -711,20 +721,19 @@ export function SupplierDashboard() {
 
                 {/* Preview */}
                 <div className="relative w-full h-40 rounded-xl overflow-hidden bg-gray-100 mb-3 flex items-center justify-center">
-                  {form.image ? (
+                  {aiGenerating ? (
+                    <div className="flex flex-col items-center gap-2 text-indigo-500">
+                      <RefreshCw className="w-7 h-7 animate-spin" />
+                      <span className="text-xs font-medium text-indigo-600">A gerar imagem com IA...</span>
+                      <span className="text-xs text-gray-400">pode demorar alguns segundos</span>
+                    </div>
+                  ) : form.image ? (
                     <>
                       <img
                         src={form.image}
                         alt="preview"
                         className="w-full h-full object-cover"
-                        onError={() => setForm((f) => ({ ...f, image: "" }))}
                       />
-                      {aiGenerating && (
-                        <div className="absolute inset-0 bg-white/70 flex flex-col items-center justify-center gap-2">
-                          <RefreshCw className="w-6 h-6 text-indigo-500 animate-spin" />
-                          <span className="text-xs text-indigo-600 font-medium">A gerar imagem...</span>
-                        </div>
-                      )}
                       <button
                         onClick={() => setForm((f) => ({ ...f, image: "" }))}
                         className="absolute top-2 right-2 w-7 h-7 rounded-full bg-white/90 shadow flex items-center justify-center text-gray-500 hover:text-rose-500 transition-colors"
