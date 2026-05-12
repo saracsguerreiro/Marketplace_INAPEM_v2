@@ -1,8 +1,13 @@
 import { useState } from "react";
-import { Package, DollarSign, Users, TrendingUp, Plus, Trash2, X, ChevronDown, ChevronUp, CheckCircle2 } from "lucide-react";
+import { Package, DollarSign, Users, TrendingUp, Plus, Trash2, X, ChevronDown, ChevronUp, CheckCircle2, Briefcase } from "lucide-react";
 import { AreaChart, Area, XAxis, YAxis, Tooltip, ResponsiveContainer } from "recharts";
 import { InsightsPanel } from "../components/InsightsPanel";
-import { allProducts, Product } from "../data/products";
+import { Product } from "../data/products";
+
+// Extended type with sold quantity
+interface SupplierItem extends Product {
+  sold: number;
+}
 
 const salesData = [
   { month: "Jan", sales: 32000 },
@@ -18,6 +23,123 @@ const SUPPLIER_NAME = "TechSolutions Angola";
 
 const CATEGORIES = ["Tecnologia", "Equipamentos", "Serviços", "Construção", "Logística", "Saúde", "Agronegócio", "Outros"];
 
+const INITIAL_ITEMS: SupplierItem[] = [
+  // ── PRODUTOS ──
+  {
+    id: "s1",
+    type: "produto",
+    name: "Sistema ERP Completo",
+    category: "Tecnologia",
+    price: 450000,
+    supplier: SUPPLIER_NAME,
+    rating: 4.9,
+    reviews: 127,
+    sold: 45,
+    image: "https://images.unsplash.com/photo-1753715613457-63127ec40824?w=400&q=80",
+    description: "Sistema ERP completo para gestão empresarial, incluindo módulos de contabilidade, RH, vendas, compras e inventário.",
+    features: ["Módulo de Contabilidade Integrada", "Gestão de Recursos Humanos", "Controle de Vendas e CRM", "Gestão de Inventário", "Relatórios em Tempo Real", "Suporte Técnico 24/7"],
+  },
+  {
+    id: "s2",
+    type: "produto",
+    name: "Computadores Dell Workstation",
+    category: "Tecnologia",
+    price: 185000,
+    supplier: SUPPLIER_NAME,
+    rating: 4.8,
+    reviews: 112,
+    sold: 38,
+    image: "https://images.unsplash.com/photo-1554246247-6993b606e8b9?w=400&q=80",
+    description: "Estações de trabalho Dell de alta performance para escritórios e empresas. Equipamentos novos com garantia oficial.",
+    features: ["Processadores Intel Core i7/i9", "16GB a 32GB de RAM", "SSD de alta velocidade", "Windows 11 Pro incluído", "Garantia Dell de 3 anos"],
+  },
+  {
+    id: "s3",
+    type: "produto",
+    name: "Equipamento Médico Hospitalar",
+    category: "Saúde",
+    price: 420000,
+    supplier: SUPPLIER_NAME,
+    rating: 4.7,
+    reviews: 41,
+    sold: 12,
+    image: "https://images.unsplash.com/photo-1710074213379-2a9c2653046a?w=400&q=80",
+    description: "Equipamento médico hospitalar certificado para clínicas, hospitais e centros de saúde. Todos cumprem normas internacionais.",
+    features: ["Certificação internacional", "Manutenção preventiva incluída", "Formação para profissionais de saúde", "Garantia de 2 anos", "Suporte técnico especializado"],
+  },
+  {
+    id: "s4",
+    type: "produto",
+    name: "Materiais de Construção Premium",
+    category: "Construção",
+    price: 620000,
+    supplier: SUPPLIER_NAME,
+    rating: 4.6,
+    reviews: 73,
+    sold: 29,
+    image: "https://images.unsplash.com/photo-1773649967822-d3f31c88a16e?w=400&q=80",
+    description: "Pack completo de materiais de construção para obras residenciais e comerciais. Cimento, ferro e blocos de primeira qualidade.",
+    features: ["Materiais certificados", "Entrega na obra incluída", "Orçamento personalizado", "Assistência técnica", "Fornecimento contínuo garantido"],
+  },
+  // ── SERVIÇOS ──
+  {
+    id: "s5",
+    type: "serviço",
+    name: "Consultoria Empresarial",
+    category: "Serviços",
+    price: 280000,
+    supplier: SUPPLIER_NAME,
+    rating: 4.7,
+    reviews: 54,
+    sold: 22,
+    image: "https://images.unsplash.com/photo-1551135049-8a33b5883817?w=400&q=80",
+    description: "Serviço de consultoria especializada para empresas angolanas. Diagnóstico, plano de acção e acompanhamento mensal.",
+    features: ["Diagnóstico empresarial completo", "Plano de acção personalizado", "Acompanhamento mensal", "Relatórios de progresso", "Acesso a especialistas sectoriais"],
+  },
+  {
+    id: "s6",
+    type: "serviço",
+    name: "Software CRM Cloud",
+    category: "Tecnologia",
+    price: 320000,
+    supplier: SUPPLIER_NAME,
+    rating: 4.6,
+    reviews: 93,
+    sold: 34,
+    image: "https://images.unsplash.com/photo-1753715613457-63127ec40824?w=400&q=80",
+    description: "Plataforma CRM em cloud para gestão de clientes, vendas e oportunidades de negócio. Aceda de qualquer dispositivo.",
+    features: ["Gestão de clientes e contactos", "Pipeline de vendas visual", "Automação de tarefas", "Integração com email e WhatsApp", "Acesso mobile iOS e Android"],
+  },
+  {
+    id: "s7",
+    type: "serviço",
+    name: "Serviços de Marketing Digital",
+    category: "Serviços",
+    price: 180000,
+    supplier: SUPPLIER_NAME,
+    rating: 4.9,
+    reviews: 145,
+    sold: 61,
+    image: "https://images.unsplash.com/photo-1551135049-8a33b5883817?w=400&q=80",
+    description: "Serviço completo de marketing digital: redes sociais, publicidade online, SEO e criação de conteúdo para o mercado angolano.",
+    features: ["Gestão de redes sociais", "Publicidade no Facebook e Instagram", "Google Ads e SEO", "Relatórios mensais de desempenho", "Designer gráfico dedicado"],
+  },
+  {
+    id: "s8",
+    type: "serviço",
+    name: "Frota de Transporte e Logística",
+    category: "Logística",
+    price: 950000,
+    supplier: SUPPLIER_NAME,
+    rating: 4.9,
+    reviews: 68,
+    sold: 17,
+    image: "https://images.unsplash.com/photo-1776988038414-29a4a1869275?w=400&q=80",
+    description: "Solução completa de logística e transporte para distribuição de mercadoria em todo o território angolano.",
+    features: ["Frota de camiões e vans", "Cobertura nacional", "Rastreamento GPS em tempo real", "Motoristas certificados", "Seguro de carga incluído"],
+  },
+];
+
 const emptyForm = {
   name: "",
   category: "Tecnologia",
@@ -27,27 +149,172 @@ const emptyForm = {
   features: "",
 };
 
-export function SupplierDashboard() {
-  const [activeTab, setActiveTab] = useState<"overview" | "products">("overview");
-  const [products, setProducts] = useState<Product[]>(
-    allProducts.filter((p) => p.supplier === SUPPLIER_NAME)
+type ActiveTab = "overview" | "products" | "services";
+
+function ItemList({
+  items,
+  expandedId,
+  onToggleExpand,
+  onRemove,
+  onAdd,
+  label,
+}: {
+  items: SupplierItem[];
+  expandedId: string | null;
+  onToggleExpand: (id: string) => void;
+  onRemove: (id: string) => void;
+  onAdd: () => void;
+  label: string;
+}) {
+  const isService = label === "serviço";
+
+  if (items.length === 0) {
+    return (
+      <div className="rounded-2xl p-12 text-center shadow-sm" style={card}>
+        {isService
+          ? <Briefcase className="w-12 h-12 text-gray-300 mx-auto mb-3" />
+          : <Package className="w-12 h-12 text-gray-300 mx-auto mb-3" />
+        }
+        <p className="text-gray-500 font-medium">
+          Ainda não tem {isService ? "serviços" : "produtos"} publicados
+        </p>
+        <p className="text-sm text-gray-400 mb-5">
+          Adicione o seu primeiro {isService ? "serviço" : "produto"} ao marketplace
+        </p>
+        <button
+          onClick={onAdd}
+          className="bg-indigo-500 text-white text-sm px-5 py-2.5 rounded-full hover:bg-indigo-600 transition-colors"
+        >
+          Adicionar {isService ? "Serviço" : "Produto"}
+        </button>
+      </div>
+    );
+  }
+
+  return (
+    <div className="rounded-2xl shadow-sm overflow-hidden" style={card}>
+      {/* Header */}
+      <div className="grid grid-cols-[64px_1fr_120px_140px_100px_120px_48px] gap-4 items-center px-5 py-3 border-b border-gray-100 bg-gray-50/60">
+        <div />
+        <span className="text-xs font-semibold text-gray-400 uppercase tracking-wide">Nome</span>
+        <span className="text-xs font-semibold text-gray-400 uppercase tracking-wide">Categoria</span>
+        <span className="text-xs font-semibold text-gray-400 uppercase tracking-wide">Preço</span>
+        <span className="text-xs font-semibold text-gray-400 uppercase tracking-wide">Vendido</span>
+        <span className="text-xs font-semibold text-gray-400 uppercase tracking-wide">Detalhes</span>
+        <div />
+      </div>
+
+      {items.map((p, idx) => {
+        const isExpanded = expandedId === p.id;
+        return (
+          <div key={p.id} className={idx !== 0 ? "border-t border-gray-100" : ""}>
+            {/* Row */}
+            <div className="grid grid-cols-[64px_1fr_120px_140px_100px_120px_48px] gap-4 items-center px-5 py-4">
+              {/* Photo */}
+              <div className="w-16 h-16 rounded-xl overflow-hidden bg-gray-100 shrink-0">
+                <img src={p.image} alt={p.name} className="w-full h-full object-cover" />
+              </div>
+
+              {/* Name only */}
+              <p className="text-sm font-semibold text-gray-800 truncate">{p.name}</p>
+
+              {/* Category */}
+              <span className="inline-flex items-center text-xs font-medium px-2.5 py-1 rounded-full bg-gray-100 text-gray-600 w-fit">
+                {p.category}
+              </span>
+
+              {/* Price */}
+              <div className="text-sm font-bold text-gray-800">{p.price.toLocaleString()} Kz</div>
+
+              {/* Sold */}
+              <div className="flex items-center gap-1.5">
+                <span className="text-sm font-bold text-indigo-600">{p.sold}</span>
+                <span className="text-xs text-gray-400">{isService ? "contratos" : "unid."}</span>
+              </div>
+
+              {/* Expand */}
+              <button
+                onClick={() => onToggleExpand(p.id)}
+                className="flex items-center gap-1.5 text-xs text-indigo-500 hover:text-indigo-700 hover:bg-indigo-50 px-3 py-1.5 rounded-full transition-colors w-fit"
+              >
+                {isExpanded
+                  ? <><ChevronUp className="w-3.5 h-3.5" /> Fechar</>
+                  : <><ChevronDown className="w-3.5 h-3.5" /> Ver mais</>
+                }
+              </button>
+
+              {/* Remove icon */}
+              <button
+                onClick={() => onRemove(p.id)}
+                className="w-9 h-9 flex items-center justify-center rounded-full text-gray-300 hover:text-rose-500 hover:bg-rose-50 transition-colors"
+                title="Remover"
+              >
+                <Trash2 className="w-4 h-4" />
+              </button>
+            </div>
+
+            {/* Expanded section */}
+            {isExpanded && (
+              <div className="px-5 pb-5 bg-gray-50/50 border-t border-gray-100">
+                <div className="pt-4 grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div>
+                    <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2">Descrição</p>
+                    <p className="text-sm text-gray-600 leading-relaxed">{p.description}</p>
+                  </div>
+                  {p.features.length > 0 && (
+                    <div>
+                      <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2">Características</p>
+                      <ul className="space-y-1.5">
+                        {p.features.map((f, i) => (
+                          <li key={i} className="flex items-start gap-2 text-sm text-gray-600">
+                            <CheckCircle2 className="w-4 h-4 text-indigo-400 mt-0.5 shrink-0" />
+                            {f}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+                </div>
+                <div className="mt-5 pt-4 border-t border-gray-200 flex justify-end">
+                  <button
+                    onClick={() => onRemove(p.id)}
+                    className="flex items-center gap-2 text-sm text-rose-500 hover:text-rose-600 hover:bg-rose-50 px-4 py-2 rounded-full transition-colors border border-rose-200"
+                  >
+                    <Trash2 className="w-4 h-4" />
+                    Remover {isService ? "serviço" : "produto"}
+                  </button>
+                </div>
+              </div>
+            )}
+          </div>
+        );
+      })}
+    </div>
   );
+}
+
+export function SupplierDashboard() {
+  const [activeTab, setActiveTab] = useState<ActiveTab>("overview");
+  const [items, setItems] = useState<SupplierItem[]>(INITIAL_ITEMS);
   const [showModal, setShowModal] = useState(false);
   const [form, setForm] = useState(emptyForm);
   const [confirmDelete, setConfirmDelete] = useState<string | null>(null);
   const [expandedId, setExpandedId] = useState<string | null>(null);
 
+  const productItems  = items.filter((i) => i.type === "produto");
+  const serviceItems  = items.filter((i) => i.type === "serviço");
+
   const stats = [
-    { icon: DollarSign, label: "Vendas Este Mês",  value: "48.000 Kz", trend: "+12%", up: true  },
-    { icon: Package,    label: "Produtos Ativos",  value: String(products.length), trend: "+3", up: true  },
-    { icon: Users,      label: "Clientes Ativos",  value: "156",        trend: "+18",  up: true  },
-    { icon: TrendingUp, label: "Taxa Conversão",   value: "34%",        trend: "+5%",  up: true  },
+    { icon: DollarSign, label: "Vendas Este Mês",   value: "48.000 Kz",            trend: "+12%", up: true },
+    { icon: Package,    label: "Produtos Ativos",   value: String(productItems.length), trend: "+3",   up: true },
+    { icon: Briefcase,  label: "Serviços Ativos",   value: String(serviceItems.length), trend: "+1",   up: true },
+    { icon: TrendingUp, label: "Taxa Conversão",    value: "34%",                  trend: "+5%",  up: true },
   ];
 
   const recentSales = [
-    { id: "1", date: "05 Mai", client: "TechStart Lda",      product: "Software ERP",     amount: 450000, payment: "Financiado 12x", status: "Confirmado"  },
-    { id: "2", date: "04 Mai", client: "Comércio Online SA",  product: "Sistema CRM",      amount: 320000, payment: "Financiado 24x", status: "Processando" },
-    { id: "3", date: "02 Mai", client: "Consultoria Pro",     product: "Licenças Premium", amount: 185000, payment: "À vista",        status: "Entregue"    },
+    { id: "1", date: "05 Mai", client: "TechStart Lda",     product: "Software ERP",     amount: 450000, payment: "Financiado 12x", status: "Confirmado"  },
+    { id: "2", date: "04 Mai", client: "Comércio Online SA", product: "Sistema CRM",      amount: 320000, payment: "Financiado 24x", status: "Processando" },
+    { id: "3", date: "02 Mai", client: "Consultoria Pro",    product: "Licenças Premium", amount: 185000, payment: "À vista",        status: "Entregue"    },
   ];
 
   const topProducts = [
@@ -57,13 +324,13 @@ export function SupplierDashboard() {
   ];
 
   const statusStyle = (s: string) =>
-    s === "Entregue"    ? "bg-green-100/80 text-green-600"  :
-    s === "Confirmado"  ? "bg-blue-100/80 text-blue-600"    :
-                          "bg-amber-100/80 text-amber-600";
+    s === "Entregue"   ? "bg-green-100/80 text-green-600" :
+    s === "Confirmado" ? "bg-blue-100/80 text-blue-600"   :
+                         "bg-amber-100/80 text-amber-600";
 
-  function handleAddProduct() {
+  function handleAdd() {
     if (!form.name.trim() || !form.price) return;
-    const newProduct: Product = {
+    const newItem: SupplierItem = {
       id: Date.now().toString(),
       name: form.name.trim(),
       category: form.category,
@@ -72,19 +339,29 @@ export function SupplierDashboard() {
       supplier: SUPPLIER_NAME,
       rating: 0,
       reviews: 0,
+      sold: 0,
       image: "https://images.unsplash.com/photo-1554246247-6993b606e8b9?w=400&q=80",
       description: form.description.trim(),
       features: form.features.split("\n").map((f) => f.trim()).filter(Boolean),
     };
-    setProducts((prev) => [newProduct, ...prev]);
+    setItems((prev) => [newItem, ...prev]);
     setForm(emptyForm);
     setShowModal(false);
   }
 
   function handleRemove(id: string) {
-    setProducts((prev) => prev.filter((p) => p.id !== id));
+    setItems((prev) => prev.filter((p) => p.id !== id));
     setConfirmDelete(null);
+    setExpandedId(null);
   }
+
+  function openAddModal(type: Product["type"]) {
+    setForm({ ...emptyForm, type });
+    setShowModal(true);
+  }
+
+  const isServiceTab = activeTab === "services";
+  const currentLabel = isServiceTab ? "serviço" : "produto";
 
   return (
     <div className="min-h-screen" style={{ background: "#f9fafb" }}>
@@ -94,37 +371,36 @@ export function SupplierDashboard() {
         <div className="mb-6">
           <p className="text-xs font-semibold text-indigo-500 uppercase tracking-widest mb-1">Dashboard</p>
           <h1 className="text-2xl font-bold text-gray-800 mb-1">Painel do Fornecedor</h1>
-          <p className="text-sm text-gray-500">Gerencie os seus produtos e vendas</p>
+          <p className="text-sm text-gray-500">Gerencie os seus produtos, serviços e vendas</p>
         </div>
 
         {/* Tabs */}
         <div className="flex gap-1 mb-8 bg-white rounded-2xl p-1 shadow-sm w-fit">
-          <button
-            onClick={() => setActiveTab("overview")}
-            className={`px-5 py-2 rounded-xl text-sm font-medium transition-all ${
-              activeTab === "overview"
-                ? "bg-indigo-500 text-white shadow-sm"
-                : "text-gray-500 hover:text-gray-700"
-            }`}
-          >
-            Visão Geral
-          </button>
-          <button
-            onClick={() => setActiveTab("products")}
-            className={`px-5 py-2 rounded-xl text-sm font-medium transition-all flex items-center gap-2 ${
-              activeTab === "products"
-                ? "bg-indigo-500 text-white shadow-sm"
-                : "text-gray-500 hover:text-gray-700"
-            }`}
-          >
-            <Package className="w-4 h-4" />
-            Os Meus Produtos
-            <span className={`text-xs px-1.5 py-0.5 rounded-full font-semibold ${
-              activeTab === "products" ? "bg-white/20 text-white" : "bg-indigo-100 text-indigo-600"
-            }`}>
-              {products.length}
-            </span>
-          </button>
+          {(["overview", "products", "services"] as ActiveTab[]).map((tab) => {
+            const isActive = activeTab === tab;
+            const label     = tab === "overview" ? "Visão Geral" : tab === "products" ? "Os Meus Produtos" : "Os Meus Serviços";
+            const Icon      = tab === "services" ? Briefcase : Package;
+            const count     = tab === "products" ? productItems.length : tab === "services" ? serviceItems.length : null;
+            return (
+              <button
+                key={tab}
+                onClick={() => setActiveTab(tab)}
+                className={`px-5 py-2 rounded-xl text-sm font-medium transition-all flex items-center gap-2 ${
+                  isActive ? "bg-indigo-500 text-white shadow-sm" : "text-gray-500 hover:text-gray-700"
+                }`}
+              >
+                {tab !== "overview" && <Icon className="w-4 h-4" />}
+                {label}
+                {count !== null && (
+                  <span className={`text-xs px-1.5 py-0.5 rounded-full font-semibold ${
+                    isActive ? "bg-white/20 text-white" : "bg-indigo-100 text-indigo-600"
+                  }`}>
+                    {count}
+                  </span>
+                )}
+              </button>
+            );
+          })}
         </div>
 
         {/* ── TAB: VISÃO GERAL ── */}
@@ -133,7 +409,7 @@ export function SupplierDashboard() {
             <InsightsPanel insights={[
               { type: "up",    title: "Vendas em crescimento",   description: "Vendas aumentaram 20% esta semana." },
               { type: "tip",   title: "Produto mais rentável",   description: "Consultoria representa 38% da receita.", action: "Ver produto" },
-              { type: "alert", title: "Encomendas pendentes",    description: "2 encomendas sem resposta há 24h.", action: "Responder agora" },
+              { type: "alert", title: "Encomendas pendentes",    description: "2 encomendas sem resposta há 24h.",       action: "Responder agora" },
               { type: "tip",   title: "Oportunidade cross-sell", description: "CRM e ERP comprados juntos frequentemente.", action: "Criar pacote" },
             ]} />
 
@@ -195,7 +471,7 @@ export function SupplierDashboard() {
                         </div>
                         <div className="text-sm font-bold text-gray-700">{(p.revenue / 1000000).toFixed(1)}M Kz</div>
                       </div>
-                      <div className="h-1 bg-white/60 rounded-full overflow-hidden">
+                      <div className="h-1 bg-gray-100 rounded-full overflow-hidden">
                         <div className={`h-full ${p.color} rounded-full`} style={{ width: `${p.pct}%` }} />
                       </div>
                     </div>
@@ -208,12 +484,20 @@ export function SupplierDashboard() {
             <div className="rounded-2xl p-6 shadow-sm" style={card}>
               <div className="flex items-center justify-between mb-5">
                 <h3 className="text-sm font-semibold text-gray-700">Vendas Recentes</h3>
-                <button
-                  onClick={() => setActiveTab("products")}
-                  className="bg-indigo-500 text-white text-xs px-4 py-2 rounded-full hover:opacity-90 transition-opacity"
-                >
-                  Gerir Produtos
-                </button>
+                <div className="flex gap-2">
+                  <button
+                    onClick={() => setActiveTab("products")}
+                    className="bg-indigo-500 text-white text-xs px-4 py-2 rounded-full hover:bg-indigo-600 transition-colors"
+                  >
+                    Gerir Produtos
+                  </button>
+                  <button
+                    onClick={() => setActiveTab("services")}
+                    className="bg-violet-500 text-white text-xs px-4 py-2 rounded-full hover:bg-violet-600 transition-colors"
+                  >
+                    Gerir Serviços
+                  </button>
+                </div>
               </div>
               <table className="w-full">
                 <thead>
@@ -250,177 +534,86 @@ export function SupplierDashboard() {
             <div className="flex items-center justify-between mb-6">
               <div>
                 <h2 className="text-base font-semibold text-gray-800">Os Meus Produtos</h2>
-                <p className="text-sm text-gray-500">{products.length} produto{products.length !== 1 ? "s" : ""} publicado{products.length !== 1 ? "s" : ""}</p>
+                <p className="text-sm text-gray-500">
+                  {productItems.length} produto{productItems.length !== 1 ? "s" : ""} publicado{productItems.length !== 1 ? "s" : ""}
+                </p>
               </div>
               <button
-                onClick={() => setShowModal(true)}
+                onClick={() => openAddModal("produto")}
                 className="flex items-center gap-2 bg-indigo-500 text-white text-sm px-5 py-2.5 rounded-full hover:bg-indigo-600 transition-colors shadow-sm"
               >
-                <Plus className="w-4 h-4" />
-                Adicionar Produto
+                <Plus className="w-4 h-4" /> Adicionar Produto
               </button>
             </div>
+            <ItemList
+              items={productItems}
+              expandedId={expandedId}
+              onToggleExpand={(id) => setExpandedId(expandedId === id ? null : id)}
+              onRemove={(id) => setConfirmDelete(id)}
+              onAdd={() => openAddModal("produto")}
+              label="produto"
+            />
+          </div>
+        )}
 
-            {products.length === 0 ? (
-              <div className="rounded-2xl p-12 text-center shadow-sm" style={card}>
-                <Package className="w-12 h-12 text-gray-300 mx-auto mb-3" />
-                <p className="text-gray-500 font-medium">Ainda não tem produtos publicados</p>
-                <p className="text-sm text-gray-400 mb-5">Adicione o seu primeiro produto ao marketplace</p>
-                <button
-                  onClick={() => setShowModal(true)}
-                  className="bg-indigo-500 text-white text-sm px-5 py-2.5 rounded-full hover:bg-indigo-600 transition-colors"
-                >
-                  Adicionar Produto
-                </button>
+        {/* ── TAB: OS MEUS SERVIÇOS ── */}
+        {activeTab === "services" && (
+          <div>
+            <div className="flex items-center justify-between mb-6">
+              <div>
+                <h2 className="text-base font-semibold text-gray-800">Os Meus Serviços</h2>
+                <p className="text-sm text-gray-500">
+                  {serviceItems.length} serviço{serviceItems.length !== 1 ? "s" : ""} publicado{serviceItems.length !== 1 ? "s" : ""}
+                </p>
               </div>
-            ) : (
-              <div className="rounded-2xl shadow-sm overflow-hidden" style={card}>
-                {/* List header */}
-                <div className="grid grid-cols-[64px_1fr_110px_110px_130px_120px_48px] gap-4 items-center px-5 py-3 border-b border-gray-100 bg-gray-50/60">
-                  <div />
-                  <span className="text-xs font-semibold text-gray-400 uppercase tracking-wide">Produto</span>
-                  <span className="text-xs font-semibold text-gray-400 uppercase tracking-wide">Tipo</span>
-                  <span className="text-xs font-semibold text-gray-400 uppercase tracking-wide">Categoria</span>
-                  <span className="text-xs font-semibold text-gray-400 uppercase tracking-wide">Preço</span>
-                  <span className="text-xs font-semibold text-gray-400 uppercase tracking-wide">Detalhes</span>
-                  <div />
-                </div>
-
-                {products.map((p, idx) => {
-                  const isExpanded = expandedId === p.id;
-                  return (
-                    <div key={p.id} className={idx !== 0 ? "border-t border-gray-100" : ""}>
-                      {/* Main row */}
-                      <div className="grid grid-cols-[64px_1fr_110px_110px_130px_120px_48px] gap-4 items-center px-5 py-4">
-                        {/* Photo */}
-                        <div className="w-16 h-16 rounded-xl overflow-hidden bg-gray-100 shrink-0">
-                          <img src={p.image} alt={p.name} className="w-full h-full object-cover" />
-                        </div>
-
-                        {/* Name + description */}
-                        <div className="min-w-0">
-                          <p className="text-sm font-semibold text-gray-800 leading-snug truncate mb-1">{p.name}</p>
-                          <p className="text-xs text-gray-400 leading-relaxed line-clamp-2">{p.description}</p>
-                        </div>
-
-                        {/* Type */}
-                        <div>
-                          <span className={`inline-flex items-center text-xs font-medium px-2.5 py-1 rounded-full ${
-                            p.type === "produto"
-                              ? "bg-indigo-100 text-indigo-600"
-                              : "bg-violet-100 text-violet-600"
-                          }`}>
-                            {p.type === "produto" ? "Produto" : "Serviço"}
-                          </span>
-                        </div>
-
-                        {/* Category */}
-                        <div>
-                          <span className="inline-flex items-center text-xs font-medium px-2.5 py-1 rounded-full bg-gray-100 text-gray-600">
-                            {p.category}
-                          </span>
-                        </div>
-
-                        {/* Price */}
-                        <div>
-                          <div className="text-base font-bold text-gray-800">{p.price.toLocaleString()} Kz</div>
-                          {p.reviews > 0 && (
-                            <div className="text-xs text-gray-400 mt-0.5">{p.reviews} avaliações</div>
-                          )}
-                        </div>
-
-                        {/* Expand toggle */}
-                        <button
-                          onClick={() => setExpandedId(isExpanded ? null : p.id)}
-                          className="flex items-center gap-1.5 text-xs text-indigo-500 hover:text-indigo-700 hover:bg-indigo-50 px-3 py-1.5 rounded-full transition-colors w-fit"
-                        >
-                          {isExpanded ? (
-                            <><ChevronUp className="w-3.5 h-3.5" /> Fechar</>
-                          ) : (
-                            <><ChevronDown className="w-3.5 h-3.5" /> Ver mais</>
-                          )}
-                        </button>
-
-                        {/* Remove */}
-                        <button
-                          onClick={() => setConfirmDelete(p.id)}
-                          className="w-9 h-9 flex items-center justify-center rounded-full text-gray-300 hover:text-rose-500 hover:bg-rose-50 transition-colors"
-                          title="Remover produto"
-                        >
-                          <Trash2 className="w-4 h-4" />
-                        </button>
-                      </div>
-
-                      {/* Expanded details */}
-                      {isExpanded && (
-                        <div className="px-5 pb-5 bg-gray-50/50 border-t border-gray-100">
-                          <div className="pt-4 grid grid-cols-1 md:grid-cols-2 gap-6">
-                            {/* Description full */}
-                            <div>
-                              <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2">Descrição completa</p>
-                              <p className="text-sm text-gray-600 leading-relaxed">{p.description}</p>
-                            </div>
-                            {/* Features */}
-                            {p.features.length > 0 && (
-                              <div>
-                                <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2">Características</p>
-                                <ul className="space-y-1.5">
-                                  {p.features.map((f, i) => (
-                                    <li key={i} className="flex items-start gap-2 text-sm text-gray-600">
-                                      <CheckCircle2 className="w-4 h-4 text-indigo-400 mt-0.5 shrink-0" />
-                                      {f}
-                                    </li>
-                                  ))}
-                                </ul>
-                              </div>
-                            )}
-                          </div>
-                          {/* Remove inside expanded */}
-                          <div className="mt-5 pt-4 border-t border-gray-200 flex justify-end">
-                            <button
-                              onClick={() => setConfirmDelete(p.id)}
-                              className="flex items-center gap-2 text-sm text-rose-500 hover:text-rose-600 hover:bg-rose-50 px-4 py-2 rounded-full transition-colors border border-rose-200"
-                            >
-                              <Trash2 className="w-4 h-4" />
-                              Remover produto
-                            </button>
-                          </div>
-                        </div>
-                      )}
-                    </div>
-                  );
-                })}
-              </div>
-            )}
+              <button
+                onClick={() => openAddModal("serviço")}
+                className="flex items-center gap-2 bg-violet-500 text-white text-sm px-5 py-2.5 rounded-full hover:bg-violet-600 transition-colors shadow-sm"
+              >
+                <Plus className="w-4 h-4" /> Adicionar Serviço
+              </button>
+            </div>
+            <ItemList
+              items={serviceItems}
+              expandedId={expandedId}
+              onToggleExpand={(id) => setExpandedId(expandedId === id ? null : id)}
+              onRemove={(id) => setConfirmDelete(id)}
+              onAdd={() => openAddModal("serviço")}
+              label="serviço"
+            />
           </div>
         )}
       </div>
 
-      {/* ── MODAL: ADICIONAR PRODUTO ── */}
+      {/* ── MODAL: ADICIONAR ── */}
       {showModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4" style={{ background: "rgba(0,0,0,0.4)" }}>
           <div className="bg-white rounded-2xl shadow-xl w-full max-w-lg max-h-[90vh] overflow-y-auto">
             <div className="flex items-center justify-between p-6 border-b border-gray-100">
-              <h2 className="text-base font-semibold text-gray-800">Novo Produto</h2>
+              <h2 className="text-base font-semibold text-gray-800">
+                Novo {form.type === "serviço" ? "Serviço" : "Produto"}
+              </h2>
               <button onClick={() => { setShowModal(false); setForm(emptyForm); }} className="text-gray-400 hover:text-gray-600">
                 <X className="w-5 h-5" />
               </button>
             </div>
             <div className="p-6 space-y-4">
               <div>
-                <label className="block text-xs font-medium text-gray-600 mb-1.5">Nome do produto *</label>
+                <label className="block text-xs font-medium text-gray-600 mb-1.5">
+                  Nome {form.type === "serviço" ? "do serviço" : "do produto"} *
+                </label>
                 <input
                   type="text"
                   value={form.name}
                   onChange={(e) => setForm({ ...form, name: e.target.value })}
-                  placeholder="Ex: Sistema ERP Completo"
+                  placeholder={form.type === "serviço" ? "Ex: Consultoria Empresarial" : "Ex: Sistema ERP Completo"}
                   className="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-300"
                 />
               </div>
 
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs font-medium text-gray-600 mb-1.5">Tipo *</label>
+                  <label className="block text-xs font-medium text-gray-600 mb-1.5">Tipo</label>
                   <select
                     value={form.type}
                     onChange={(e) => setForm({ ...form, type: e.target.value as Product["type"] })}
@@ -486,11 +679,13 @@ export function SupplierDashboard() {
                 Cancelar
               </button>
               <button
-                onClick={handleAddProduct}
+                onClick={handleAdd}
                 disabled={!form.name.trim() || !form.price}
-                className="flex-1 bg-indigo-500 text-white text-sm py-2.5 rounded-xl hover:bg-indigo-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                className={`flex-1 text-white text-sm py-2.5 rounded-xl transition-colors disabled:opacity-50 disabled:cursor-not-allowed ${
+                  form.type === "serviço" ? "bg-violet-500 hover:bg-violet-600" : "bg-indigo-500 hover:bg-indigo-600"
+                }`}
               >
-                Adicionar Produto
+                Adicionar {form.type === "serviço" ? "Serviço" : "Produto"}
               </button>
             </div>
           </div>
@@ -504,7 +699,9 @@ export function SupplierDashboard() {
             <div className="w-12 h-12 rounded-full bg-rose-100 flex items-center justify-center mx-auto mb-4">
               <Trash2 className="w-5 h-5 text-rose-500" />
             </div>
-            <h3 className="text-base font-semibold text-gray-800 text-center mb-2">Remover produto?</h3>
+            <h3 className="text-base font-semibold text-gray-800 text-center mb-2">
+              Remover {currentLabel}?
+            </h3>
             <p className="text-sm text-gray-500 text-center mb-6">Esta acção não pode ser desfeita.</p>
             <div className="flex gap-3">
               <button
