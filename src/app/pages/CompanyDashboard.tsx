@@ -76,14 +76,14 @@ export function CompanyDashboard() {
               <AreaChart data={spendingData} margin={{ top: 5, right: 5, left: -25, bottom: 0 }}>
                 <defs>
                   <linearGradient id="cgBrand" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%"   stopColor="#E94E1B" stopOpacity={0.35} />
-                    <stop offset="100%" stopColor="#E94E1B" stopOpacity={0} />
+                    <stop offset="0%"   stopColor="#2563EB" stopOpacity={0.35} />
+                    <stop offset="100%" stopColor="#2563EB" stopOpacity={0} />
                   </linearGradient>
                 </defs>
                 <XAxis dataKey="month" tick={{ fontSize: 10, fill: "#9ca3af" }} axisLine={false} tickLine={false} />
                 <YAxis tick={{ fontSize: 10, fill: "#9ca3af" }} axisLine={false} tickLine={false} />
                 <Tooltip contentStyle={{ borderRadius: "12px", border: "none", background: "white", boxShadow: "0 4px 20px rgba(0,0,0,0.08)", fontSize: 11 }} />
-                <Area type="monotone" dataKey="value" stroke="#E94E1B" strokeWidth={1.5} fill="url(#cgBrand)" name="Gastos (Kz)" dot={false} />
+                <Area type="monotone" dataKey="value" stroke="#2563EB" strokeWidth={1.5} fill="url(#cgBrand)" name="Gastos (Kz)" dot={false} />
               </AreaChart>
             </ResponsiveContainer>
           </div>

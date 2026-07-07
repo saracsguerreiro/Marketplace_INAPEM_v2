@@ -230,14 +230,14 @@ function ItemList({
 
               {/* Sold */}
               <div className="flex items-center gap-1.5">
-                <span className="text-sm font-bold text-indigo-600">{p.sold}</span>
+                <span className="text-sm font-bold text-blue-600">{p.sold}</span>
                 <span className="text-xs text-gray-400">{isService ? "contratos" : "unid."}</span>
               </div>
 
               {/* Expand */}
               <button
                 onClick={() => onToggleExpand(p.id)}
-                className="flex items-center gap-1.5 text-xs text-indigo-500 hover:text-indigo-700 hover:bg-indigo-50 px-3 py-1.5 rounded-full transition-colors w-fit"
+                className="flex items-center gap-1.5 text-xs text-blue-500 hover:text-blue-700 hover:bg-blue-50 px-3 py-1.5 rounded-full transition-colors w-fit"
               >
                 {isExpanded
                   ? <><ChevronUp className="w-3.5 h-3.5" /> Fechar</>
@@ -269,7 +269,7 @@ function ItemList({
                       <ul className="space-y-1.5">
                         {p.features.map((f, i) => (
                           <li key={i} className="flex items-start gap-2 text-sm text-gray-600">
-                            <CheckCircle2 className="w-4 h-4 text-indigo-400 mt-0.5 shrink-0" />
+                            <CheckCircle2 className="w-4 h-4 text-blue-400 mt-0.5 shrink-0" />
                             {f}
                           </li>
                         ))}
@@ -322,7 +322,7 @@ export function SupplierDashboard() {
   ];
 
   const topProducts = [
-    { name: "Sistema CRM",  sales: 22, revenue: 7040000, pct: 48, color: "bg-indigo-400/70" },
+    { name: "Sistema CRM",  sales: 22, revenue: 7040000, pct: 48, color: "bg-blue-400/70" },
     { name: "Software ERP", sales: 15, revenue: 6750000, pct: 38, color: "bg-violet-400/70" },
     { name: "Consultoria",  sales: 8,  revenue: 2240000, pct: 14, color: "bg-blue-300/70"   },
   ];
@@ -408,7 +408,7 @@ export function SupplierDashboard() {
 
         {/* Header */}
         <div className="mb-6">
-          <p className="text-xs font-semibold text-indigo-500 uppercase tracking-widest mb-1">Dashboard</p>
+          <p className="text-xs font-semibold text-blue-500 uppercase tracking-widest mb-1">Dashboard</p>
           <h1 className="text-2xl font-bold text-gray-800 mb-1">Painel do Fornecedor</h1>
           <p className="text-sm text-gray-500">Gerencie os seus produtos, serviços e vendas</p>
         </div>
@@ -425,14 +425,14 @@ export function SupplierDashboard() {
                 key={tab}
                 onClick={() => setActiveTab(tab)}
                 className={`px-5 py-2 rounded-xl text-sm font-medium transition-all flex items-center gap-2 ${
-                  isActive ? "bg-indigo-500 text-white shadow-sm" : "text-gray-500 hover:text-gray-700"
+                  isActive ? "bg-blue-600 text-white shadow-sm" : "text-gray-500 hover:text-gray-700"
                 }`}
               >
                 {tab !== "overview" && <Icon className="w-4 h-4" />}
                 {label}
                 {count !== null && (
                   <span className={`text-xs px-1.5 py-0.5 rounded-full font-semibold ${
-                    isActive ? "bg-white/20 text-white" : "bg-indigo-100 text-indigo-600"
+                    isActive ? "bg-white/20 text-white" : "bg-blue-100 text-blue-600"
                   }`}>
                     {count}
                   </span>
@@ -460,7 +460,7 @@ export function SupplierDashboard() {
                   <div key={s.label} className="rounded-2xl p-5 shadow-sm" style={card}>
                     <div className="flex items-center justify-between mb-4">
                       <div className="w-9 h-9 rounded-full bg-white/60 flex items-center justify-center">
-                        <Icon className="w-4 h-4 text-indigo-500" />
+                        <Icon className="w-4 h-4 text-blue-500" />
                       </div>
                       <span className={`text-xs font-semibold px-2 py-0.5 rounded-full ${s.up ? "bg-green-100/80 text-green-600" : "bg-rose-100/80 text-rose-500"}`}>
                         {s.trend}
@@ -481,14 +481,14 @@ export function SupplierDashboard() {
                   <AreaChart data={salesData} margin={{ top: 5, right: 5, left: -25, bottom: 0 }}>
                     <defs>
                       <linearGradient id="sgGreen" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="0%"   stopColor="#6366f1" stopOpacity={0.35} />
-                        <stop offset="100%" stopColor="#6366f1" stopOpacity={0}    />
+                        <stop offset="0%"   stopColor="#2563EB" stopOpacity={0.35} />
+                        <stop offset="100%" stopColor="#2563EB" stopOpacity={0}    />
                       </linearGradient>
                     </defs>
                     <XAxis dataKey="month" tick={{ fontSize: 10, fill: "#9ca3af" }} axisLine={false} tickLine={false} />
                     <YAxis tick={{ fontSize: 10, fill: "#9ca3af" }} axisLine={false} tickLine={false} />
                     <Tooltip contentStyle={{ borderRadius: "12px", border: "none", background: "rgba(255,255,255,0.9)", boxShadow: "0 4px 20px rgba(0,0,0,0.08)", fontSize: 11 }} />
-                    <Area type="monotone" dataKey="sales" stroke="#6366f1" strokeWidth={1.5} fill="url(#sgGreen)" name="Vendas (Kz)" dot={false} />
+                    <Area type="monotone" dataKey="sales" stroke="#2563EB" strokeWidth={1.5} fill="url(#sgGreen)" name="Vendas (Kz)" dot={false} />
                   </AreaChart>
                 </ResponsiveContainer>
               </div>
@@ -654,7 +654,7 @@ export function SupplierDashboard() {
                   value={form.name}
                   onChange={(e) => setForm({ ...form, name: e.target.value })}
                   placeholder={form.type === "serviço" ? "Ex: Consultoria Empresarial" : "Ex: Sistema ERP Completo"}
-                  className="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-300"
+                  className="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-300"
                 />
               </div>
 
@@ -665,7 +665,7 @@ export function SupplierDashboard() {
                   <select
                     value={form.type}
                     onChange={(e) => setForm({ ...form, type: e.target.value as Product["type"] })}
-                    className="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-300 bg-white"
+                    className="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-300 bg-white"
                   >
                     <option value="produto">Produto</option>
                     <option value="serviço">Serviço</option>
@@ -676,7 +676,7 @@ export function SupplierDashboard() {
                   <select
                     value={form.category}
                     onChange={(e) => setForm({ ...form, category: e.target.value })}
-                    className="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-300 bg-white"
+                    className="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-300 bg-white"
                   >
                     {CATEGORIES.map((c) => <option key={c}>{c}</option>)}
                   </select>
@@ -692,7 +692,7 @@ export function SupplierDashboard() {
                   onChange={(e) => setForm({ ...form, price: e.target.value })}
                   placeholder="Ex: 450000"
                   min={0}
-                  className="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-300"
+                  className="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-300"
                 />
               </div>
 
@@ -704,7 +704,7 @@ export function SupplierDashboard() {
                   onChange={(e) => setForm({ ...form, description: e.target.value })}
                   placeholder="Descreva o produto ou serviço..."
                   rows={3}
-                  className="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-300 resize-none"
+                  className="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-300 resize-none"
                 />
               </div>
 
@@ -718,7 +718,7 @@ export function SupplierDashboard() {
                   onChange={(e) => setForm({ ...form, features: e.target.value })}
                   placeholder={"Garantia de 2 anos\nSuporte técnico incluído\nInstalação gratuita"}
                   rows={4}
-                  className="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-300 resize-none"
+                  className="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-300 resize-none"
                 />
               </div>
 
@@ -729,9 +729,9 @@ export function SupplierDashboard() {
                 {/* Preview */}
                 <div className="relative w-full h-40 rounded-xl overflow-hidden bg-gray-100 mb-3 flex items-center justify-center">
                   {aiGenerating ? (
-                    <div className="flex flex-col items-center gap-2 text-indigo-500">
+                    <div className="flex flex-col items-center gap-2 text-blue-500">
                       <RefreshCw className="w-7 h-7 animate-spin" />
-                      <span className="text-xs font-medium text-indigo-600">A gerar imagem com IA...</span>
+                      <span className="text-xs font-medium text-blue-600">A gerar imagem com IA...</span>
                       <span className="text-xs text-gray-400">pode demorar alguns segundos</span>
                     </div>
                   ) : form.image ? (
@@ -771,7 +771,7 @@ export function SupplierDashboard() {
                     onClick={handleGenerateAI}
                     disabled={aiGenerating || !form.name.trim() || !form.description.trim()}
                     title={!form.name.trim() || !form.description.trim() ? "Preencha o nome e descrição primeiro" : "Gerar imagem com IA"}
-                    className="flex-1 flex items-center justify-center gap-2 bg-indigo-50 text-indigo-600 text-xs font-medium py-2.5 rounded-xl hover:bg-indigo-100 transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
+                    className="flex-1 flex items-center justify-center gap-2 bg-indigo-50 text-blue-600 text-xs font-medium py-2.5 rounded-xl hover:bg-indigo-100 transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
                   >
                     {aiGenerating
                       ? <><RefreshCw className="w-3.5 h-3.5 animate-spin" /> A gerar...</>
