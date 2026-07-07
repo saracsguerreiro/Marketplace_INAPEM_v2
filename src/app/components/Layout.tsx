@@ -1,8 +1,8 @@
 import { Link, Outlet, useLocation, useNavigate } from "react-router";
-import { ShoppingCart, LogIn, LogOut, Menu } from "lucide-react";
+import { ShoppingCart, LogIn, LogOut, Menu, X } from "lucide-react";
 import { useState } from "react";
-import inapemLogo from "../../imports/inapem_MARKETPLACE_w.png";
-import inapemLogoFooter from "../../imports/inapem-seeklogo-1.png";
+import tisLogoWhite from "../../imports/tis_logo_white.png";
+import tisLogo from "../../imports/tis_logo.png";
 import { LoginModal } from "./LoginModal";
 import { FinancingAssistant } from "./FinancingAssistant";
 import { NotificationBell } from "./NotificationBell";
@@ -31,123 +31,135 @@ export function Layout() {
       { name: "Empresas", path: "/empresas" },
       { name: "Fornecedores", path: "/fornecedores" },
     ];
-
-    if (userType === "empresa") {
-      return [...baseNav, { name: "Dashboard", path: "/empresa/dashboard" }];
-    } else if (userType === "fornecedor") {
-      return [...baseNav, { name: "Dashboard", path: "/fornecedor/dashboard" }];
-    } else if (userType === "gestor") {
-      return [{ name: "Painel de Gestão", path: "/gestor/dashboard" }];
-    } else {
-      return baseNav;
-    }
+    if (userType === "empresa") return [...baseNav, { name: "Dashboard", path: "/empresa/dashboard" }];
+    if (userType === "fornecedor") return [...baseNav, { name: "Dashboard", path: "/fornecedor/dashboard" }];
+    if (userType === "gestor") return [{ name: "Painel de Gestão", path: "/gestor/dashboard" }];
+    return baseNav;
   };
 
   const navigation = getNavigation();
 
   return (
     <div className="min-h-screen bg-background">
-      {/* ── NAVBAR ── */}
-      <nav className="bg-white sticky top-0 z-50 px-4 sm:px-6 lg:px-8 py-3 border-b border-gray-100">
-        <div className="max-w-7xl mx-auto flex items-center justify-between gap-4">
 
-          {/* Pill esquerda: logo + links */}
-          <div className="flex items-center bg-[#1a1a1a] text-white rounded-full px-4 py-2 gap-5">
-            <Link to="/" className="flex items-center gap-2 flex-shrink-0">
-              <img src={inapemLogo} alt="INAPEM" className="h-7 object-contain" />
+      {/* ── NAVBAR ── */}
+      <nav className="sticky top-0 z-50" style={{ background: "var(--ds-primary-background-default)" }}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-16 gap-6">
+
+            {/* Logo */}
+            <Link to="/" className="flex items-center flex-shrink-0">
+              <img src={tisLogoWhite} alt="TIS" className="h-8 object-contain" />
             </Link>
-            <div className="hidden md:flex items-center gap-1">
+
+            {/* Links de navegação — desktop */}
+            <div className="hidden md:flex items-center gap-1 flex-1">
               {navigation.map((item) => {
                 const isActive = location.pathname === item.path;
                 return (
                   <Link
                     key={item.name}
                     to={item.path}
-                    className={`px-3 py-1.5 rounded-full text-sm transition-colors whitespace-nowrap ${
-                      isActive ? "bg-white/20 text-white" : "text-white/70 hover:text-white"
-                    }`}
+                    className="px-3 py-2 rounded text-sm font-medium transition-colors whitespace-nowrap"
+                    style={{
+                      color: isActive ? "white" : "rgba(255,255,255,0.75)",
+                      background: isActive ? "rgba(255,255,255,0.15)" : "transparent",
+                    }}
+                    onMouseEnter={e => { if (!isActive) (e.currentTarget as HTMLAnchorElement).style.color = "white"; }}
+                    onMouseLeave={e => { if (!isActive) (e.currentTarget as HTMLAnchorElement).style.color = "rgba(255,255,255,0.75)"; }}
                   >
                     {item.name}
                   </Link>
                 );
               })}
             </div>
-          </div>
 
-          {/* Direita: ações */}
-          <div className="flex items-center gap-3">
-            {(userType === "fornecedor" || userType === "empresa") && <NotificationBell />}
+            {/* Ações — direita */}
+            <div className="flex items-center gap-2">
 
-            {userType !== "gestor" && (
-              <Link to="/carrinho" className="relative p-2 text-[#1a1a1a] hover:text-coral transition-colors">
-                <ShoppingCart className="ds-icon" />
-                {totalItems > 0 && (
-                  <span className="ds-badge ds-badge--brand ds-badge--solid absolute -top-1 -right-1 w-5 h-5 flex items-center justify-center p-0">
-                    {totalItems}
-                  </span>
-                )}
-              </Link>
-            )}
+              {(userType === "fornecedor" || userType === "empresa") && (
+                <div style={{ color: "white" }}>
+                  <NotificationBell />
+                </div>
+              )}
 
-            {/* Seletor de língua */}
-            <div className="hidden md:flex items-center gap-1 bg-gray-100 rounded-full p-1">
-              <button
-                onClick={() => setLanguage("PT")}
-                className={`px-3 py-1 rounded-full text-xs transition-colors ${
-                  language === "PT" ? "bg-[#1a1a1a] text-white" : "text-gray-500 hover:text-gray-800"
-                }`}
-              >PT</button>
-              <button
-                onClick={() => setLanguage("EN")}
-                className={`px-3 py-1 rounded-full text-xs transition-colors ${
-                  language === "EN" ? "bg-[#1a1a1a] text-white" : "text-gray-500 hover:text-gray-800"
-                }`}
-              >EN</button>
-            </div>
+              {userType !== "gestor" && (
+                <Link to="/carrinho" className="relative p-2 transition-colors" style={{ color: "rgba(255,255,255,0.85)" }}
+                  onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).style.color = "white"; }}
+                  onMouseLeave={e => { (e.currentTarget as HTMLAnchorElement).style.color = "rgba(255,255,255,0.85)"; }}>
+                  <ShoppingCart className="ds-icon" />
+                  {totalItems > 0 && (
+                    <span className="absolute -top-1 -right-1 text-xs w-5 h-5 rounded-full flex items-center justify-center font-bold"
+                      style={{ background: "white", color: "var(--ds-primary-background-default)", fontSize: "0.625rem" }}>
+                      {totalItems}
+                    </span>
+                  )}
+                </Link>
+              )}
 
-            {userType ? (
-              <button
-                onClick={logout}
-                className="ds-button ds-button--ghost ds-button--sm"
-              >
-                <LogOut className="ds-icon ds-icon--sm" />
-                <span className="ds-button__label hidden sm:inline">Sair</span>
-              </button>
-            ) : (
-              <button
-                onClick={() => setLoginModalOpen(true)}
-                className="ds-button ds-button--brand ds-button--sm"
-              >
-                <span className="ds-button__label">Entrar</span>
-                <span className="w-6 h-6 bg-white/20 rounded-full flex items-center justify-center flex-shrink-0">
+              {/* Seletor de língua */}
+              <div className="hidden md:flex items-center gap-0.5 rounded p-1" style={{ background: "rgba(255,255,255,0.15)" }}>
+                {["PT", "EN"].map((lang) => (
+                  <button
+                    key={lang}
+                    onClick={() => setLanguage(lang)}
+                    className="px-2.5 py-1 rounded text-xs font-medium transition-colors"
+                    style={{
+                      background: language === lang ? "white" : "transparent",
+                      color: language === lang ? "var(--ds-primary-background-default)" : "rgba(255,255,255,0.8)",
+                    }}
+                  >{lang}</button>
+                ))}
+              </div>
+
+              {userType ? (
+                <button onClick={logout} className="ds-button ds-button--sm"
+                  style={{ background: "rgba(255,255,255,0.15)", color: "white", border: "1px solid rgba(255,255,255,0.3)" }}>
+                  <LogOut className="ds-icon ds-icon--sm" />
+                  <span className="ds-button__label hidden sm:inline">Sair</span>
+                </button>
+              ) : (
+                <button onClick={() => setLoginModalOpen(true)} className="ds-button ds-button--sm"
+                  style={{ background: "white", color: "var(--ds-primary-background-default)", fontWeight: 600 }}>
                   <LogIn className="ds-icon ds-icon--sm" />
-                </span>
-              </button>
-            )}
+                  <span className="ds-button__label">Entrar</span>
+                </button>
+              )}
 
-            {/* Menu mobile */}
-            <button
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="md:hidden p-2 rounded-full bg-[#1a1a1a] text-white"
-            >
-              <Menu className="ds-icon" />
-            </button>
+              {/* Menu mobile */}
+              <button
+                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                className="md:hidden p-2 rounded"
+                style={{ background: "rgba(255,255,255,0.15)", color: "white" }}
+              >
+                {mobileMenuOpen ? <X className="ds-icon" /> : <Menu className="ds-icon" />}
+              </button>
+            </div>
           </div>
         </div>
 
         {/* Mobile menu */}
         {mobileMenuOpen && (
-          <div className="md:hidden mt-3 bg-[#1a1a1a] rounded-2xl p-4 space-y-1">
-            {navigation.map((item) => (
-              <Link
-                key={item.name}
-                to={item.path}
-                onClick={() => setMobileMenuOpen(false)}
-                className="block px-4 py-2.5 text-white/80 hover:text-white hover:bg-white/10 rounded-full text-sm transition-colors"
-              >
-                {item.name}
-              </Link>
-            ))}
+          <div className="md:hidden border-t" style={{ borderColor: "rgba(255,255,255,0.15)", background: "var(--ds-primary-background-hover)" }}>
+            <div className="max-w-7xl mx-auto px-4 py-3 space-y-1">
+              {navigation.map((item) => {
+                const isActive = location.pathname === item.path;
+                return (
+                  <Link
+                    key={item.name}
+                    to={item.path}
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="block px-4 py-2.5 rounded text-sm transition-colors"
+                    style={{
+                      color: isActive ? "white" : "rgba(255,255,255,0.8)",
+                      background: isActive ? "rgba(255,255,255,0.15)" : "transparent",
+                    }}
+                  >
+                    {item.name}
+                  </Link>
+                );
+              })}
+            </div>
           </div>
         )}
       </nav>
@@ -157,39 +169,37 @@ export function Layout() {
       </main>
 
       {/* ── FOOTER ── */}
-      <footer className="bg-secondary text-secondary-foreground mt-20">
+      <footer style={{ background: "var(--ds-background-subtle)", borderTop: "1px solid var(--ds-border-default)", marginTop: "5rem" }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div>
               <div className="flex items-center gap-2 mb-4">
-                <img src={inapemLogoFooter} alt="INAPEM" className="h-8" />
+                <img src={tisLogo} alt="TIS" className="h-8 object-contain" />
               </div>
-              <p style={{ color: "var(--ds-content-subtle)" }}>
+              <p style={{ color: "var(--ds-content-subtle)", fontSize: "0.875rem" }}>
                 Marketplace e soluções de financiamento para PMEs
               </p>
             </div>
             <div>
-              <h4 className="mb-4">Links Rápidos</h4>
+              <h4 className="mb-4 text-sm font-semibold" style={{ color: "var(--ds-content-default)" }}>Links Rápidos</h4>
               <div className="space-y-2">
-                <Link to="/marketplace" style={{ color: "var(--ds-content-subtle)", display: "block" }}
-                  className="hover:text-foreground transition-colors">
+                <Link to="/marketplace" className="ds-link block text-sm" style={{ color: "var(--ds-content-subtle)" }}>
                   Marketplace
                 </Link>
-                <Link to="/financiamento" style={{ color: "var(--ds-content-subtle)", display: "block" }}
-                  className="hover:text-foreground transition-colors">
+                <Link to="/financiamento" className="ds-link block text-sm" style={{ color: "var(--ds-content-subtle)" }}>
                   Financiamento
                 </Link>
               </div>
             </div>
             <div>
-              <h4 className="mb-4">Contato</h4>
-              <p style={{ color: "var(--ds-content-subtle)" }}>suporte@inapem.pt</p>
-              <p style={{ color: "var(--ds-content-subtle)" }}>+351 21 000 0000</p>
+              <h4 className="mb-4 text-sm font-semibold" style={{ color: "var(--ds-content-default)" }}>Contato</h4>
+              <p className="text-sm" style={{ color: "var(--ds-content-subtle)" }}>suporte@inapem.pt</p>
+              <p className="text-sm" style={{ color: "var(--ds-content-subtle)" }}>+351 21 000 0000</p>
             </div>
           </div>
           <hr className="ds-divider mt-8 mb-8" />
-          <div className="text-center" style={{ color: "var(--ds-content-subtle)" }}>
-            © 2026 Marketplace INAPEM. Todos os direitos reservados.
+          <div className="text-center text-sm" style={{ color: "var(--ds-content-subtle)" }}>
+            © 2026 TIS Marketplace. Todos os direitos reservados.
           </div>
         </div>
       </footer>
