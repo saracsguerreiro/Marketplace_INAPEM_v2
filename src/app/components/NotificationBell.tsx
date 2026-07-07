@@ -150,19 +150,19 @@ export function NotificationBell() {
     <div className="relative" ref={ref}>
       <button
         onClick={() => setOpen(!open)}
-        className="p-2 rounded-full hover:bg-primary-foreground/10 transition-colors relative"
+        className="ds-button ds-button--ghost ds-button--icon-only relative"
         aria-label="Notificações"
       >
-        <Bell className="w-5 h-5" />
+        <Bell className="ds-icon" />
         {unread > 0 && (
-          <span className="absolute -top-1 -right-1 bg-coral text-white text-xs w-5 h-5 rounded-full flex items-center justify-center font-bold animate-pulse">
+          <span className="absolute -top-1 -right-1 text-white text-xs w-5 h-5 rounded-full flex items-center justify-center font-bold animate-pulse" style={{ background: "var(--ds-primary-background-default)", fontSize: "0.625rem" }}>
             {unread}
           </span>
         )}
       </button>
 
       {open && (
-        <div className="absolute right-0 mt-2 w-96 bg-white rounded-2xl shadow-2xl border border-border z-50 overflow-hidden">
+        <div className="ds-card ds-card--elevated absolute right-0 mt-2 z-50 overflow-hidden" style={{ width: "24rem" }}>
           {/* Header */}
           <div className="flex items-center justify-between px-5 py-4 border-b border-border">
             <div>
@@ -182,9 +182,9 @@ export function NotificationBell() {
               )}
               <button
                 onClick={() => setOpen(false)}
-                className="p-1 rounded-full hover:bg-gray-100 transition-colors"
+                className="ds-button ds-button--ghost ds-button--icon-only ds-button--sm"
               >
-                <X className="w-4 h-4 text-muted-foreground" />
+                <X className="ds-icon ds-icon--sm" />
               </button>
             </div>
           </div>

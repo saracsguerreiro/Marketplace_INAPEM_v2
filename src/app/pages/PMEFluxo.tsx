@@ -16,15 +16,15 @@ export function PMEFluxo() {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-bg">
+    <div className="min-h-screen" style={{ background: "var(--ds-background-subtle)" }}>
       <div className="bg-white border-b border-border sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center gap-4">
-          <Link to="/" className="flex items-center gap-2 text-muted-foreground hover:text-coral transition-colors">
-            <ArrowLeft className="w-4 h-4" />
-            <span className="text-sm">Voltar</span>
+          <Link to="/" className="ds-button ds-button--ghost ds-button--sm flex items-center gap-2" style={{ textDecoration: "none" }}>
+            <ArrowLeft className="ds-icon ds-icon--sm" />
+            <span>Voltar</span>
           </Link>
           <div className="flex-1">
-            <h3 className="text-sm">Pedido de Financiamento</h3>
+            <h3 className="text-sm font-semibold" style={{ color: "var(--ds-content-default)" }}>Pedido de Financiamento</h3>
           </div>
         </div>
 
@@ -71,56 +71,84 @@ export function PMEFluxo() {
 
 function Step1({ onNext }: { onNext: () => void }) {
   return (
-    <div className="bg-white rounded-2xl p-8 border border-border shadow-sm">
-      <div className="inline-flex items-center gap-2 bg-coral/10 text-coral text-[10px] px-3 py-1 rounded-full mb-3">
-        PASSO 1 DE 6
-      </div>
-      <h1 className="mb-2">Registo da <span className="text-coral">Empresa</span></h1>
-      <p className="text-muted-foreground mb-8 text-sm">
-        Insira os dados da sua empresa para começar o processo de candidatura.
-      </p>
+    <div className="ds-card ds-card--elevated">
+      <div className="ds-card__container">
+        <span className="ds-badge ds-badge--brand ds-badge--subtle" style={{ marginBottom: "0.75rem" }}>PASSO 1 DE 6</span>
+        <h1 className="mb-2">Registo da <span className="text-coral">Empresa</span></h1>
+        <p className="text-muted-foreground mb-8 text-sm">
+          Insira os dados da sua empresa para começar o processo de candidatura.
+        </p>
 
-      <div className="space-y-4">
-        <div>
-          <label className="block text-xs mb-1.5">Nome da Empresa <span className="text-coral">*</span></label>
-          <input type="text" placeholder="Ex: TecnoLuanda Lda" className="w-full px-4 py-3 border-2 border-border rounded-full text-sm outline-none focus:border-coral transition-colors" />
-        </div>
-        <div className="grid grid-cols-2 gap-4">
-          <div>
-            <label className="block text-xs mb-1.5">NIF <span className="text-coral">*</span></label>
-            <input type="text" placeholder="000000000" className="w-full px-4 py-3 border-2 border-border rounded-full text-sm outline-none focus:border-coral transition-colors" />
+        <div className="space-y-4">
+          <div className="ds-field">
+            <div className="ds-field__label-row">
+              <label className="ds-field__label">Nome da Empresa <span className="ds-field__required">*</span></label>
+            </div>
+            <div className="ds-input ds-input--lg ds-input--full">
+              <input type="text" className="ds-input__field" placeholder="Ex: TecnoLuanda Lda" />
+            </div>
           </div>
-          <div>
-            <label className="block text-xs mb-1.5">Telefone <span className="text-coral">*</span></label>
-            <input type="tel" placeholder="+244 900 000 000" className="w-full px-4 py-3 border-2 border-border rounded-full text-sm outline-none focus:border-coral transition-colors" />
-          </div>
-        </div>
-        <div>
-          <label className="block text-xs mb-1.5">Email Empresarial <span className="text-coral">*</span></label>
-          <input type="email" placeholder="empresa@exemplo.ao" className="w-full px-4 py-3 border-2 border-border rounded-full text-sm outline-none focus:border-coral transition-colors" />
-        </div>
-        <div>
-          <label className="block text-xs mb-1.5">Morada Completa <span className="text-coral">*</span></label>
-          <input type="text" placeholder="Rua, Número, Bairro, Cidade" className="w-full px-4 py-3 border-2 border-border rounded-full text-sm outline-none focus:border-coral transition-colors" />
-        </div>
-        <div>
-          <label className="block text-xs mb-1.5">Setor de Atividade <span className="text-coral">*</span></label>
-          <select className="w-full px-4 py-3 border-2 border-border rounded-full text-sm outline-none focus:border-coral transition-colors">
-            <option>Selecione...</option>
-            <option>Comércio</option>
-            <option>Serviços</option>
-            <option>Indústria</option>
-            <option>Tecnologia</option>
-            <option>Construção</option>
-            <option>Outro</option>
-          </select>
-        </div>
-      </div>
 
-      <button onClick={onNext} className="ds-button ds-button--brand ds-button--lg ds-button--full" style={{ marginTop: "1.5rem" }}>
-        Continuar
-        <ArrowRight className="w-5 h-5" />
-      </button>
+          <div className="grid grid-cols-2 gap-4">
+            <div className="ds-field">
+              <div className="ds-field__label-row">
+                <label className="ds-field__label">NIF <span className="ds-field__required">*</span></label>
+              </div>
+              <div className="ds-input ds-input--lg ds-input--full">
+                <input type="text" className="ds-input__field" placeholder="000000000" />
+              </div>
+            </div>
+            <div className="ds-field">
+              <div className="ds-field__label-row">
+                <label className="ds-field__label">Telefone <span className="ds-field__required">*</span></label>
+              </div>
+              <div className="ds-input ds-input--lg ds-input--full">
+                <input type="tel" className="ds-input__field" placeholder="+244 900 000 000" />
+              </div>
+            </div>
+          </div>
+
+          <div className="ds-field">
+            <div className="ds-field__label-row">
+              <label className="ds-field__label">Email Empresarial <span className="ds-field__required">*</span></label>
+            </div>
+            <div className="ds-input ds-input--lg ds-input--full">
+              <input type="email" className="ds-input__field" placeholder="empresa@exemplo.ao" />
+            </div>
+          </div>
+
+          <div className="ds-field">
+            <div className="ds-field__label-row">
+              <label className="ds-field__label">Morada Completa <span className="ds-field__required">*</span></label>
+            </div>
+            <div className="ds-input ds-input--lg ds-input--full">
+              <input type="text" className="ds-input__field" placeholder="Rua, Número, Bairro, Cidade" />
+            </div>
+          </div>
+
+          <div className="ds-field">
+            <div className="ds-field__label-row">
+              <label className="ds-field__label">Setor de Atividade <span className="ds-field__required">*</span></label>
+            </div>
+            <div className="ds-input ds-input--lg ds-input--full">
+              <select className="ds-input__field" style={{ cursor: "pointer" }}>
+                <option>Selecione...</option>
+                <option>Comércio</option>
+                <option>Serviços</option>
+                <option>Indústria</option>
+                <option>Tecnologia</option>
+                <option>Construção</option>
+                <option>Outro</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <button onClick={onNext} className="ds-button ds-button--brand ds-button--lg ds-button--full" style={{ marginTop: "1.5rem" }}>
+          <span className="ds-button__label">Continuar</span>
+          <ArrowRight className="ds-icon ds-icon--sm" />
+        </button>
+      </div>
     </div>
   );
 }
@@ -165,8 +193,6 @@ function Step2({ onNext, onBack }: { onNext: () => void; onBack: () => void }) {
     setFileName(name);
     setPhase("uploading");
     setProgress(0);
-
-    // Upload simulation
     let p = 0;
     const uploadInterval = setInterval(() => {
       p += 20;
@@ -197,9 +223,7 @@ function Step2({ onNext, onBack }: { onNext: () => void; onBack: () => void }) {
     }, 80);
   };
 
-  const handleFile = (file: File) => {
-    if (file) startAnalysis(file.name);
-  };
+  const handleFile = (file: File) => { if (file) startAnalysis(file.name); };
 
   const handleDrop = (e: React.DragEvent) => {
     e.preventDefault();
@@ -214,140 +238,139 @@ function Step2({ onNext, onBack }: { onNext: () => void; onBack: () => void }) {
     c >= 95 ? "bg-green-50 border-green-200" : c >= 85 ? "bg-orange-50 border-orange-200" : "bg-red-50 border-red-200";
 
   return (
-    <div className="bg-white rounded-2xl p-8 border border-border shadow-sm">
-      <div className="inline-flex items-center gap-2 bg-coral/10 text-coral text-[10px] px-3 py-1 rounded-full mb-3">
-        PASSO 2 DE 6
-      </div>
-      <div className="flex items-center gap-2 mb-2">
-        <h1>Análise de <span className="text-coral">Documentos</span></h1>
-        <Sparkles className="w-5 h-5 text-coral" />
-      </div>
-      <p className="text-muted-foreground mb-6 text-sm">
-        Carregue a sua certidão comercial ou declaração fiscal. A nossa IA extrai os dados automaticamente.
-      </p>
-
-      {/* Tipos aceites */}
-      <div className="flex gap-2 mb-6">
-        {["Certidão Comercial", "Declaração Fiscal", "Estatutos"].map((t) => (
-          <span key={t} className="text-xs px-3 py-1 rounded-full bg-gray-100 text-muted-foreground border border-border">{t}</span>
-        ))}
-      </div>
-
-      {/* Zona de upload */}
-      {phase === "idle" && (
-        <div
-          onDrop={handleDrop}
-          onDragOver={(e) => e.preventDefault()}
-          onClick={() => inputRef.current?.click()}
-          className="border-2 border-dashed border-border rounded-2xl p-10 text-center cursor-pointer hover:border-coral hover:bg-coral/5 transition-all group"
-        >
-          <input ref={inputRef} type="file" accept=".pdf,.jpg,.jpeg,.png" className="hidden" onChange={(e) => e.target.files?.[0] && handleFile(e.target.files[0])} />
-          <div className="w-14 h-14 bg-gray-100 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:bg-coral/10 transition-colors">
-            <Upload className="w-7 h-7 text-muted-foreground group-hover:text-coral transition-colors" />
-          </div>
-          <p className="text-sm font-medium mb-1">Arraste o documento ou clique para selecionar</p>
-          <p className="text-xs text-muted-foreground">PDF, JPG ou PNG · máx. 10MB</p>
+    <div className="ds-card ds-card--elevated">
+      <div className="ds-card__container">
+        <span className="ds-badge ds-badge--brand ds-badge--subtle" style={{ marginBottom: "0.75rem" }}>PASSO 2 DE 6</span>
+        <div className="flex items-center gap-2 mb-2">
+          <h1>Análise de <span className="text-coral">Documentos</span></h1>
+          <Sparkles className="ds-icon" style={{ color: "var(--ds-primary-content-default)" }} />
         </div>
-      )}
+        <p className="text-muted-foreground mb-6 text-sm">
+          Carregue a sua certidão comercial ou declaração fiscal. A nossa IA extrai os dados automaticamente.
+        </p>
 
-      {/* Upload em progresso */}
-      {phase === "uploading" && (
-        <div className="border-2 border-coral/30 bg-coral/5 rounded-2xl p-8 text-center">
-          <div className="w-12 h-12 bg-coral/10 rounded-2xl flex items-center justify-center mx-auto mb-4">
-            <Upload className="w-6 h-6 text-coral animate-bounce" />
-          </div>
-          <p className="text-sm font-medium mb-4">A carregar <span className="text-coral">{fileName}</span>...</p>
-          <div className="w-full bg-gray-200 rounded-full h-2 mb-2">
-            <div className="bg-coral h-2 rounded-full transition-all duration-200" style={{ width: `${progress}%` }} />
-          </div>
-          <p className="text-xs text-muted-foreground">{progress}%</p>
+        <div className="flex gap-2 mb-6">
+          {["Certidão Comercial", "Declaração Fiscal", "Estatutos"].map((t) => (
+            <span key={t} className="ds-badge ds-badge--neutral ds-badge--subtle">{t}</span>
+          ))}
         </div>
-      )}
 
-      {/* A analisar */}
-      {phase === "analysing" && (
-        <div className="border-2 border-coral/30 bg-coral/5 rounded-2xl p-8 text-center">
-          <div className="w-12 h-12 bg-coral/10 rounded-2xl flex items-center justify-center mx-auto mb-4">
-            <Sparkles className="w-6 h-6 text-coral animate-pulse" />
-          </div>
-          <p className="text-sm font-semibold text-coral mb-1">{analysingMessages[msgIndex]}</p>
-          <p className="text-xs text-muted-foreground mb-4">{fileName}</p>
-          <div className="w-full bg-gray-200 rounded-full h-2 mb-2">
-            <div className="bg-coral h-2 rounded-full transition-all duration-100" style={{ width: `${progress}%` }} />
-          </div>
-          <p className="text-xs text-muted-foreground">{progress}%</p>
-        </div>
-      )}
-
-      {/* Resultado da análise */}
-      {phase === "done" && (
-        <>
-          {/* Banner de sucesso */}
-          <div className="flex items-center gap-3 bg-green-50 border border-green-200 rounded-xl p-4 mb-6">
-            <CheckCircle className="w-5 h-5 text-green-600 flex-shrink-0" />
-            <div>
-              <p className="text-sm font-semibold text-green-700">Análise concluída com sucesso</p>
-              <p className="text-xs text-green-600">{fields.length} campos extraídos de <span className="font-medium">{fileName}</span></p>
+        {phase === "idle" && (
+          <div
+            onDrop={handleDrop}
+            onDragOver={(e) => e.preventDefault()}
+            onClick={() => inputRef.current?.click()}
+            className="border-2 border-dashed rounded-xl p-10 text-center cursor-pointer transition-all group"
+            style={{ borderColor: "var(--ds-border-default)", background: "transparent" }}
+            onMouseEnter={e => { (e.currentTarget as HTMLDivElement).style.borderColor = "var(--ds-primary-background-default)"; (e.currentTarget as HTMLDivElement).style.background = "var(--ds-toned-background-default)"; }}
+            onMouseLeave={e => { (e.currentTarget as HTMLDivElement).style.borderColor = "var(--ds-border-default)"; (e.currentTarget as HTMLDivElement).style.background = "transparent"; }}
+          >
+            <input ref={inputRef} type="file" accept=".pdf,.jpg,.jpeg,.png" className="hidden" onChange={(e) => e.target.files?.[0] && handleFile(e.target.files[0])} />
+            <div style={{ width: "3.5rem", height: "3.5rem", background: "var(--ds-neutral-background-default)", borderRadius: "var(--ds-radius-lg)", display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto 1rem" }}>
+              <Upload className="ds-icon" style={{ color: "var(--ds-content-subtle)" }} />
             </div>
-            <button onClick={() => { setPhase("idle"); setFileName(null); setProgress(0); setMsgIndex(0); }} className="ml-auto p-1 hover:bg-green-100 rounded-full transition-colors">
-              <X className="w-4 h-4 text-green-600" />
-            </button>
+            <p className="text-sm font-medium mb-1" style={{ color: "var(--ds-content-default)" }}>Arraste o documento ou clique para selecionar</p>
+            <p className="text-xs" style={{ color: "var(--ds-content-subtle)" }}>PDF, JPG ou PNG · máx. 10MB</p>
           </div>
+        )}
 
-          {/* Campos extraídos */}
-          <div className="space-y-3 mb-6">
-            {fields.map((field, i) => (
-              <div key={i} className={`border rounded-xl p-4 ${confidenceBg(field.confidence)}`}>
-                <div className="flex items-center justify-between mb-1.5">
-                  <label className="text-xs text-muted-foreground font-medium">{field.label}</label>
-                  <div className="flex items-center gap-1.5">
-                    <Sparkles className="w-3 h-3 text-coral" />
-                    <span className={`text-xs font-semibold ${confidenceColor(field.confidence)}`}>{field.confidence}%</span>
-                    {field.confidence >= 95
-                      ? <CheckCircle className="w-3.5 h-3.5 text-green-600" />
-                      : <AlertCircle className="w-3.5 h-3.5 text-orange-500" />
-                    }
-                  </div>
-                </div>
-                {field.editable ? (
-                  <input
-                    defaultValue={field.value}
-                    onChange={(e) => setFields((prev) => prev.map((f, j) => j === i ? { ...f, value: e.target.value } : f))}
-                    className="w-full text-sm font-semibold bg-white border border-border rounded-lg px-3 py-2 outline-none focus:border-coral transition-colors"
-                  />
-                ) : (
-                  <p className="text-sm font-semibold text-foreground">{field.value}</p>
-                )}
-                {field.editable && (
-                  <p className="text-[10px] text-orange-500 mt-1 flex items-center gap-1">
-                    <AlertCircle className="w-3 h-3" /> Verifique e corrija se necessário
-                  </p>
-                )}
+        {phase === "uploading" && (
+          <div className="rounded-xl p-8 text-center" style={{ background: "var(--ds-toned-background-default)", border: "2px solid var(--ds-primary-background-default)" }}>
+            <div style={{ width: "3rem", height: "3rem", background: "var(--ds-toned-background-hover)", borderRadius: "var(--ds-radius-lg)", display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto 1rem" }}>
+              <Upload className="ds-icon animate-bounce" style={{ color: "var(--ds-primary-content-default)" }} />
+            </div>
+            <p className="text-sm font-medium mb-4">A carregar <span className="text-coral">{fileName}</span>...</p>
+            <div className="w-full rounded-full h-2 mb-2" style={{ background: "var(--ds-neutral-background-default)" }}>
+              <div className="h-2 rounded-full transition-all duration-200" style={{ width: `${progress}%`, background: "var(--ds-primary-background-default)" }} />
+            </div>
+            <p className="text-xs" style={{ color: "var(--ds-content-subtle)" }}>{progress}%</p>
+          </div>
+        )}
+
+        {phase === "analysing" && (
+          <div className="rounded-xl p-8 text-center" style={{ background: "var(--ds-toned-background-default)", border: "2px solid var(--ds-primary-background-default)" }}>
+            <div style={{ width: "3rem", height: "3rem", background: "var(--ds-toned-background-hover)", borderRadius: "var(--ds-radius-lg)", display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto 1rem" }}>
+              <Sparkles className="ds-icon animate-pulse" style={{ color: "var(--ds-primary-content-default)" }} />
+            </div>
+            <p className="text-sm font-semibold mb-1" style={{ color: "var(--ds-primary-content-default)" }}>{analysingMessages[msgIndex]}</p>
+            <p className="text-xs mb-4" style={{ color: "var(--ds-content-subtle)" }}>{fileName}</p>
+            <div className="w-full rounded-full h-2 mb-2" style={{ background: "var(--ds-neutral-background-default)" }}>
+              <div className="h-2 rounded-full transition-all duration-100" style={{ width: `${progress}%`, background: "var(--ds-primary-background-default)" }} />
+            </div>
+            <p className="text-xs" style={{ color: "var(--ds-content-subtle)" }}>{progress}%</p>
+          </div>
+        )}
+
+        {phase === "done" && (
+          <>
+            <div className="flex items-center gap-3 rounded-xl p-4 mb-6" style={{ background: "#f0fdf4", border: "1px solid #86efac" }}>
+              <CheckCircle className="ds-icon flex-shrink-0" style={{ color: "#16a34a" }} />
+              <div>
+                <p className="text-sm font-semibold" style={{ color: "#15803d" }}>Análise concluída com sucesso</p>
+                <p className="text-xs" style={{ color: "#16a34a" }}>{fields.length} campos extraídos de <span className="font-medium">{fileName}</span></p>
               </div>
-            ))}
-          </div>
+              <button onClick={() => { setPhase("idle"); setFileName(null); setProgress(0); setMsgIndex(0); }}
+                className="ml-auto ds-button ds-button--ghost ds-button--sm ds-button--icon-only">
+                <X className="ds-icon ds-icon--sm" style={{ color: "#16a34a" }} />
+              </button>
+            </div>
 
-          <div className="bg-coral/5 border border-coral/20 rounded-xl p-3 mb-6 flex items-center gap-2">
-            <Sparkles className="w-4 h-4 text-coral flex-shrink-0" />
-            <p className="text-xs text-muted-foreground">
-              Os dados marcados a <span className="text-orange-500 font-medium">laranja</span> têm menor confiança — confirme antes de continuar.
-            </p>
-          </div>
-        </>
-      )}
+            <div className="space-y-3 mb-6">
+              {fields.map((field, i) => (
+                <div key={i} className={`border rounded-xl p-4 ${confidenceBg(field.confidence)}`}>
+                  <div className="flex items-center justify-between mb-1.5">
+                    <label className="text-xs font-medium" style={{ color: "var(--ds-content-subtle)" }}>{field.label}</label>
+                    <div className="flex items-center gap-1.5">
+                      <Sparkles className="w-3 h-3" style={{ color: "var(--ds-primary-content-default)" }} />
+                      <span className={`text-xs font-semibold ${confidenceColor(field.confidence)}`}>{field.confidence}%</span>
+                      {field.confidence >= 95
+                        ? <CheckCircle className="w-3.5 h-3.5 text-green-600" />
+                        : <AlertCircle className="w-3.5 h-3.5 text-orange-500" />
+                      }
+                    </div>
+                  </div>
+                  {field.editable ? (
+                    <div className="ds-input ds-input--sm ds-input--full">
+                      <input
+                        defaultValue={field.value}
+                        onChange={(e) => setFields((prev) => prev.map((f, j) => j === i ? { ...f, value: e.target.value } : f))}
+                        className="ds-input__field"
+                      />
+                    </div>
+                  ) : (
+                    <p className="text-sm font-semibold" style={{ color: "var(--ds-content-default)" }}>{field.value}</p>
+                  )}
+                  {field.editable && (
+                    <p className="text-[10px] text-orange-500 mt-1 flex items-center gap-1">
+                      <AlertCircle className="w-3 h-3" /> Verifique e corrija se necessário
+                    </p>
+                  )}
+                </div>
+              ))}
+            </div>
 
-      <div className="flex gap-3 mt-6">
-        <button onClick={onBack} className="flex-1 bg-secondary text-secondary-foreground py-4 rounded-full hover:bg-secondary/80 transition-colors">
-          Voltar
-        </button>
-        <button
-          onClick={onNext}
-          disabled={phase !== "done"}
-          className="ds-button ds-button--brand ds-button--lg" style={{ flex: 1 }}
-        >
-          Confirmar Dados
-          <ArrowRight className="w-5 h-5" />
-        </button>
+            <div className="rounded-xl p-3 mb-6 flex items-center gap-2" style={{ background: "var(--ds-toned-background-default)", border: "1px solid var(--ds-toned-background-hover)" }}>
+              <Sparkles className="ds-icon ds-icon--sm flex-shrink-0" style={{ color: "var(--ds-primary-content-default)" }} />
+              <p className="text-xs" style={{ color: "var(--ds-content-subtle)" }}>
+                Os dados marcados a <span className="text-orange-500 font-medium">laranja</span> têm menor confiança — confirme antes de continuar.
+              </p>
+            </div>
+          </>
+        )}
+
+        <div className="flex gap-3 mt-6">
+          <button onClick={onBack} className="ds-button ds-button--outline ds-button--lg" style={{ flex: 1 }}>
+            <span className="ds-button__label">Voltar</span>
+          </button>
+          <button
+            onClick={onNext}
+            disabled={phase !== "done"}
+            className="ds-button ds-button--brand ds-button--lg" style={{ flex: 1 }}
+          >
+            <span className="ds-button__label">Confirmar Dados</span>
+            <ArrowRight className="ds-icon ds-icon--sm" />
+          </button>
+        </div>
       </div>
     </div>
   );
@@ -357,46 +380,62 @@ function Step2({ onNext, onBack }: { onNext: () => void; onBack: () => void }) {
 
 function Step3({ onNext, onBack }: { onNext: () => void; onBack: () => void }) {
   return (
-    <div className="bg-white rounded-2xl p-8 border border-border shadow-sm">
-      <div className="inline-flex items-center gap-2 bg-coral/10 text-coral text-[10px] px-3 py-1 rounded-full mb-3">
-        PASSO 3 DE 6
-      </div>
-      <h1 className="mb-2">Pedido de <span className="text-coral">Crédito</span></h1>
-      <p className="text-muted-foreground mb-8 text-sm">Defina o valor e o prazo do financiamento que necessita.</p>
+    <div className="ds-card ds-card--elevated">
+      <div className="ds-card__container">
+        <span className="ds-badge ds-badge--brand ds-badge--subtle" style={{ marginBottom: "0.75rem" }}>PASSO 3 DE 6</span>
+        <h1 className="mb-2">Pedido de <span className="text-coral">Crédito</span></h1>
+        <p className="text-muted-foreground mb-8 text-sm">Defina o valor e o prazo do financiamento que necessita.</p>
 
-      <div className="bg-coral/5 border-2 border-coral/20 rounded-xl p-5 mb-6 flex items-center gap-4">
-        <div className="text-3xl">💰</div>
-        <div>
-          <h4 className="text-sm text-coral mb-1">Crédito Pré-Aprovado Disponível</h4>
-          <p className="text-xs text-muted-foreground">Baseado nos seus dados, estimamos até 500.000 Kz</p>
+        <div className="rounded-xl p-5 mb-6 flex items-center gap-4" style={{ background: "var(--ds-toned-background-default)", border: "2px solid var(--ds-toned-background-hover)" }}>
+          <div className="text-3xl">💰</div>
+          <div>
+            <h4 className="text-sm mb-1" style={{ color: "var(--ds-primary-content-default)" }}>Crédito Pré-Aprovado Disponível</h4>
+            <p className="text-xs text-muted-foreground">Baseado nos seus dados, estimamos até 500.000 Kz</p>
+          </div>
         </div>
-      </div>
 
-      <div className="space-y-4">
-        <div>
-          <label className="block text-xs mb-1.5">Valor do Crédito Solicitado <span className="text-coral">*</span></label>
-          <input type="text" defaultValue="250.000 Kz" className="w-full px-4 py-3 border-2 border-border rounded-full text-sm outline-none focus:border-coral transition-colors" />
-        </div>
-        <div>
-          <label className="block text-xs mb-1.5">Prazo de Pagamento <span className="text-coral">*</span></label>
-          <select className="w-full px-4 py-3 border-2 border-border rounded-full text-sm outline-none focus:border-coral transition-colors">
-            <option>12 meses</option>
-            <option>18 meses</option>
-            <option>24 meses</option>
-            <option>36 meses</option>
-          </select>
-        </div>
-        <div>
-          <label className="block text-xs mb-1.5">Finalidade do Crédito <span className="text-coral">*</span></label>
-          <textarea placeholder="Descreva para que vai utilizar este financiamento..." rows={3} className="w-full px-4 py-3 border-2 border-border rounded-full text-sm outline-none focus:border-coral transition-colors resize-none" />
-        </div>
-      </div>
+        <div className="space-y-4">
+          <div className="ds-field">
+            <div className="ds-field__label-row">
+              <label className="ds-field__label">Valor do Crédito Solicitado <span className="ds-field__required">*</span></label>
+            </div>
+            <div className="ds-input ds-input--lg ds-input--full">
+              <input type="text" defaultValue="250.000 Kz" className="ds-input__field" />
+            </div>
+          </div>
 
-      <div className="flex gap-3 mt-6">
-        <button onClick={onBack} className="flex-1 bg-secondary text-secondary-foreground py-4 rounded-full hover:bg-secondary/80 transition-colors">Voltar</button>
-        <button onClick={onNext} className="flex-1 bg-coral text-white py-4 rounded-full hover:opacity-90 transition-opacity flex items-center justify-center gap-2">
-          Submeter Candidatura
-        </button>
+          <div className="ds-field">
+            <div className="ds-field__label-row">
+              <label className="ds-field__label">Prazo de Pagamento <span className="ds-field__required">*</span></label>
+            </div>
+            <div className="ds-input ds-input--lg ds-input--full">
+              <select className="ds-input__field" style={{ cursor: "pointer" }}>
+                <option>12 meses</option>
+                <option>18 meses</option>
+                <option>24 meses</option>
+                <option>36 meses</option>
+              </select>
+            </div>
+          </div>
+
+          <div className="ds-field">
+            <div className="ds-field__label-row">
+              <label className="ds-field__label">Finalidade do Crédito <span className="ds-field__required">*</span></label>
+            </div>
+            <div className="ds-input ds-input--full" style={{ height: "auto", alignItems: "flex-start", padding: "0.75rem 1rem" }}>
+              <textarea placeholder="Descreva para que vai utilizar este financiamento..." rows={3} className="ds-input__field" style={{ resize: "none", marginTop: 0, marginBottom: 0, paddingTop: 0, paddingBottom: 0, paddingLeft: 0, paddingRight: 0 }} />
+            </div>
+          </div>
+        </div>
+
+        <div className="flex gap-3 mt-6">
+          <button onClick={onBack} className="ds-button ds-button--outline ds-button--lg" style={{ flex: 1 }}>
+            <span className="ds-button__label">Voltar</span>
+          </button>
+          <button onClick={onNext} className="ds-button ds-button--brand ds-button--lg" style={{ flex: 1 }}>
+            <span className="ds-button__label">Submeter Candidatura</span>
+          </button>
+        </div>
       </div>
     </div>
   );
@@ -406,52 +445,50 @@ function Step3({ onNext, onBack }: { onNext: () => void; onBack: () => void }) {
 
 function Step4({ onNext }: { onNext: () => void }) {
   return (
-    <div className="bg-white rounded-2xl p-8 border border-border shadow-sm text-center">
-      <div className="inline-flex items-center gap-2 bg-coral/10 text-coral text-[10px] px-3 py-1 rounded-full mb-8">
-        PASSO 4 DE 6
-      </div>
+    <div className="ds-card ds-card--elevated">
+      <div className="ds-card__container text-center">
+        <span className="ds-badge ds-badge--brand ds-badge--subtle" style={{ marginBottom: "2rem" }}>PASSO 4 DE 6</span>
 
-      <div className="w-20 h-20 bg-blue-50 rounded-full flex items-center justify-center mx-auto mb-6">
-        <Sparkles className="w-10 h-10 text-blue-500" />
-      </div>
+        <div style={{ width: "5rem", height: "5rem", background: "var(--ds-toned-background-default)", borderRadius: "9999px", display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto 1.5rem" }}>
+          <Sparkles style={{ width: "2.5rem", height: "2.5rem", color: "var(--ds-primary-content-default)" }} />
+        </div>
 
-      <h1 className="mb-3">Pedido <span className="text-blue-500">Em Análise</span></h1>
-      <p className="text-muted-foreground mb-8 text-sm max-w-sm mx-auto">
-        O seu pedido foi submetido com sucesso. A equipa do INAPEM irá analisar a sua candidatura e receberá uma notificação com a decisão.
-      </p>
-
-      <div className="bg-secondary rounded-xl p-6 mb-6 text-left space-y-3">
-        <div className="flex justify-between text-sm">
-          <span className="text-muted-foreground">Número do Pedido:</span>
-          <span className="font-bold">#FIN-2026-04821</span>
-        </div>
-        <div className="flex justify-between text-sm">
-          <span className="text-muted-foreground">Valor Solicitado:</span>
-          <span className="font-bold">250.000 Kz</span>
-        </div>
-        <div className="flex justify-between text-sm">
-          <span className="text-muted-foreground">Prazo Estimado de Resposta:</span>
-          <span className="font-bold">48 horas úteis</span>
-        </div>
-        <div className="flex justify-between text-sm">
-          <span className="text-muted-foreground">Estado:</span>
-          <span className="font-bold text-blue-500 flex items-center gap-1">
-            <span className="w-2 h-2 rounded-full bg-blue-500 animate-pulse inline-block" />
-            Em análise pelo gestor
-          </span>
-        </div>
-      </div>
-
-      <div className="bg-blue-50 border border-blue-200 rounded-xl p-4 mb-8 text-left">
-        <p className="text-xs text-blue-700">
-          📧 Receberá um email de confirmação em <strong>empresa@exemplo.ao</strong> assim que a análise estiver concluída.
+        <h1 className="mb-3">Pedido <span className="text-coral">Em Análise</span></h1>
+        <p className="text-muted-foreground mb-8 text-sm max-w-sm mx-auto">
+          O seu pedido foi submetido com sucesso. A equipa do INAPEM irá analisar a sua candidatura e receberá uma notificação com a decisão.
         </p>
-      </div>
 
-      <button onClick={onNext} className="w-full bg-coral text-white py-4 rounded-full hover:opacity-90 transition-opacity flex items-center justify-center gap-2 font-semibold">
-        <ShoppingBag className="w-5 h-5" />
-        Explorar o Marketplace enquanto aguarda
-      </button>
+        <div className="rounded-xl p-6 mb-6 text-left space-y-3" style={{ background: "var(--ds-background-subtle)" }}>
+          {[
+            { label: "Número do Pedido:", value: "#FIN-2026-04821" },
+            { label: "Valor Solicitado:", value: "250.000 Kz" },
+            { label: "Prazo Estimado de Resposta:", value: "48 horas úteis" },
+          ].map(({ label, value }) => (
+            <div key={label} className="flex justify-between text-sm">
+              <span style={{ color: "var(--ds-content-subtle)" }}>{label}</span>
+              <span className="font-bold" style={{ color: "var(--ds-content-default)" }}>{value}</span>
+            </div>
+          ))}
+          <div className="flex justify-between text-sm">
+            <span style={{ color: "var(--ds-content-subtle)" }}>Estado:</span>
+            <span className="font-bold flex items-center gap-1" style={{ color: "var(--ds-primary-content-default)" }}>
+              <span className="w-2 h-2 rounded-full animate-pulse inline-block" style={{ background: "var(--ds-primary-background-default)" }} />
+              Em análise pelo gestor
+            </span>
+          </div>
+        </div>
+
+        <div className="rounded-xl p-4 mb-8 text-left" style={{ background: "var(--ds-toned-background-default)", border: "1px solid var(--ds-toned-background-hover)" }}>
+          <p className="text-xs" style={{ color: "var(--ds-primary-content-default)" }}>
+            📧 Receberá um email de confirmação em <strong>empresa@exemplo.ao</strong> assim que a análise estiver concluída.
+          </p>
+        </div>
+
+        <button onClick={onNext} className="ds-button ds-button--brand ds-button--lg ds-button--full">
+          <ShoppingBag className="ds-icon ds-icon--sm" />
+          <span className="ds-button__label">Explorar o Marketplace enquanto aguarda</span>
+        </button>
+      </div>
     </div>
   );
 }
@@ -466,47 +503,51 @@ function Step5({ onNext, onBack }: { onNext: () => void; onBack: () => void }) {
   ];
 
   return (
-    <div className="bg-white rounded-2xl p-8 border border-border shadow-sm">
-      <div className="inline-flex items-center gap-2 bg-coral/10 text-coral text-[10px] px-3 py-1 rounded-full mb-3">
-        PASSO 5 DE 6
-      </div>
-      <h1 className="mb-2">Escolha de <span className="text-coral">Produtos</span></h1>
-      <p className="text-muted-foreground mb-6 text-sm">Selecione os produtos e serviços que deseja adquirir com o financiamento.</p>
+    <div className="ds-card ds-card--elevated">
+      <div className="ds-card__container">
+        <span className="ds-badge ds-badge--brand ds-badge--subtle" style={{ marginBottom: "0.75rem" }}>PASSO 5 DE 6</span>
+        <h1 className="mb-2">Escolha de <span className="text-coral">Produtos</span></h1>
+        <p className="text-muted-foreground mb-6 text-sm">Selecione os produtos e serviços que deseja adquirir com o financiamento.</p>
 
-      <div className="bg-coral/5 border border-coral/20 rounded-xl p-4 mb-6">
-        <div className="flex items-center justify-between mb-2">
-          <span className="text-sm text-muted-foreground">Crédito Disponível:</span>
-          <span className="font-extrabold text-coral">250.000 Kz</span>
-        </div>
-        <div className="h-2 bg-gray-200 rounded-full overflow-hidden">
-          <div className="h-full bg-coral" style={{ width: "62%" }} />
-        </div>
-        <div className="text-xs text-muted-foreground mt-1">155.000 Kz utilizados</div>
-      </div>
-
-      <div className="space-y-3 mb-6">
-        {mockProducts.map((product, index) => (
-          <div key={index} className="flex items-center gap-4 p-4 border border-border rounded-xl">
-            <div className="w-12 h-12 bg-secondary rounded-lg flex items-center justify-center text-2xl flex-shrink-0">💻</div>
-            <div className="flex-1">
-              <div className="text-sm mb-1">{product.name}</div>
-              <div className="text-xs text-muted-foreground">{product.vendor}</div>
-            </div>
-            <div className="text-right">
-              <div className="font-extrabold">{product.price.toLocaleString()} Kz</div>
-              <button className="text-xs text-coral hover:underline mt-1">Remover</button>
-            </div>
+        <div className="rounded-xl p-4 mb-6" style={{ background: "var(--ds-toned-background-default)", border: "1px solid var(--ds-toned-background-hover)" }}>
+          <div className="flex items-center justify-between mb-2">
+            <span className="text-sm" style={{ color: "var(--ds-content-subtle)" }}>Crédito Disponível:</span>
+            <span className="font-extrabold text-coral">250.000 Kz</span>
           </div>
-        ))}
-      </div>
+          <div className="h-2 rounded-full overflow-hidden" style={{ background: "var(--ds-neutral-background-default)" }}>
+            <div className="h-full" style={{ width: "62%", background: "var(--ds-primary-background-default)" }} />
+          </div>
+          <div className="text-xs mt-1" style={{ color: "var(--ds-content-subtle)" }}>155.000 Kz utilizados</div>
+        </div>
 
-      <Link to="/marketplace" className="block w-full bg-secondary text-secondary-foreground py-3 rounded-full text-center hover:bg-secondary/80 transition-colors mb-4">
-        + Adicionar Mais Produtos
-      </Link>
+        <div className="space-y-3 mb-6">
+          {mockProducts.map((product, index) => (
+            <div key={index} className="ds-card ds-card--outlined" style={{ flexDirection: "row", alignItems: "center", gap: "1rem", padding: "1rem" }}>
+              <div className="w-12 h-12 rounded-lg flex items-center justify-center text-2xl flex-shrink-0" style={{ background: "var(--ds-background-subtle)" }}>💻</div>
+              <div className="flex-1">
+                <div className="text-sm mb-1" style={{ color: "var(--ds-content-default)" }}>{product.name}</div>
+                <div className="text-xs" style={{ color: "var(--ds-content-subtle)" }}>{product.vendor}</div>
+              </div>
+              <div className="text-right">
+                <div className="font-extrabold" style={{ color: "var(--ds-content-default)" }}>{product.price.toLocaleString()} Kz</div>
+                <button className="ds-button ds-button--ghost ds-button--sm" style={{ marginTop: "0.25rem", color: "var(--ds-feedback-error-content-default)", fontSize: "0.75rem" }}>Remover</button>
+              </div>
+            </div>
+          ))}
+        </div>
 
-      <div className="flex gap-3">
-        <button onClick={onBack} className="flex-1 bg-secondary text-secondary-foreground py-4 rounded-full hover:bg-secondary/80 transition-colors">Voltar</button>
-        <button onClick={onNext} className="flex-1 bg-coral text-white py-4 rounded-full hover:opacity-90 transition-opacity">Confirmar Encomenda</button>
+        <Link to="/marketplace" className="ds-button ds-button--outline ds-button--lg ds-button--full" style={{ marginBottom: "1rem", textDecoration: "none" }}>
+          <span className="ds-button__label">+ Adicionar Mais Produtos</span>
+        </Link>
+
+        <div className="flex gap-3">
+          <button onClick={onBack} className="ds-button ds-button--outline ds-button--lg" style={{ flex: 1 }}>
+            <span className="ds-button__label">Voltar</span>
+          </button>
+          <button onClick={onNext} className="ds-button ds-button--brand ds-button--lg" style={{ flex: 1 }}>
+            <span className="ds-button__label">Confirmar Encomenda</span>
+          </button>
+        </div>
       </div>
     </div>
   );
@@ -516,46 +557,48 @@ function Step5({ onNext, onBack }: { onNext: () => void; onBack: () => void }) {
 
 function Step6({ onNext, onBack }: { onNext: () => void; onBack: () => void }) {
   return (
-    <div className="bg-white rounded-2xl p-8 border border-border shadow-sm">
-      <div className="inline-flex items-center gap-2 bg-coral/10 text-coral text-[10px] px-3 py-1 rounded-full mb-3">
-        PASSO 6 DE 6
-      </div>
-      <h1 className="mb-2">Aprovação da <span className="text-coral">Compra</span></h1>
-      <p className="text-muted-foreground mb-8 text-sm">
-        Confirme a sua encomenda. O INAPEM e o banco vão aprovar e pagar directamente ao fornecedor.
-      </p>
+    <div className="ds-card ds-card--elevated">
+      <div className="ds-card__container">
+        <span className="ds-badge ds-badge--brand ds-badge--subtle" style={{ marginBottom: "0.75rem" }}>PASSO 6 DE 6</span>
+        <h1 className="mb-2">Aprovação da <span className="text-coral">Compra</span></h1>
+        <p className="text-muted-foreground mb-8 text-sm">
+          Confirme a sua encomenda. O INAPEM e o banco vão aprovar e pagar directamente ao fornecedor.
+        </p>
 
-      <div className="bg-secondary rounded-xl p-6 mb-6">
-        <h3 className="mb-4 text-sm">Resumo da Encomenda</h3>
-        <div className="space-y-2 text-sm">
-          <div className="flex justify-between">
-            <span className="text-muted-foreground">Subtotal:</span>
-            <span>155.000 Kz</span>
-          </div>
-          <div className="flex justify-between">
-            <span className="text-muted-foreground">Taxa de Processamento:</span>
-            <span>0 Kz</span>
-          </div>
-          <div className="flex justify-between pt-3 border-t border-border">
-            <span className="font-extrabold">Total:</span>
-            <span className="font-extrabold text-coral">155.000 Kz</span>
+        <div className="rounded-xl p-6 mb-6" style={{ background: "var(--ds-background-subtle)" }}>
+          <h3 className="mb-4 text-sm font-semibold">Resumo da Encomenda</h3>
+          <div className="space-y-2 text-sm">
+            <div className="flex justify-between">
+              <span style={{ color: "var(--ds-content-subtle)" }}>Subtotal:</span>
+              <span>155.000 Kz</span>
+            </div>
+            <div className="flex justify-between">
+              <span style={{ color: "var(--ds-content-subtle)" }}>Taxa de Processamento:</span>
+              <span>0 Kz</span>
+            </div>
+            <div className="flex justify-between pt-3" style={{ borderTop: "1px solid var(--ds-border-default)" }}>
+              <span className="font-extrabold">Total:</span>
+              <span className="font-extrabold text-coral">155.000 Kz</span>
+            </div>
           </div>
         </div>
-      </div>
 
-      <div className="bg-orange-50 border border-orange-200 rounded-xl p-4 mb-6">
-        <p className="text-xs text-orange-800">
-          ⚠️ Ao confirmar, o banco irá processar o pagamento directamente aos fornecedores.
-          As prestações mensais serão debitadas da sua conta a partir do próximo mês.
-        </p>
-      </div>
+        <div className="rounded-xl p-4 mb-6" style={{ background: "#fff7ed", border: "1px solid #fed7aa" }}>
+          <p className="text-xs" style={{ color: "#92400e" }}>
+            ⚠️ Ao confirmar, o banco irá processar o pagamento directamente aos fornecedores.
+            As prestações mensais serão debitadas da sua conta a partir do próximo mês.
+          </p>
+        </div>
 
-      <div className="flex gap-3">
-        <button onClick={onBack} className="flex-1 bg-secondary text-secondary-foreground py-4 rounded-full hover:bg-secondary/80 transition-colors">Voltar</button>
-        <button onClick={onNext} className="flex-1 bg-coral text-white py-4 rounded-full hover:opacity-90 transition-opacity flex items-center justify-center gap-2">
-          <FileText className="w-5 h-5" />
-          Confirmar e Finalizar
-        </button>
+        <div className="flex gap-3">
+          <button onClick={onBack} className="ds-button ds-button--outline ds-button--lg" style={{ flex: 1 }}>
+            <span className="ds-button__label">Voltar</span>
+          </button>
+          <button onClick={onNext} className="ds-button ds-button--brand ds-button--lg" style={{ flex: 1 }}>
+            <FileText className="ds-icon ds-icon--sm" />
+            <span className="ds-button__label">Confirmar e Finalizar</span>
+          </button>
+        </div>
       </div>
     </div>
   );

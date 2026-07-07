@@ -171,9 +171,9 @@ export function FinancingAssistant() {
       {open && (
         <div className="fixed bottom-24 right-4 sm:right-6 w-[calc(100vw-2rem)] sm:w-96 bg-white rounded-2xl shadow-2xl border border-border z-50 flex flex-col overflow-hidden" style={{ maxHeight: "70vh" }}>
           {/* Header */}
-          <div className="bg-coral text-white px-4 py-3 flex items-center gap-3">
+          <div className="px-4 py-3 flex items-center gap-3" style={{ background: "var(--ds-primary-background-default)", color: "white" }}>
             {topic && (
-              <button onClick={resetTopic} className="hover:bg-white/20 rounded-full p-1 transition-colors">
+              <button onClick={resetTopic} className="ds-button ds-button--ghost ds-button--icon-only ds-button--sm" style={{ color: "white" }}>
                 <ArrowLeft className="w-4 h-4" />
               </button>
             )}
@@ -187,7 +187,7 @@ export function FinancingAssistant() {
                 {topic ? topicLabels[topic] : "Online"}
               </div>
             </div>
-            <button onClick={() => setOpen(false)} className="ml-auto hover:bg-white/20 rounded-full p-1 transition-colors">
+            <button onClick={() => setOpen(false)} className="ml-auto ds-button ds-button--ghost ds-button--icon-only ds-button--sm" style={{ color: "white" }}>
               <X className="w-5 h-5" />
             </button>
           </div>
@@ -235,7 +235,7 @@ export function FinancingAssistant() {
                 <button
                   key={t}
                   onClick={() => handleTopicSelect(t)}
-                  className="text-sm bg-white border-2 border-border hover:border-coral hover:text-coral text-foreground px-3 py-2.5 rounded-full transition-all font-medium"
+                  className="ds-button ds-button--outline"
                 >
                   {topicLabels[t]}
                 </button>
@@ -272,7 +272,7 @@ export function FinancingAssistant() {
               <button
                 onClick={() => sendMessage(input)}
                 disabled={!input.trim()}
-                className="bg-coral text-white w-9 h-9 rounded-full flex items-center justify-center hover:opacity-90 transition-opacity disabled:opacity-40"
+                className="ds-button ds-button--brand ds-button--icon-only"
               >
                 <Send className="w-4 h-4" />
               </button>
@@ -284,7 +284,7 @@ export function FinancingAssistant() {
       {/* Botão Flutuante */}
       <button
         onClick={() => setOpen((v) => !v)}
-        className="fixed bottom-6 right-4 sm:right-6 w-14 h-14 bg-coral text-white rounded-full shadow-xl flex items-center justify-center hover:opacity-90 transition-all z-50 hover:scale-105"
+        className="fixed bottom-6 right-4 sm:right-6 w-14 h-14 rounded-full shadow-xl flex items-center justify-center hover:opacity-90 transition-all z-50 hover:scale-105" style={{ background: "var(--ds-primary-background-default)", color: "white" }}
       >
         {open ? <X className="w-6 h-6" /> : <MessageCircle className="w-6 h-6" />}
         {!open && (

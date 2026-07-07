@@ -70,15 +70,15 @@ export function Notifications() {
     <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
       <button
         onClick={() => navigate(-1)}
-        className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground mb-6 transition-colors"
+        className="ds-button ds-button--ghost ds-button--sm" style={{ marginBottom: "1.5rem" }}
       >
-        <ArrowLeft className="w-4 h-4" />
-        Voltar
+        <ArrowLeft className="ds-icon ds-icon--sm" />
+        <span className="ds-button__label">Voltar</span>
       </button>
 
       <div className="flex items-center justify-between mb-8">
         <div className="flex items-center gap-3">
-          <Bell className="w-6 h-6 text-coral" />
+          <Bell className="ds-icon text-coral" />
           <div>
             <h1 className="text-2xl">Notificações</h1>
             {unread > 0 && (
@@ -87,7 +87,7 @@ export function Notifications() {
           </div>
         </div>
         {unread > 0 && (
-          <button onClick={markAllRead} className="text-sm text-coral hover:underline">
+          <button onClick={markAllRead} className="ds-button ds-button--ghost ds-button--sm">
             Marcar todas como lidas
           </button>
         )}
@@ -124,33 +124,33 @@ export function Notifications() {
               <div
                 key={n.id}
                 onClick={() => markRead(n.id)}
-                className={`flex gap-4 p-5 rounded-2xl border-2 cursor-pointer transition-all hover:border-coral ${
-                  !n.read ? "border-coral/30 bg-blue-50/30" : "border-border bg-white"
-                }`}
+                className={`ds-card cursor-pointer${!n.read ? " ds-card--interactive" : " ds-card--outlined"}`}
+                style={!n.read ? { borderColor: "var(--ds-primary-background-default)", background: "var(--ds-toned-background-default)" } : {}}
               >
-                <div className={`w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0 ${color}`}>
-                  <Icon className="w-5 h-5" />
-                </div>
-                <div className="flex-1 min-w-0">
-                  <div className="flex items-start justify-between gap-2 mb-1">
-                    <div className="flex items-center gap-2">
-                      <p className={`text-sm font-semibold ${!n.read ? "text-foreground" : "text-muted-foreground"}`}>
-                        {n.title}
-                      </p>
-                      <span className="text-[10px] px-2 py-0.5 rounded-full bg-gray-100 text-muted-foreground">
-                        {labelMap[n.type]}
-                      </span>
-                      {!n.read && <span className="w-2 h-2 rounded-full bg-coral flex-shrink-0" />}
-                    </div>
-                    <button
-                      onClick={(e) => { e.stopPropagation(); remove(n.id); }}
-                      className="p-1 rounded-full hover:bg-red-50 text-muted-foreground hover:text-red-500 transition-colors flex-shrink-0"
-                    >
-                      <Trash2 className="w-4 h-4" />
-                    </button>
+                <div className="ds-card__container flex gap-4">
+                  <div className={`w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0 ${color}`}>
+                    <Icon className="ds-icon ds-icon--sm" />
                   </div>
-                  <p className="text-sm text-muted-foreground leading-relaxed">{n.message}</p>
-                  <p className="text-xs text-muted-foreground/60 mt-2">{n.time}</p>
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-start justify-between gap-2 mb-1">
+                      <div className="flex items-center gap-2 flex-wrap">
+                        <p className={`text-sm font-semibold ${!n.read ? "text-foreground" : "text-muted-foreground"}`}>
+                          {n.title}
+                        </p>
+                        <span className="ds-badge ds-badge--neutral ds-badge--subtle" style={{ fontSize: "0.625rem" }}>{labelMap[n.type]}</span>
+                        {!n.read && <span className="w-2 h-2 rounded-full flex-shrink-0" style={{ background: "var(--ds-primary-background-default)" }} />}
+                      </div>
+                      <button
+                        onClick={(e) => { e.stopPropagation(); remove(n.id); }}
+                        className="ds-button ds-button--ghost ds-button--icon-only ds-button--sm flex-shrink-0"
+                        style={{ color: "var(--ds-feedback-error-content-default)" }}
+                      >
+                        <Trash2 className="ds-icon ds-icon--sm" />
+                      </button>
+                    </div>
+                    <p className="text-sm text-muted-foreground leading-relaxed">{n.message}</p>
+                    <p className="text-xs text-muted-foreground/60 mt-2">{n.time}</p>
+                  </div>
                 </div>
               </div>
             );
