@@ -3,72 +3,84 @@ import { LogIn } from "lucide-react";
 
 export function Login() {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100 px-4">
-      <div className="max-w-md w-full bg-white rounded-2xl shadow-xl p-8">
-        <div className="text-center mb-8">
-          <div className="inline-flex items-center justify-center w-16 h-16 bg-coral rounded-full mb-4">
-            <LogIn className="w-8 h-8 text-white" />
-          </div>
-          <h1 className="text-2xl mb-2">Bem-vindo ao INAPEM</h1>
-          <p className="text-muted-foreground">Entre na sua conta</p>
-        </div>
+    <div className="min-h-screen flex items-center justify-center px-4"
+      style={{ background: "var(--ds-background-subtle)" }}>
+      <div className="ds-card ds-card--elevated w-full" style={{ maxWidth: "28rem" }}>
+        <div className="ds-card__container" style={{ padding: "2.5rem" }}>
 
-        <form className="space-y-6">
-          <div>
-            <label htmlFor="email" className="block mb-2">
-              Email
-            </label>
-            <input
-              id="email"
-              type="email"
-              placeholder="seu@email.com"
-              className="w-full px-4 py-3 border-2 border-border rounded-xl focus:outline-none focus:border-coral transition-colors"
-            />
-          </div>
-
-          <div>
-            <label htmlFor="password" className="block mb-2">
-              Senha
-            </label>
-            <input
-              id="password"
-              type="password"
-              placeholder="••••••••"
-              className="w-full px-4 py-3 border-2 border-border rounded-xl focus:outline-none focus:border-coral transition-colors"
-            />
+          {/* Cabeçalho */}
+          <div style={{ textAlign: "center", marginBottom: "2rem" }}>
+            <div style={{
+              display: "inline-flex",
+              alignItems: "center",
+              justifyContent: "center",
+              width: "4rem",
+              height: "4rem",
+              background: "var(--ds-toned-background-default)",
+              borderRadius: "9999px",
+              marginBottom: "1rem",
+            }}>
+              <LogIn style={{ width: "1.75rem", height: "1.75rem", color: "var(--ds-primary-content-default)" }} />
+            </div>
+            <h1 style={{ fontSize: "1.5rem", fontWeight: 600, marginBottom: "0.25rem" }}>Bem-vindo ao INAPEM</h1>
+            <p style={{ color: "var(--ds-content-subtle)", fontSize: "0.875rem" }}>Entre na sua conta</p>
           </div>
 
-          <div className="flex items-center justify-between">
-            <label className="flex items-center gap-2 cursor-pointer">
-              <input type="checkbox" className="w-4 h-4 rounded border-border" />
-              <span className="text-sm text-muted-foreground">Lembrar-me</span>
-            </label>
-            <Link to="/" className="text-sm text-coral hover:underline">
-              Esqueceu a senha?
-            </Link>
-          </div>
+          <form className="space-y-5">
+            <div className="ds-field">
+              <label htmlFor="email" className="ds-field__label">Email</label>
+              <div className="ds-input ds-input--lg ds-input--full">
+                <input
+                  id="email"
+                  type="email"
+                  className="ds-input__field"
+                  placeholder="seu@email.com"
+                />
+              </div>
+            </div>
 
-          <button
-            type="submit"
-            className="w-full bg-coral text-white py-3 rounded-full hover:opacity-90 transition-opacity"
-          >
-            Entrar
-          </button>
-        </form>
+            <div className="ds-field">
+              <label htmlFor="password" className="ds-field__label">Senha</label>
+              <div className="ds-input ds-input--lg ds-input--full">
+                <input
+                  id="password"
+                  type="password"
+                  className="ds-input__field"
+                  placeholder="••••••••"
+                />
+              </div>
+            </div>
 
-        <div className="mt-6 text-center">
-          <p className="text-sm text-muted-foreground">
+            <div className="flex items-center justify-between">
+              <label className="flex items-center gap-2 cursor-pointer">
+                <input type="checkbox" className="w-4 h-4 rounded"
+                  style={{ accentColor: "var(--ds-primary-background-default)" }} />
+                <span style={{ fontSize: "0.875rem", color: "var(--ds-content-subtle)" }}>Lembrar-me</span>
+              </label>
+              <Link to="/" style={{ fontSize: "0.875rem", color: "var(--ds-link-content-default)" }}>
+                Esqueceu a senha?
+              </Link>
+            </div>
+
+            <button type="submit" className="ds-button ds-button--brand ds-button--lg ds-button--full">
+              <span className="ds-button__label">Entrar</span>
+            </button>
+          </form>
+
+          <div style={{ marginTop: "1.5rem", textAlign: "center", fontSize: "0.875rem", color: "var(--ds-content-subtle)" }}>
             Não tem uma conta?{" "}
-            <Link to="/pme/fluxo" className="text-coral hover:underline">
+            <Link to="/pme/fluxo" style={{ color: "var(--ds-link-content-default)", fontWeight: 500 }}>
               Registar-se
             </Link>
-          </p>
-        </div>
+          </div>
 
-        <div className="mt-8 pt-6 border-t border-border text-center">
-          <Link to="/" className="text-sm text-muted-foreground hover:text-foreground">
-            ← Voltar ao Marketplace
-          </Link>
+          <hr className="ds-divider" style={{ marginTop: "1.5rem", marginBottom: "1.5rem" }} />
+
+          <div style={{ textAlign: "center" }}>
+            <Link to="/" style={{ fontSize: "0.875rem", color: "var(--ds-content-subtle)" }}>
+              ← Voltar ao Marketplace
+            </Link>
+          </div>
         </div>
       </div>
     </div>

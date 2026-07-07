@@ -47,7 +47,7 @@ export function Layout() {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* ── NAV PILL FLUTUANTE ── */}
+      {/* ── NAVBAR ── */}
       <nav className="bg-white sticky top-0 z-50 px-4 sm:px-6 lg:px-8 py-3 border-b border-gray-100">
         <div className="max-w-7xl mx-auto flex items-center justify-between gap-4">
 
@@ -80,9 +80,9 @@ export function Layout() {
 
             {userType !== "gestor" && (
               <Link to="/carrinho" className="relative p-2 text-[#1a1a1a] hover:text-coral transition-colors">
-                <ShoppingCart className="w-5 h-5" />
+                <ShoppingCart className="ds-icon" />
                 {totalItems > 0 && (
-                  <span className="absolute -top-1 -right-1 bg-coral text-white text-xs w-5 h-5 rounded-full flex items-center justify-center">
+                  <span className="ds-badge ds-badge--brand ds-badge--solid absolute -top-1 -right-1 w-5 h-5 flex items-center justify-center p-0">
                     {totalItems}
                   </span>
                 )}
@@ -108,19 +108,19 @@ export function Layout() {
             {userType ? (
               <button
                 onClick={logout}
-                className="flex items-center gap-2 bg-[#1a1a1a] text-white rounded-full px-5 py-2.5 text-sm hover:bg-[#333] transition-colors"
+                className="ds-button ds-button--ghost flex items-center gap-2 text-[#1a1a1a] border border-gray-200 rounded-full px-4"
               >
-                <LogOut className="w-4 h-4" />
-                Sair
+                <LogOut className="ds-icon ds-icon--sm" />
+                <span className="ds-button__label hidden sm:inline">Sair</span>
               </button>
             ) : (
               <button
                 onClick={() => setLoginModalOpen(true)}
-                className="flex items-center gap-2 bg-[#1a1a1a] text-white rounded-full px-5 py-2.5 text-sm hover:bg-[#333] transition-colors"
+                className="ds-button ds-button--brand rounded-full px-5"
               >
-                Entrar
-                <span className="w-6 h-6 bg-white text-[#1a1a1a] rounded-full flex items-center justify-center flex-shrink-0">
-                  <LogIn className="w-3 h-3" />
+                <span className="ds-button__label">Entrar</span>
+                <span className="w-6 h-6 bg-white/20 rounded-full flex items-center justify-center flex-shrink-0">
+                  <LogIn className="ds-icon ds-icon--sm" />
                 </span>
               </button>
             )}
@@ -130,7 +130,7 @@ export function Layout() {
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               className="md:hidden p-2 rounded-full bg-[#1a1a1a] text-white"
             >
-              <Menu className="w-5 h-5" />
+              <Menu className="ds-icon" />
             </button>
           </div>
         </div>
@@ -156,6 +156,7 @@ export function Layout() {
         <Outlet />
       </main>
 
+      {/* ── FOOTER ── */}
       <footer className="bg-secondary text-secondary-foreground mt-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -163,28 +164,31 @@ export function Layout() {
               <div className="flex items-center gap-2 mb-4">
                 <img src={inapemLogoFooter} alt="INAPEM" className="h-8" />
               </div>
-              <p className="text-muted-foreground">
+              <p style={{ color: "var(--ds-content-subtle)" }}>
                 Marketplace e soluções de financiamento para PMEs
               </p>
             </div>
             <div>
               <h4 className="mb-4">Links Rápidos</h4>
               <div className="space-y-2">
-                <Link to="/marketplace" className="block text-muted-foreground hover:text-foreground">
+                <Link to="/marketplace" style={{ color: "var(--ds-content-subtle)", display: "block" }}
+                  className="hover:text-foreground transition-colors">
                   Marketplace
                 </Link>
-                <Link to="/financiamento" className="block text-muted-foreground hover:text-foreground">
+                <Link to="/financiamento" style={{ color: "var(--ds-content-subtle)", display: "block" }}
+                  className="hover:text-foreground transition-colors">
                   Financiamento
                 </Link>
               </div>
             </div>
             <div>
               <h4 className="mb-4">Contato</h4>
-              <p className="text-muted-foreground">suporte@inapem.pt</p>
-              <p className="text-muted-foreground">+351 21 000 0000</p>
+              <p style={{ color: "var(--ds-content-subtle)" }}>suporte@inapem.pt</p>
+              <p style={{ color: "var(--ds-content-subtle)" }}>+351 21 000 0000</p>
             </div>
           </div>
-          <div className="border-t border-border mt-8 pt-8 text-center text-muted-foreground">
+          <hr className="ds-divider mt-8 mb-8" />
+          <div className="text-center" style={{ color: "var(--ds-content-subtle)" }}>
             © 2026 Marketplace INAPEM. Todos os direitos reservados.
           </div>
         </div>

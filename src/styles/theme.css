@@ -41,6 +41,115 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
+
+  /* ── TIS Design System — Mapeamento de tokens para a marca INAPEM ── */
+
+  /* Primitivos de cor de marca */
+  --ds-color-brand-50: #fef3ee;
+  --ds-color-brand-100: #fde3d3;
+  --ds-color-brand-200: #fac3a4;
+  --ds-color-brand-300: #f79a6d;
+  --ds-color-brand-400: #f36b35;
+  --ds-color-brand-500: #E94E1B;
+  --ds-color-brand-600: #d44419;
+  --ds-color-brand-700: #b33814;
+  --ds-color-brand-800: #8f2d11;
+  --ds-color-brand-900: #6b220d;
+  --ds-color-brand-950: #451508;
+
+  /* Tokens semânticos — brand */
+  --ds-brand-background-default: #E94E1B;
+  --ds-brand-background-hover: #d44419;
+  --ds-brand-background-active: #b33814;
+  --ds-brand-background-disabled: rgba(233, 78, 27, 0.35);
+  --ds-brand-content-default: #ffffff;
+  --ds-brand-content-subtle: #E94E1B;
+
+  /* Tokens semânticos — primary (botões de ação principal) */
+  --ds-primary-background-default: #E94E1B;
+  --ds-primary-background-hover: #d44419;
+  --ds-primary-background-active: #b33814;
+  --ds-primary-background-disabled: rgba(233, 78, 27, 0.35);
+  --ds-primary-content-contrast: #ffffff;
+  --ds-primary-content-default: #E94E1B;
+
+  /* Toned (fundo subtil com a cor de marca) */
+  --ds-toned-background-default: rgba(233, 78, 27, 0.1);
+  --ds-toned-background-hover: rgba(233, 78, 27, 0.16);
+  --ds-toned-content-default: #E94E1B;
+  --ds-toned-background-disabled: rgba(233, 78, 27, 0.05);
+
+  /* Superfícies */
+  --ds-surface-default: #ffffff;
+  --ds-surface-raised: #ffffff;
+  --ds-surface-hover: #f5f5f7;
+  --ds-background-default: #ffffff;
+  --ds-background-subtle: #f5f5f7;
+  --ds-background-inverse: #1a1a1a;
+
+  /* Conteúdo / texto */
+  --ds-content-default: #030213;
+  --ds-content-strong: #000000;
+  --ds-content-subtle: #717182;
+  --ds-content-disabled: #b0b0bc;
+  --ds-content-inverse: #ffffff;
+
+  /* Bordas */
+  --ds-border-default: rgba(0, 0, 0, 0.12);
+  --ds-border-subtle: rgba(0, 0, 0, 0.07);
+  --ds-border-hover: rgba(0, 0, 0, 0.28);
+  --ds-border-focus: #E94E1B;
+  --ds-border-strong: rgba(0, 0, 0, 0.5);
+  --ds-border-inverse: rgba(255, 255, 255, 0.15);
+  --ds-border-width-default: 1px;
+  --ds-border-width-strong: 2px;
+  --ds-border-width-focus: 2px;
+
+  /* Focus ring */
+  --ds-focus-ring-width: 3px;
+  --ds-focus-ring-offset: 2px;
+  --ds-focus-ring-color-default: rgba(233, 78, 27, 0.4);
+
+  /* Feedback */
+  --ds-feedback-success-background-default: #dcfce7;
+  --ds-feedback-success-content-default: #166534;
+  --ds-feedback-error-background-default: #fee2e2;
+  --ds-feedback-error-content-default: #991b1b;
+  --ds-feedback-warning-background-default: #fef9c3;
+  --ds-feedback-warning-content-default: #854d0e;
+  --ds-feedback-info-background-default: #dbeafe;
+  --ds-feedback-info-content-default: #1e40af;
+
+  /* Neutral */
+  --ds-neutral-background-default: #f3f3f5;
+  --ds-neutral-background-hover: #ececf0;
+  --ds-neutral-content-default: #030213;
+
+  /* Raios de borda */
+  --ds-radius-sm: 0.25rem;
+  --ds-radius-md: 0.5rem;
+  --ds-radius-lg: 0.75rem;
+  --ds-radius-xl: 1rem;
+  --ds-radius-full: 9999px;
+  --ds-field-radius: 0.5rem;
+  --ds-card-radius-default: 1rem;
+  --ds-button-radius-default: 9999px;
+  --ds-badge-radius-default: 9999px;
+
+  /* Sombras */
+  --ds-shadow-sm: 0 1px 2px rgba(0,0,0,0.06);
+  --ds-shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+  --ds-shadow-lg: 0 8px 24px rgba(0,0,0,0.1);
+  --ds-shadow-xl: 0 16px 40px rgba(0,0,0,0.12);
+  --ds-shadow-card: 0 2px 8px rgba(0,0,0,0.07);
+
+  /* Ligações */
+  --ds-link-content-default: #E94E1B;
+  --ds-link-content-hover: #d44419;
+  --ds-link-content-active: #b33814;
+
+  /* Overlay */
+  --ds-modal-overlay: rgba(0, 0, 0, 0.55);
 }
 
 .dark {

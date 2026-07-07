@@ -4,21 +4,9 @@ import { ImageWithFallback } from "../components/figma/ImageWithFallback";
 
 export function FornecedoresInfo() {
   const benefits = [
-    {
-      icon: Users,
-      title: "Novos Clientes",
-      description: "Aceda a uma rede de mais de 500 empresas procurando fornecedores",
-    },
-    {
-      icon: DollarSign,
-      title: "Pagamento Garantido",
-      description: "Receba o pagamento directamente do INAPEM sem risco",
-    },
-    {
-      icon: TrendingUp,
-      title: "Aumente as Vendas",
-      description: "Ofereça financiamento aos seus clientes e venda mais",
-    },
+    { icon: Users, title: "Novos Clientes", description: "Aceda a uma rede de mais de 500 empresas procurando fornecedores" },
+    { icon: DollarSign, title: "Pagamento Garantido", description: "Receba o pagamento directamente do INAPEM sem risco" },
+    { icon: TrendingUp, title: "Aumente as Vendas", description: "Ofereça financiamento aos seus clientes e venda mais" },
   ];
 
   const steps = [
@@ -39,29 +27,22 @@ export function FornecedoresInfo() {
             className="w-full h-full object-cover"
           />
         </div>
-        <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/70 to-black/50"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/70 to-black/50" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 relative z-10 w-full">
           <div className="text-center">
-            <h1 className="text-2xl md:text-3xl mb-4 leading-tight">
-              Venda Mais com Pagamento Garantido
-            </h1>
+            <h1 className="text-2xl md:text-3xl mb-4 leading-tight">Venda Mais com Pagamento Garantido</h1>
             <p className="text-sm md:text-base opacity-90 mb-6 leading-relaxed max-w-xl mx-auto">
               Junte-se ao maior marketplace B2B de Angola. Venda os seus produtos e serviços de forma fácil e rápida.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link
-                to="/fornecedores/registo"
-                className="bg-coral text-white px-6 py-3 rounded-full inline-flex items-center justify-center gap-2 hover:opacity-90 transition-opacity shadow-xl"
-              >
-                Registar Empresa
-                <ArrowRight className="w-4 h-4" />
+              <Link to="/fornecedores/registo" className="ds-button ds-button--brand ds-button--lg" style={{ borderRadius: "9999px" }}>
+                <span className="ds-button__label">Registar Empresa</span>
+                <ArrowRight className="ds-icon ds-icon--sm" />
               </Link>
-              <Link
-                to="/marketplace"
-                className="bg-white/10 border-2 border-white/30 backdrop-blur-sm text-white px-6 py-3 rounded-full inline-flex items-center justify-center gap-2 hover:bg-white/20 transition-colors"
-              >
-                Ver Produtos e Serviços
+              <Link to="/marketplace" className="ds-button ds-button--lg"
+                style={{ borderRadius: "9999px", background: "rgba(255,255,255,0.12)", border: "2px solid rgba(255,255,255,0.3)", color: "white" }}>
+                <span className="ds-button__label">Ver Produtos e Serviços</span>
               </Link>
             </div>
           </div>
@@ -72,8 +53,8 @@ export function FornecedoresInfo() {
         {/* BENEFÍCIOS */}
         <section className="mb-20">
           <div className="text-center mb-12">
-            <h2 className="text-3xl mb-4">Vantagens para <span className="text-coral">Fornecedores</span></h2>
-            <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+            <h2 className="text-3xl mb-4">Vantagens para <span style={{ color: "var(--ds-primary-content-default)" }}>Fornecedores</span></h2>
+            <p style={{ color: "var(--ds-content-subtle)" }} className="text-lg max-w-2xl mx-auto">
               Expanda o seu negócio com a maior rede de empresas de Angola
             </p>
           </div>
@@ -82,12 +63,12 @@ export function FornecedoresInfo() {
             {benefits.map((benefit, index) => {
               const Icon = benefit.icon;
               return (
-                <div key={index} className="bg-white border-2 border-border rounded-2xl p-8 hover:border-coral transition-colors">
-                  <div className="bg-coral/10 w-16 h-16 rounded-xl flex items-center justify-center mb-6">
-                    <Icon className="w-8 h-8 text-coral" />
+                <div key={index} className="ds-card ds-card--interactive" style={{ padding: "2rem" }}>
+                  <div style={{ width: "4rem", height: "4rem", background: "var(--ds-toned-background-default)", borderRadius: "var(--ds-radius-lg)", display: "flex", alignItems: "center", justifyContent: "center", marginBottom: "1.5rem" }}>
+                    <Icon style={{ width: "2rem", height: "2rem", color: "var(--ds-primary-content-default)" }} />
                   </div>
                   <h3 className="text-xl mb-3">{benefit.title}</h3>
-                  <p className="text-muted-foreground leading-relaxed">{benefit.description}</p>
+                  <p style={{ color: "var(--ds-content-subtle)", lineHeight: 1.6 }}>{benefit.description}</p>
                 </div>
               );
             })}
@@ -95,46 +76,45 @@ export function FornecedoresInfo() {
         </section>
 
         {/* ESTATÍSTICAS */}
-        <section className="bg-gradient-to-br from-primary to-primary/80 text-white rounded-3xl p-12 mb-20">
+        <section className="rounded-3xl p-12 mb-20 text-white"
+          style={{ background: "linear-gradient(135deg, #1a1a1a, #333)" }}>
           <div className="text-center mb-12">
             <h2 className="text-3xl mb-4">O Marketplace que Está a Crescer</h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-            <div>
-              <div className="text-5xl font-extrabold mb-2">1.000+</div>
-              <div className="text-lg opacity-90">Fornecedores Ativos</div>
-            </div>
-            <div>
-              <div className="text-5xl font-extrabold mb-2">500+</div>
-              <div className="text-lg opacity-90">Empresas Compradoras</div>
-            </div>
-            <div>
-              <div className="text-5xl font-extrabold mb-2">100+</div>
-              <div className="text-lg opacity-90">Transações por Mês</div>
-            </div>
+            {[
+              { value: "1.000+", label: "Fornecedores Ativos" },
+              { value: "500+", label: "Empresas Compradoras" },
+              { value: "100+", label: "Transações por Mês" },
+            ].map(({ value, label }) => (
+              <div key={label}>
+                <div className="text-5xl font-extrabold mb-2" style={{ color: "var(--ds-primary-background-default)" }}>{value}</div>
+                <div className="text-lg opacity-90">{label}</div>
+              </div>
+            ))}
           </div>
         </section>
 
         {/* COMO FUNCIONA */}
         <section className="mb-20">
           <div className="text-center mb-12">
-            <h2 className="text-3xl mb-4">Como <span className="text-coral">Começar</span></h2>
-            <p className="text-muted-foreground text-lg">Processo simples em 4 passos</p>
+            <h2 className="text-3xl mb-4">Como <span style={{ color: "var(--ds-primary-content-default)" }}>Começar</span></h2>
+            <p style={{ color: "var(--ds-content-subtle)" }} className="text-lg">Processo simples em 4 passos</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
             {steps.map((step, index) => (
               <div key={index} className="relative">
-                <div className="bg-white border-2 border-border rounded-2xl p-6 text-center hover:border-coral transition-colors">
-                  <div className="bg-coral text-white w-12 h-12 rounded-full flex items-center justify-center text-xl mx-auto mb-4">
+                <div className="ds-card ds-card--interactive" style={{ padding: "1.5rem", textAlign: "center" }}>
+                  <div style={{ width: "3rem", height: "3rem", background: "var(--ds-primary-background-default)", color: "white", borderRadius: "9999px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "1.25rem", fontWeight: 700, margin: "0 auto 1rem" }}>
                     {step.number}
                   </div>
                   <h3 className="text-lg mb-2">{step.title}</h3>
-                  <p className="text-sm text-muted-foreground">{step.description}</p>
+                  <p style={{ fontSize: "0.875rem", color: "var(--ds-content-subtle)" }}>{step.description}</p>
                 </div>
                 {index < steps.length - 1 && (
                   <div className="hidden md:block absolute top-1/2 -right-3 transform -translate-y-1/2 z-10">
-                    <ArrowRight className="w-6 h-6 text-coral" />
+                    <ArrowRight style={{ width: "1.5rem", height: "1.5rem", color: "var(--ds-primary-content-default)" }} />
                   </div>
                 )}
               </div>
@@ -145,32 +125,24 @@ export function FornecedoresInfo() {
         {/* DEPOIMENTOS */}
         <section className="mb-20">
           <div className="text-center mb-12">
-            <h2 className="text-3xl mb-4">O Que Dizem os <span className="text-coral">Fornecedores</span></h2>
+            <h2 className="text-3xl mb-4">O Que Dizem os <span style={{ color: "var(--ds-primary-content-default)" }}>Fornecedores</span></h2>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {[
-              {
-                name: "TechSolutions Angola",
-                category: "Tecnologia",
-                quote: "Desde que aderimos ao INAPEM, as nossas vendas aumentaram 40%. O pagamento garantido dá-nos segurança total.",
-              },
-              {
-                name: "Máquinas Premium",
-                category: "Equipamentos",
-                quote: "Excelente plataforma! Conseguimos chegar a novos clientes que antes não podiam pagar à vista.",
-              },
+              { name: "TechSolutions Angola", category: "Tecnologia", quote: "Desde que aderimos ao INAPEM, as nossas vendas aumentaram 40%. O pagamento garantido dá-nos segurança total." },
+              { name: "Máquinas Premium", category: "Equipamentos", quote: "Excelente plataforma! Conseguimos chegar a novos clientes que antes não podiam pagar à vista." },
             ].map((testimonial, index) => (
-              <div key={index} className="bg-white border-2 border-border rounded-2xl p-8 hover:border-coral transition-colors">
-                <div className="flex items-center gap-2 mb-4">
+              <div key={index} className="ds-card ds-card--outlined" style={{ padding: "2rem" }}>
+                <div style={{ display: "flex", gap: "0.25rem", marginBottom: "1rem" }}>
                   {[...Array(5)].map((_, i) => (
-                    <CheckCircle key={i} className="w-5 h-5 text-coral fill-coral" />
+                    <CheckCircle key={i} style={{ width: "1.25rem", height: "1.25rem", color: "var(--ds-primary-content-default)" }} />
                   ))}
                 </div>
-                <p className="text-muted-foreground mb-6 leading-relaxed italic">"{testimonial.quote}"</p>
+                <p style={{ color: "var(--ds-content-subtle)", marginBottom: "1.5rem", lineHeight: 1.6, fontStyle: "italic" }}>"{testimonial.quote}"</p>
                 <div>
-                  <div className="font-semibold">{testimonial.name}</div>
-                  <div className="text-sm text-coral">{testimonial.category}</div>
+                  <div style={{ fontWeight: 600 }}>{testimonial.name}</div>
+                  <div style={{ fontSize: "0.875rem", color: "var(--ds-primary-content-default)" }}>{testimonial.category}</div>
                 </div>
               </div>
             ))}
@@ -178,10 +150,11 @@ export function FornecedoresInfo() {
         </section>
 
         {/* CTA FINAL */}
-        <section className="bg-gradient-to-r from-coral to-coral/80 rounded-3xl p-12 text-center text-white relative overflow-hidden">
+        <section className="rounded-3xl p-12 text-center text-white relative overflow-hidden"
+          style={{ background: "linear-gradient(135deg, var(--ds-primary-background-default), var(--ds-primary-background-hover))" }}>
           <div className="absolute inset-0 opacity-10">
-            <div className="absolute top-0 left-1/4 w-64 h-64 bg-white rounded-full blur-3xl"></div>
-            <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-white rounded-full blur-3xl"></div>
+            <div className="absolute top-0 left-1/4 w-64 h-64 bg-white rounded-full blur-3xl" />
+            <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-white rounded-full blur-3xl" />
           </div>
           <div className="relative z-10 max-w-3xl mx-auto">
             <h2 className="text-3xl md:text-4xl mb-6">Pronto para Expandir o Seu Negócio?</h2>
@@ -189,18 +162,14 @@ export function FornecedoresInfo() {
               Junte-se a mais de 1.000 fornecedores que já estão a vender mais com pagamento garantido
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link
-                to="/fornecedores/registo"
-                className="bg-white text-coral px-8 py-4 rounded-full hover:shadow-2xl transition-shadow inline-flex items-center justify-center gap-2 text-lg"
-              >
-                Registar Agora
-                <ArrowRight className="w-5 h-5" />
+              <Link to="/fornecedores/registo" className="ds-button ds-button--lg"
+                style={{ borderRadius: "9999px", background: "white", color: "var(--ds-primary-content-default)", boxShadow: "var(--ds-shadow-xl)" }}>
+                <span className="ds-button__label">Registar Agora</span>
+                <ArrowRight className="ds-icon ds-icon--sm" />
               </Link>
-              <Link
-                to="/marketplace"
-                className="bg-white/10 border-2 border-white/30 backdrop-blur-sm px-8 py-4 rounded-full hover:bg-white/20 transition-colors inline-flex items-center justify-center gap-2 text-lg"
-              >
-                Ver Produtos
+              <Link to="/marketplace" className="ds-button ds-button--lg"
+                style={{ borderRadius: "9999px", background: "rgba(255,255,255,0.12)", border: "2px solid rgba(255,255,255,0.3)", color: "white" }}>
+                <span className="ds-button__label">Ver Produtos</span>
               </Link>
             </div>
           </div>
@@ -209,37 +178,22 @@ export function FornecedoresInfo() {
         {/* FAQ */}
         <section className="mt-20">
           <div className="text-center mb-12">
-            <h2 className="text-3xl mb-4">Perguntas <span className="text-coral">Frequentes</span></h2>
+            <h2 className="text-3xl mb-4">Perguntas <span style={{ color: "var(--ds-primary-content-default)" }}>Frequentes</span></h2>
           </div>
 
           <div className="max-w-3xl mx-auto space-y-4">
             {[
-              {
-                q: "Como funciona o pagamento?",
-                a: "Quando uma empresa compra com financiamento, o INAPEM paga-lhe directamente. Você recebe o valor total sem risco.",
-              },
-              {
-                q: "Que comissão cobra o INAPEM?",
-                a: "As nossas comissões são competitivas e transparentes. Contacte-nos para conhecer as condições específicas.",
-              },
-              {
-                q: "Posso vender para qualquer empresa?",
-                a: "Sim, pode vender para todas as empresas registadas no marketplace que tenham crédito aprovado.",
-              },
-              {
-                q: "Como adiciono produtos ao catálogo?",
-                a: "Após o registo e certificação, tem acesso ao dashboard onde pode adicionar produtos com fotos, descrições e preços.",
-              },
+              { q: "Como funciona o pagamento?", a: "Quando uma empresa compra com financiamento, o INAPEM paga-lhe directamente. Você recebe o valor total sem risco." },
+              { q: "Que comissão cobra o INAPEM?", a: "As nossas comissões são competitivas e transparentes. Contacte-nos para conhecer as condições específicas." },
+              { q: "Posso vender para qualquer empresa?", a: "Sim, pode vender para todas as empresas registadas no marketplace que tenham crédito aprovado." },
+              { q: "Como adiciono produtos ao catálogo?", a: "Após o registo e certificação, tem acesso ao dashboard onde pode adicionar produtos com fotos, descrições e preços." },
             ].map((faq, index) => (
-              <details
-                key={index}
-                className="bg-white border-2 border-border rounded-xl p-6 hover:border-coral transition-colors group"
-              >
-                <summary className="cursor-pointer flex items-center justify-between">
+              <details key={index} className="ds-card ds-card--outlined" style={{ padding: "1.5rem" }}>
+                <summary style={{ cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
                   <span className="text-lg">{faq.q}</span>
-                  <CheckCircle className="w-5 h-5 text-coral" />
+                  <CheckCircle style={{ width: "1.25rem", height: "1.25rem", color: "var(--ds-primary-content-default)", flexShrink: 0 }} />
                 </summary>
-                <p className="mt-4 text-muted-foreground leading-relaxed">{faq.a}</p>
+                <p style={{ marginTop: "1rem", color: "var(--ds-content-subtle)", lineHeight: 1.6 }}>{faq.a}</p>
               </details>
             ))}
           </div>

@@ -184,7 +184,8 @@ function ItemList({
         </p>
         <button
           onClick={onAdd}
-          className="bg-indigo-500 text-white text-sm px-5 py-2.5 rounded-full hover:bg-indigo-600 transition-colors"
+          className="ds-button ds-button--brand ds-button--sm"
+          style={{ borderRadius: "9999px" }}
         >
           Adicionar {isService ? "Serviço" : "Produto"}
         </button>
@@ -525,15 +526,17 @@ export function SupplierDashboard() {
                 <div className="flex gap-2">
                   <button
                     onClick={() => setActiveTab("products")}
-                    className="bg-indigo-500 text-white text-xs px-4 py-2 rounded-full hover:bg-indigo-600 transition-colors"
+                    className="ds-button ds-button--brand ds-button--sm"
+                    style={{ borderRadius: "9999px" }}
                   >
-                    Gerir Produtos
+                    <span className="ds-button__label">Gerir Produtos</span>
                   </button>
                   <button
                     onClick={() => setActiveTab("services")}
-                    className="bg-violet-500 text-white text-xs px-4 py-2 rounded-full hover:bg-violet-600 transition-colors"
+                    className="ds-button ds-button--toned ds-button--sm"
+                    style={{ borderRadius: "9999px" }}
                   >
-                    Gerir Serviços
+                    <span className="ds-button__label">Gerir Serviços</span>
                   </button>
                 </div>
               </div>
@@ -578,9 +581,11 @@ export function SupplierDashboard() {
               </div>
               <button
                 onClick={() => openAddModal("produto")}
-                className="flex items-center gap-2 bg-indigo-500 text-white text-sm px-5 py-2.5 rounded-full hover:bg-indigo-600 transition-colors shadow-sm"
+                className="ds-button ds-button--brand ds-button--sm"
+                style={{ borderRadius: "9999px" }}
               >
-                <Plus className="w-4 h-4" /> Adicionar Produto
+                <Plus className="ds-icon ds-icon--sm" />
+                <span className="ds-button__label">Adicionar Produto</span>
               </button>
             </div>
             <ItemList
@@ -606,9 +611,11 @@ export function SupplierDashboard() {
               </div>
               <button
                 onClick={() => openAddModal("serviço")}
-                className="flex items-center gap-2 bg-violet-500 text-white text-sm px-5 py-2.5 rounded-full hover:bg-violet-600 transition-colors shadow-sm"
+                className="ds-button ds-button--toned ds-button--sm"
+                style={{ borderRadius: "9999px" }}
               >
-                <Plus className="w-4 h-4" /> Adicionar Serviço
+                <Plus className="ds-icon ds-icon--sm" />
+                <span className="ds-button__label">Adicionar Serviço</span>
               </button>
             </div>
             <ItemList

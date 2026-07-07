@@ -51,7 +51,7 @@ export function Home() {
       <section className="bg-gradient-to-br from-primary to-primary/80 text-primary-foreground">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
           <div className="text-center max-w-3xl mx-auto">
-            <div className="inline-flex items-center gap-2 bg-coral/20 border border-coral/30 text-coral-foreground text-xs px-4 py-2 rounded-full mb-6">
+            <div className="ds-badge ds-badge--brand ds-badge--subtle mb-6" style={{ display: "inline-flex", gap: "0.5rem" }}>
               🇦🇴 PLATAFORMA NACIONAL · ANGOLA
             </div>
             <h1 className="text-4xl md:text-5xl mb-6">
@@ -61,18 +61,13 @@ export function Home() {
               Encontre produtos e serviços de fornecedores certificados. Peça financiamento e pague directamente ao fornecedor — sem intermediários.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link
-                to="/pme/fluxo"
-                className="bg-coral text-coral-foreground px-8 py-4 rounded-full inline-flex items-center justify-center gap-2 hover:opacity-90 transition-opacity shadow-lg shadow-coral/30"
-              >
-                Pedir Financiamento
-                <ArrowRight className="w-5 h-5" />
+              <Link to="/pme/fluxo" className="ds-button ds-button--brand ds-button--lg" style={{ borderRadius: "9999px" }}>
+                <span className="ds-button__label">Pedir Financiamento</span>
+                <ArrowRight className="ds-icon ds-icon--sm" />
               </Link>
-              <Link
-                to="/marketplace"
-                className="bg-transparent border-2 border-primary-foreground px-8 py-4 rounded-full inline-flex items-center justify-center gap-2 hover:bg-primary-foreground/10 transition-colors"
-              >
-                Explorar Marketplace
+              <Link to="/marketplace" className="ds-button ds-button--lg"
+                style={{ borderRadius: "9999px", background: "rgba(255,255,255,0.12)", border: "2px solid rgba(255,255,255,0.3)", color: "white" }}>
+                <span className="ds-button__label">Explorar Marketplace</span>
               </Link>
             </div>
           </div>
@@ -111,8 +106,8 @@ export function Home() {
                   key={feature.title}
                   className="bg-card border border-border rounded-lg p-6 hover:shadow-lg transition-shadow"
                 >
-                  <div className="bg-coral/10 w-12 h-12 rounded-lg flex items-center justify-center mb-4">
-                    <Icon className="w-6 h-6 text-coral" />
+                  <div style={{ width: "3rem", height: "3rem", borderRadius: "0.5rem", background: "var(--ds-toned-background-default)", display: "flex", alignItems: "center", justifyContent: "center", marginBottom: "1rem" }}>
+                    <Icon style={{ width: "1.5rem", height: "1.5rem", color: "var(--ds-primary-content-default)" }} />
                   </div>
                   <h3 className="mb-2">{feature.title}</h3>
                   <p className="text-muted-foreground">{feature.description}</p>
@@ -129,7 +124,7 @@ export function Home() {
             <h2 className="mb-4">Como Funciona</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
               <div className="bg-card rounded-lg p-8">
-                <div className="bg-coral text-coral-foreground w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4 text-xl">
+                <div style={{ background: "var(--ds-primary-background-default)", color: "white", width: "3rem", height: "3rem", borderRadius: "9999px", display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto 1rem", fontSize: "1.25rem", fontWeight: 700 }}>
                   1
                 </div>
                 <h3 className="mb-2">Escolha Produtos</h3>
@@ -138,7 +133,7 @@ export function Home() {
                 </p>
               </div>
               <div className="bg-card rounded-lg p-8">
-                <div className="bg-coral text-coral-foreground w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4 text-xl">
+                <div style={{ background: "var(--ds-primary-background-default)", color: "white", width: "3rem", height: "3rem", borderRadius: "9999px", display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto 1rem", fontSize: "1.25rem", fontWeight: 700 }}>
                   2
                 </div>
                 <h3 className="mb-2">Solicite Financiamento</h3>
@@ -147,7 +142,7 @@ export function Home() {
                 </p>
               </div>
               <div className="bg-card rounded-lg p-8">
-                <div className="bg-coral text-coral-foreground w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4 text-xl">
+                <div style={{ background: "var(--ds-primary-background-default)", color: "white", width: "3rem", height: "3rem", borderRadius: "9999px", display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto 1rem", fontSize: "1.25rem", fontWeight: 700 }}>
                   3
                 </div>
                 <h3 className="mb-2">Receba e Pague</h3>

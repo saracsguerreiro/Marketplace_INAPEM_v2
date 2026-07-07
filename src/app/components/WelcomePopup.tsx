@@ -32,83 +32,134 @@ export function WelcomePopup({ onClose }: WelcomePopupProps) {
   ];
 
   return (
-    <div className="fixed inset-0 bg-black/70 backdrop-blur-sm z-[9000] flex items-center justify-center p-4 animate-in fade-in duration-300">
-      <div className="bg-white rounded-3xl p-12 max-w-[540px] w-full relative shadow-2xl animate-in slide-in-from-bottom-10 duration-500">
-        <button
-          onClick={() => onClose("close")}
-          className="absolute top-4 right-4 w-8 h-8 flex items-center justify-center rounded-full hover:bg-gray-100 transition-colors text-muted-foreground hover:text-foreground"
-          aria-label="Fechar"
-        >
-          <X className="w-5 h-5" />
-        </button>
+    <div className="ds-modal-overlay animate-in fade-in duration-300">
+      <div className="ds-modal ds-modal--sm animate-in slide-in-from-bottom-10 duration-500"
+        role="dialog" aria-modal="true" aria-labelledby="welcome-title">
 
-        <div className="flex justify-center mb-7">
-          <img src={inapemLogo} alt="INAPEM" className="h-12 object-contain" />
-        </div>
-
-        <h2 className="text-center mb-2">Bem-vindo ao Marketplace INAPEM</h2>
-        <p className="text-center text-muted-foreground mb-8 text-sm leading-relaxed">
-          Diga-nos o que gostaria de fazer para personalizarmos a sua experiência.
-        </p>
-
-        <div className="space-y-3 mb-7">
-          {options.map((option) => {
-            const Icon = option.icon;
-            return (
-              <button
-                key={option.role}
-                onClick={() => onClose(option.role)}
-                className="w-full flex items-center gap-4 p-4 border-2 border-border rounded-full hover:border-coral hover:bg-coral/5 transition-all group"
-              >
-                <div className="w-11 h-11 bg-gray-bg rounded-xl flex items-center justify-center flex-shrink-0 group-hover:bg-coral/10 transition-colors">
-                  <Icon className="w-6 h-6" />
-                </div>
-                <div className="flex-1 text-left">
-                  <h4 className="text-sm mb-1">{option.title}</h4>
-                  <p className="text-xs text-muted-foreground">{option.description}</p>
-                </div>
-                <span className="text-coral text-2xl">›</span>
-              </button>
-            );
-          })}
-        </div>
-
-        <div className="flex items-center gap-3 text-xs text-muted-foreground mb-5">
-          <div className="flex-1 h-px bg-border"></div>
-          <span>ou entre se já tem conta</span>
-          <div className="flex-1 h-px bg-border"></div>
-        </div>
-
-        <div className="flex gap-2">
-          <input
-            type="email"
-            placeholder="Email ou NIF"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            className="flex-1 px-4 py-2.5 border-2 border-border rounded-full text-sm outline-none focus:border-coral transition-colors"
-          />
-          <input
-            type="password"
-            placeholder="Palavra-passe"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            className="flex-1 px-4 py-2.5 border-2 border-border rounded-full text-sm outline-none focus:border-coral transition-colors"
-          />
+        <div className="ds-modal__header" style={{ padding: "2rem 2rem 0" }}>
+          <div style={{ flex: 1, display: "flex", justifyContent: "center" }}>
+            <img src={inapemLogo} alt="INAPEM" style={{ height: "3rem", objectFit: "contain" }} />
+          </div>
           <button
-            onClick={() => onClose("login")}
-            className="px-5 bg-primary text-primary-foreground rounded-full text-sm hover:opacity-90 transition-opacity"
+            className="ds-modal__close"
+            onClick={() => onClose("close")}
+            aria-label="Fechar"
+            style={{ position: "absolute", top: "1rem", right: "1rem" }}
           >
-            Entrar
+            <X className="ds-icon ds-icon--sm" />
           </button>
         </div>
 
-        <div className="text-center mt-4">
-          <button
-            onClick={() => onClose("visitante")}
-            className="text-xs text-muted-foreground border-b border-dashed border-border hover:text-coral hover:border-coral transition-colors"
-          >
-            ✦ Explorar Marketplace — entrar directamente na plataforma
-          </button>
+        <div className="ds-modal__body" style={{ padding: "1.5rem 2rem 2rem" }}>
+          <h2 id="welcome-title" style={{ textAlign: "center", marginBottom: "0.5rem", fontSize: "1.25rem", fontWeight: 600 }}>
+            Bem-vindo ao Marketplace INAPEM
+          </h2>
+          <p style={{ textAlign: "center", color: "var(--ds-content-subtle)", marginBottom: "1.5rem", fontSize: "0.875rem", lineHeight: 1.6 }}>
+            Diga-nos o que gostaria de fazer para personalizarmos a sua experiência.
+          </p>
+
+          {/* Opções de perfil */}
+          <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem", marginBottom: "1.5rem" }}>
+            {options.map((option) => {
+              const Icon = option.icon;
+              return (
+                <button
+                  key={option.role}
+                  onClick={() => onClose(option.role)}
+                  className="ds-button ds-button--outline"
+                  style={{
+                    width: "100%",
+                    height: "auto",
+                    padding: "0.875rem 1rem",
+                    borderRadius: "var(--ds-radius-lg)",
+                    justifyContent: "flex-start",
+                    gap: "0.875rem",
+                    textAlign: "left",
+                  }}
+                >
+                  <div style={{
+                    width: "2.75rem",
+                    height: "2.75rem",
+                    background: "var(--ds-toned-background-default)",
+                    borderRadius: "var(--ds-radius-md)",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    flexShrink: 0,
+                  }}>
+                    <Icon style={{ width: "1.25rem", height: "1.25rem", color: "var(--ds-primary-content-default)" }} />
+                  </div>
+                  <div style={{ flex: 1 }}>
+                    <div style={{ fontWeight: 500, fontSize: "0.875rem", color: "var(--ds-content-default)" }}>{option.title}</div>
+                    <div style={{ fontSize: "0.75rem", color: "var(--ds-content-subtle)", marginTop: "0.125rem" }}>{option.description}</div>
+                  </div>
+                  <span style={{ color: "var(--ds-primary-content-default)", fontSize: "1.25rem" }}>›</span>
+                </button>
+              );
+            })}
+          </div>
+
+          {/* Separador */}
+          <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", marginBottom: "1rem" }}>
+            <div className="ds-divider" style={{ flex: 1 }} />
+            <span style={{ fontSize: "0.75rem", color: "var(--ds-content-subtle)", whiteSpace: "nowrap" }}>ou entre se já tem conta</span>
+            <div className="ds-divider" style={{ flex: 1 }} />
+          </div>
+
+          {/* Login rápido */}
+          <div style={{ display: "flex", gap: "0.5rem" }}>
+            <div className="ds-input ds-input--md" style={{ flex: 1 }}>
+              <input
+                type="email"
+                className="ds-input__field"
+                placeholder="Email ou NIF"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+            </div>
+            <div className="ds-input ds-input--md" style={{ flex: 1 }}>
+              <input
+                type="password"
+                className="ds-input__field"
+                placeholder="Palavra-passe"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+            </div>
+            <button
+              onClick={() => onClose("login")}
+              className="ds-button ds-button--brand"
+              style={{ borderRadius: "var(--ds-field-radius)" }}
+            >
+              <span className="ds-button__label">Entrar</span>
+            </button>
+          </div>
+
+          <div style={{ textAlign: "center", marginTop: "1rem" }}>
+            <button
+              onClick={() => onClose("visitante")}
+              style={{
+                fontSize: "0.75rem",
+                color: "var(--ds-content-subtle)",
+                background: "none",
+                border: "none",
+                borderBottom: "1px dashed var(--ds-border-default)",
+                cursor: "pointer",
+                paddingBottom: "1px",
+                transition: "color 0.15s, border-color 0.15s",
+              }}
+              onMouseOver={(e) => {
+                (e.currentTarget as HTMLButtonElement).style.color = "var(--ds-primary-content-default)";
+                (e.currentTarget as HTMLButtonElement).style.borderColor = "var(--ds-primary-content-default)";
+              }}
+              onMouseOut={(e) => {
+                (e.currentTarget as HTMLButtonElement).style.color = "var(--ds-content-subtle)";
+                (e.currentTarget as HTMLButtonElement).style.borderColor = "var(--ds-border-default)";
+              }}
+            >
+              ✦ Explorar Marketplace — entrar directamente na plataforma
+            </button>
+          </div>
         </div>
       </div>
     </div>

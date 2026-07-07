@@ -73,16 +73,18 @@ export function EmpresasInfo() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <button
                 onClick={handleSolicitarFinanciamento}
-                className="bg-coral text-white px-6 py-3 rounded-full inline-flex items-center justify-center gap-2 hover:opacity-90 transition-opacity shadow-xl"
+                className="ds-button ds-button--brand ds-button--lg"
+                style={{ borderRadius: "9999px" }}
               >
-                Solicitar Financiamento
-                <ArrowRight className="w-4 h-4" />
+                <span className="ds-button__label">Solicitar Financiamento</span>
+                <ArrowRight className="ds-icon ds-icon--sm" />
               </button>
               <Link
                 to="/marketplace"
-                className="bg-white/10 border-2 border-white/30 backdrop-blur-sm text-white px-6 py-3 rounded-full inline-flex items-center justify-center gap-2 hover:bg-white/20 transition-colors"
+                className="ds-button ds-button--lg"
+                style={{ borderRadius: "9999px", background: "rgba(255,255,255,0.12)", border: "2px solid rgba(255,255,255,0.3)", color: "white" }}
               >
-                Ver Produtos e Serviços
+                <span className="ds-button__label">Ver Produtos e Serviços</span>
               </Link>
             </div>
           </div>
@@ -103,12 +105,12 @@ export function EmpresasInfo() {
             {benefits.map((benefit, index) => {
               const Icon = benefit.icon;
               return (
-                <div key={index} className="bg-white border-2 border-border rounded-2xl p-8 hover:border-coral transition-colors">
-                  <div className="bg-coral/10 w-16 h-16 rounded-xl flex items-center justify-center mb-6">
-                    <Icon className="w-8 h-8 text-coral" />
+                <div key={index} className="ds-card ds-card--interactive" style={{ padding: "2rem" }}>
+                  <div style={{ width: "4rem", height: "4rem", background: "var(--ds-toned-background-default)", borderRadius: "var(--ds-radius-lg)", display: "flex", alignItems: "center", justifyContent: "center", marginBottom: "1.5rem" }}>
+                    <Icon style={{ width: "2rem", height: "2rem", color: "var(--ds-primary-content-default)" }} />
                   </div>
                   <h3 className="text-xl mb-3">{benefit.title}</h3>
-                  <p className="text-muted-foreground leading-relaxed">{benefit.description}</p>
+                  <p style={{ color: "var(--ds-content-subtle)", lineHeight: 1.6 }}>{benefit.description}</p>
                 </div>
               );
             })}
@@ -125,16 +127,16 @@ export function EmpresasInfo() {
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
             {steps.map((step, index) => (
               <div key={index} className="relative">
-                <div className="bg-white border-2 border-border rounded-2xl p-6 text-center hover:border-coral transition-colors">
-                  <div className="bg-coral text-white w-12 h-12 rounded-full flex items-center justify-center text-xl mx-auto mb-4">
+                <div className="ds-card ds-card--interactive" style={{ padding: "1.5rem", textAlign: "center" }}>
+                  <div style={{ width: "3rem", height: "3rem", background: "var(--ds-primary-background-default)", color: "white", borderRadius: "9999px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "1.25rem", fontWeight: 700, margin: "0 auto 1rem" }}>
                     {step.number}
                   </div>
                   <h3 className="text-lg mb-2">{step.title}</h3>
-                  <p className="text-sm text-muted-foreground">{step.description}</p>
+                  <p style={{ fontSize: "0.875rem", color: "var(--ds-content-subtle)" }}>{step.description}</p>
                 </div>
                 {index < steps.length - 1 && (
                   <div className="hidden md:block absolute top-1/2 -right-3 transform -translate-y-1/2 z-10">
-                    <ArrowRight className="w-6 h-6 text-coral" />
+                    <ArrowRight style={{ width: "1.5rem", height: "1.5rem", color: "var(--ds-primary-content-default)" }} />
                   </div>
                 )}
               </div>
@@ -143,7 +145,8 @@ export function EmpresasInfo() {
         </section>
 
         {/* CTA FINAL */}
-        <section className="bg-gradient-to-r from-coral to-coral/80 rounded-3xl p-12 text-center text-white relative overflow-hidden">
+        <section className="rounded-3xl p-12 text-center text-white relative overflow-hidden"
+          style={{ background: "linear-gradient(135deg, var(--ds-primary-background-default), var(--ds-primary-background-hover))" }}>
           <div className="absolute inset-0 opacity-10">
             <div className="absolute top-0 left-1/4 w-64 h-64 bg-white rounded-full blur-3xl"></div>
             <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-white rounded-full blur-3xl"></div>
@@ -157,16 +160,18 @@ export function EmpresasInfo() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
                 to="/empresas/registo"
-                className="bg-white text-coral px-8 py-4 rounded-full hover:shadow-2xl transition-shadow inline-flex items-center justify-center gap-2 text-lg"
+                className="ds-button ds-button--lg"
+                style={{ borderRadius: "9999px", background: "white", color: "var(--ds-primary-content-default)", boxShadow: "var(--ds-shadow-xl)" }}
               >
-                Começar Agora
-                <ArrowRight className="w-5 h-5" />
+                <span className="ds-button__label">Começar Agora</span>
+                <ArrowRight className="ds-icon ds-icon--sm" />
               </Link>
               <Link
                 to="/marketplace"
-                className="bg-white/10 border-2 border-white/30 backdrop-blur-sm px-8 py-4 rounded-full hover:bg-white/20 transition-colors inline-flex items-center justify-center gap-2 text-lg"
+                className="ds-button ds-button--lg"
+                style={{ borderRadius: "9999px", background: "rgba(255,255,255,0.12)", border: "2px solid rgba(255,255,255,0.3)", color: "white" }}
               >
-                Explorar Produtos
+                <span className="ds-button__label">Explorar Produtos</span>
               </Link>
             </div>
           </div>
@@ -199,11 +204,11 @@ export function EmpresasInfo() {
             ].map((faq, index) => (
               <details
                 key={index}
-                className="bg-white border-2 border-border rounded-xl p-6 hover:border-coral transition-colors group"
+                className="ds-card ds-card--interactive" style={{ padding: "1.5rem" }}
               >
                 <summary className="cursor-pointer flex items-center justify-between">
                   <span className="text-lg">{faq.q}</span>
-                  <CheckCircle className="w-5 h-5 text-coral" />
+                  <CheckCircle style={{ width: "1.25rem", height: "1.25rem", color: "var(--ds-primary-content-default)" }} />
                 </summary>
                 <p className="mt-4 text-muted-foreground leading-relaxed">{faq.a}</p>
               </details>

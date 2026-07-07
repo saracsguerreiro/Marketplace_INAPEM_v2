@@ -19,8 +19,8 @@ export function CompanyDashboard() {
   ];
 
   const activeLoans = [
-    { id: "1", product: "Software ERP",         amount: 450000, installments: "6/12", next: "15 Mai 2026", pct: 50 },
-    { id: "2", product: "Equipamento Escritório",amount: 620000, installments: "3/24", next: "20 Mai 2026", pct: 12 },
+    { id: "1", product: "Software ERP",          amount: 450000, installments: "6/12", next: "15 Mai 2026", pct: 50 },
+    { id: "2", product: "Equipamento Escritório", amount: 620000, installments: "3/24", next: "20 Mai 2026", pct: 12 },
   ];
 
   const recentOrders = [
@@ -29,15 +29,14 @@ export function CompanyDashboard() {
   ];
 
   return (
-    <div className="min-h-screen"
-      style={{ background: "#f9fafb" }}>
+    <div className="min-h-screen" style={{ background: "var(--ds-background-subtle)" }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
 
         {/* Header */}
         <div className="mb-8">
-          <p className="text-xs font-semibold text-indigo-500 uppercase tracking-widest mb-1">Dashboard</p>
-          <h1 className="text-2xl font-bold text-gray-800 mb-1">Bem-vindo de volta</h1>
-          <p className="text-sm text-gray-500">Visão geral das suas finanças e compras</p>
+          <span className="ds-badge ds-badge--brand ds-badge--subtle mb-2" style={{ display: "inline-flex" }}>Dashboard</span>
+          <h1 style={{ fontSize: "1.5rem", fontWeight: 700, color: "var(--ds-content-default)", marginBottom: "0.25rem" }}>Bem-vindo de volta</h1>
+          <p style={{ fontSize: "0.875rem", color: "var(--ds-content-subtle)" }}>Visão geral das suas finanças e compras</p>
         </div>
 
         <InsightsPanel insights={[
@@ -52,19 +51,17 @@ export function CompanyDashboard() {
           {stats.map((s) => {
             const Icon = s.icon;
             return (
-              <div key={s.label}
-                className="rounded-2xl p-5 shadow-sm"
-                style={{ background: "#ffffff" }}>
-                <div className="flex items-center justify-between mb-4">
-                  <div className="w-9 h-9 rounded-full bg-white/60 flex items-center justify-center">
-                    <Icon className="w-4 h-4 text-indigo-500" />
+              <div key={s.label} className="ds-card ds-card--elevated" style={{ padding: "1.25rem" }}>
+                <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "1rem" }}>
+                  <div style={{ width: "2.25rem", height: "2.25rem", borderRadius: "9999px", background: "var(--ds-toned-background-default)", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                    <Icon style={{ width: "1rem", height: "1rem", color: "var(--ds-primary-content-default)" }} />
                   </div>
-                  <span className={`text-xs font-semibold px-2 py-0.5 rounded-full ${s.up ? "bg-green-100/80 text-green-600" : "bg-rose-100/80 text-rose-500"}`}>
+                  <span className={`ds-badge ds-badge--subtle ${s.up ? "ds-badge--success" : "ds-badge--error"}`}>
                     {s.trend}
                   </span>
                 </div>
-                <div className="text-xl font-bold text-gray-800 mb-0.5">{s.value}</div>
-                <div className="text-xs text-gray-500">{s.label}</div>
+                <div style={{ fontSize: "1.25rem", fontWeight: 700, color: "var(--ds-content-default)", marginBottom: "0.25rem" }}>{s.value}</div>
+                <div style={{ fontSize: "0.75rem", color: "var(--ds-content-subtle)" }}>{s.label}</div>
               </div>
             );
           })}
@@ -73,45 +70,43 @@ export function CompanyDashboard() {
         {/* Charts Row */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-6">
           {/* Area chart */}
-          <div className="rounded-2xl p-6 shadow-sm"
-            style={{ background: "#ffffff" }}>
-            <h3 className="text-sm font-semibold text-gray-700 mb-5">Histórico de Gastos</h3>
+          <div className="ds-card ds-card--elevated" style={{ padding: "1.5rem" }}>
+            <h3 style={{ fontSize: "0.875rem", fontWeight: 600, color: "var(--ds-content-default)", marginBottom: "1.25rem" }}>Histórico de Gastos</h3>
             <ResponsiveContainer width="100%" height={200}>
               <AreaChart data={spendingData} margin={{ top: 5, right: 5, left: -25, bottom: 0 }}>
                 <defs>
-                  <linearGradient id="cgBlue" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%"   stopColor="#818cf8" stopOpacity={0.4} />
-                    <stop offset="100%" stopColor="#818cf8" stopOpacity={0}   />
+                  <linearGradient id="cgBrand" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%"   stopColor="#E94E1B" stopOpacity={0.35} />
+                    <stop offset="100%" stopColor="#E94E1B" stopOpacity={0} />
                   </linearGradient>
                 </defs>
                 <XAxis dataKey="month" tick={{ fontSize: 10, fill: "#9ca3af" }} axisLine={false} tickLine={false} />
                 <YAxis tick={{ fontSize: 10, fill: "#9ca3af" }} axisLine={false} tickLine={false} />
-                <Tooltip contentStyle={{ borderRadius: "12px", border: "none", background: "rgba(255,255,255,0.9)", boxShadow: "0 4px 20px rgba(0,0,0,0.08)", fontSize: 11 }} />
-                <Area type="monotone" dataKey="value" stroke="#818cf8" strokeWidth={1.5} fill="url(#cgBlue)" name="Gastos (Kz)" dot={false} />
+                <Tooltip contentStyle={{ borderRadius: "12px", border: "none", background: "white", boxShadow: "0 4px 20px rgba(0,0,0,0.08)", fontSize: 11 }} />
+                <Area type="monotone" dataKey="value" stroke="#E94E1B" strokeWidth={1.5} fill="url(#cgBrand)" name="Gastos (Kz)" dot={false} />
               </AreaChart>
             </ResponsiveContainer>
           </div>
 
           {/* Financiamentos */}
-          <div className="rounded-2xl p-6 shadow-sm"
-            style={{ background: "#ffffff" }}>
-            <h3 className="text-sm font-semibold text-gray-700 mb-5">Financiamentos Ativos</h3>
-            <div className="space-y-4">
+          <div className="ds-card ds-card--elevated" style={{ padding: "1.5rem" }}>
+            <h3 style={{ fontSize: "0.875rem", fontWeight: 600, color: "var(--ds-content-default)", marginBottom: "1.25rem" }}>Financiamentos Ativos</h3>
+            <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}>
               {activeLoans.map((loan) => (
-                <div key={loan.id} className="rounded-xl p-4" style={{ background: "rgba(255,255,255,0.5)" }}>
-                  <div className="flex justify-between items-start mb-2">
+                <div key={loan.id} style={{ borderRadius: "var(--ds-radius-lg)", padding: "1rem", background: "var(--ds-background-subtle)" }}>
+                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: "0.5rem" }}>
                     <div>
-                      <div className="text-sm font-semibold text-gray-800">{loan.product}</div>
-                      <div className="text-xs text-gray-400 mt-0.5">Parcela {loan.installments}</div>
+                      <div style={{ fontSize: "0.875rem", fontWeight: 600, color: "var(--ds-content-default)" }}>{loan.product}</div>
+                      <div style={{ fontSize: "0.75rem", color: "var(--ds-content-subtle)", marginTop: "0.125rem" }}>Parcela {loan.installments}</div>
                     </div>
-                    <span className="text-xs bg-green-100/80 text-green-600 px-3 py-1 rounded-full font-medium">Em dia</span>
+                    <span className="ds-badge ds-badge--success ds-badge--subtle">Em dia</span>
                   </div>
-                  <div className="flex justify-between text-xs text-gray-400 mb-2">
+                  <div style={{ display: "flex", justifyContent: "space-between", fontSize: "0.75rem", color: "var(--ds-content-subtle)", marginBottom: "0.5rem" }}>
                     <span>Próximo pagamento</span>
-                    <span className="font-medium text-gray-600">{loan.next}</span>
+                    <span style={{ fontWeight: 500, color: "var(--ds-content-default)" }}>{loan.next}</span>
                   </div>
-                  <div className="h-1 bg-white/60 rounded-full overflow-hidden">
-                    <div className="h-full bg-indigo-400/70 rounded-full" style={{ width: `${loan.pct}%` }} />
+                  <div style={{ height: "0.25rem", background: "var(--ds-border-subtle)", borderRadius: "9999px", overflow: "hidden" }}>
+                    <div style={{ height: "100%", background: "var(--ds-primary-background-default)", borderRadius: "9999px", width: `${loan.pct}%` }} />
                   </div>
                 </div>
               ))}
@@ -119,26 +114,25 @@ export function CompanyDashboard() {
           </div>
         </div>
 
-        {/* Table */}
-        <div className="rounded-2xl p-6 shadow-sm"
-          style={{ background: "#ffffff" }}>
-          <h3 className="text-sm font-semibold text-gray-700 mb-5">Pedidos Recentes</h3>
-          <table className="w-full">
+        {/* Tabela */}
+        <div className="ds-card ds-card--elevated" style={{ padding: "1.5rem" }}>
+          <h3 style={{ fontSize: "0.875rem", fontWeight: 600, color: "var(--ds-content-default)", marginBottom: "1.25rem" }}>Pedidos Recentes</h3>
+          <table style={{ width: "100%", borderCollapse: "collapse" }}>
             <thead>
               <tr>
                 {["Data","Produto","Valor","Estado"].map(h => (
-                  <th key={h} className="text-left text-xs text-gray-400 font-medium pb-3 px-2">{h}</th>
+                  <th key={h} style={{ textAlign: "left", fontSize: "0.75rem", color: "var(--ds-content-subtle)", fontWeight: 500, paddingBottom: "0.75rem", paddingLeft: "0.5rem", paddingRight: "0.5rem" }}>{h}</th>
                 ))}
               </tr>
             </thead>
             <tbody>
               {recentOrders.map((o) => (
-                <tr key={o.id} className="border-t border-white/30">
-                  <td className="py-3.5 px-2 text-xs text-gray-400">{o.date}</td>
-                  <td className="py-3.5 px-2 text-sm font-medium text-gray-700">{o.product}</td>
-                  <td className="py-3.5 px-2 text-sm font-semibold text-gray-800">{o.amount.toLocaleString()} Kz</td>
-                  <td className="py-3.5 px-2">
-                    <span className={`text-xs px-3 py-1 rounded-full font-medium ${o.status === "Entregue" ? "bg-green-100/80 text-green-600" : "bg-amber-100/80 text-amber-600"}`}>
+                <tr key={o.id} style={{ borderTop: "1px solid var(--ds-border-subtle)" }}>
+                  <td style={{ padding: "0.875rem 0.5rem", fontSize: "0.75rem", color: "var(--ds-content-subtle)" }}>{o.date}</td>
+                  <td style={{ padding: "0.875rem 0.5rem", fontSize: "0.875rem", fontWeight: 500, color: "var(--ds-content-default)" }}>{o.product}</td>
+                  <td style={{ padding: "0.875rem 0.5rem", fontSize: "0.875rem", fontWeight: 600, color: "var(--ds-content-default)" }}>{o.amount.toLocaleString()} Kz</td>
+                  <td style={{ padding: "0.875rem 0.5rem" }}>
+                    <span className={`ds-badge ds-badge--subtle ${o.status === "Entregue" ? "ds-badge--success" : "ds-badge--warning"}`}>
                       {o.status}
                     </span>
                   </td>

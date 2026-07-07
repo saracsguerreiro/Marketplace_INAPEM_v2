@@ -38,7 +38,6 @@ export function NewHome() {
     } else if (role === "fornecedor") {
       navigate("/fornecedores");
     }
-    // "visitante", "close" e "login" ficam na home
   };
 
   const handlePedirFinanciamento = () => {
@@ -159,16 +158,10 @@ export function NewHome() {
     <div>
       {showWelcome && <WelcomePopup onClose={handleWelcomeClose} />}
 
-      {/* HERO BANNER — split layout */}
+      {/* ── HERO BANNER ── */}
       <section className="bg-white overflow-hidden relative flex items-center py-10">
-
-        {/* Imagem direita */}
         <div className="hidden lg:block absolute top-4 right-4 w-[52%] h-[calc(100%-2rem)]">
-          <img
-            src={bannerImage}
-            alt="Business Growth"
-            className="w-full h-full object-cover rounded-3xl"
-          />
+          <img src={bannerImage} alt="Business Growth" className="w-full h-full object-cover rounded-3xl" />
           <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent rounded-3xl" />
 
           {/* Badges flutuantes */}
@@ -176,67 +169,65 @@ export function NewHome() {
             <span className="w-7 h-7 bg-[#1a1a1a] rounded-full flex items-center justify-center text-white text-xs">✦</span>
             <span className="text-sm font-medium text-[#1a1a1a]">Fornecedores Certificados</span>
           </div>
-
           <div className="absolute top-32 right-10 bg-white/85 backdrop-blur-sm rounded-full px-4 py-2 flex items-center gap-2 shadow-lg">
             <span className="w-7 h-7 bg-[#1a1a1a] rounded-full flex items-center justify-center text-white text-xs">$</span>
             <span className="text-sm font-medium text-[#1a1a1a]">Financiamento PME</span>
           </div>
-
           <div className="absolute top-1/2 left-8 -translate-y-1/2 bg-white/90 backdrop-blur-sm rounded-full px-4 py-2.5 flex items-center gap-2 shadow-lg">
             <span className="w-8 h-8 bg-[#1a1a1a] rounded-full flex items-center justify-center text-white text-xs">✓</span>
             <span className="text-sm font-semibold text-[#1a1a1a]">Pagamento Facilitado</span>
           </div>
-
           <div className="absolute bottom-20 right-8 bg-white/75 backdrop-blur-sm rounded-full px-4 py-2 flex items-center gap-2 shadow-md">
             <span className="w-7 h-7 bg-[#1a1a1a] rounded-full flex items-center justify-center text-white text-xs">↗</span>
             <span className="text-sm font-medium text-[#1a1a1a]">+1.200 Produtos</span>
           </div>
         </div>
 
-        {/* Coluna esquerda — texto */}
+        {/* Coluna de texto */}
         <div className="relative z-10 w-full lg:w-[48%] px-6 sm:px-10 lg:px-16 py-10 flex flex-col justify-between min-h-[420px]">
           <div>
             <span className="inline-flex items-center gap-2 bg-[#1a1a1a] text-white text-xs px-4 py-1.5 rounded-full mb-8">
-              <span className="w-1.5 h-1.5 bg-coral rounded-full"></span>
+              <span className="w-1.5 h-1.5 rounded-full" style={{ background: "var(--ds-primary-background-default)" }}></span>
               Marketplace Oficial INAPEM
             </span>
 
             <h1 className="text-3xl md:text-4xl leading-[1.15] text-[#1a1a1a] mb-5">
               Impulsione o seu negócio com{" "}
               <span className="relative inline-block">
-                <span className="relative z-10 text-coral">Financiamento</span>
-                <span className="absolute inset-x-0 bottom-0.5 h-2.5 bg-coral/15 rounded-full -z-0"></span>
+                <span className="relative z-10" style={{ color: "var(--ds-primary-content-default)" }}>Financiamento</span>
+                <span className="absolute inset-x-0 bottom-0.5 h-2.5 rounded-full -z-0"
+                  style={{ background: "var(--ds-toned-background-default)" }}></span>
               </span>{" "}
               Inteligente
             </h1>
 
-            <p className="text-[#666] text-sm md:text-base leading-relaxed max-w-sm">
+            <p className="text-sm md:text-base leading-relaxed max-w-sm" style={{ color: "var(--ds-content-subtle)" }}>
               Encontre produtos e serviços de fornecedores certificados. Peça financiamento e pague directamente ao fornecedor — sem intermediários.
             </p>
           </div>
 
-          {/* Botão CTA — totalmente arredondado */}
           <div className="mt-10">
             <button
               onClick={handlePedirFinanciamento}
-              className="inline-flex items-center gap-4 bg-coral text-white rounded-full pl-7 pr-3 py-3 text-sm font-medium hover:opacity-90 transition-opacity group"
+              className="ds-button ds-button--brand ds-button--lg"
+              style={{ borderRadius: "9999px", paddingLeft: "1.75rem", paddingRight: "0.75rem" }}
             >
-              Pedir Financiamento
-              <span className="w-9 h-9 bg-white text-coral rounded-full flex items-center justify-center flex-shrink-0">
-                <ArrowRight className="w-4 h-4" />
+              <span className="ds-button__label">Pedir Financiamento</span>
+              <span className="w-9 h-9 bg-white rounded-full flex items-center justify-center flex-shrink-0"
+                style={{ color: "var(--ds-primary-content-default)" }}>
+                <ArrowRight className="ds-icon ds-icon--sm" />
               </span>
             </button>
           </div>
         </div>
-
       </section>
 
-      {/* CAMPO DE PESQUISA GRANDE */}
-      <section className="py-12 bg-gradient-to-b from-gray-50 to-white">
+      {/* ── PESQUISA ── */}
+      <section className="py-12" style={{ background: "linear-gradient(to bottom, var(--ds-background-subtle), var(--ds-surface-default))" }}>
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-8">
             <h2 className="text-2xl md:text-3xl mb-3">O que procura para a sua empresa?</h2>
-            <p className="text-muted-foreground">Pesquise em mais de 1.200 produtos e serviços</p>
+            <p style={{ color: "var(--ds-content-subtle)" }}>Pesquise em mais de 1.200 produtos e serviços</p>
           </div>
           <form
             onSubmit={(e) => {
@@ -247,27 +238,39 @@ export function NewHome() {
             }}
           >
             <div className="relative">
-              <Search className="absolute left-6 top-1/2 -translate-y-1/2 w-6 h-6 text-muted-foreground" />
-              <input
-                name="q"
-                type="text"
-                placeholder="Ex: gerir pessoal, transportar mercadoria, equipamento médico..."
-                className="w-full pl-16 pr-6 py-5 text-base border-2 border-border rounded-full focus:outline-none focus:border-coral transition-colors shadow-lg"
-              />
-              <button type="submit" className="absolute right-2 top-1/2 -translate-y-1/2 bg-coral text-white px-8 py-3 rounded-full hover:opacity-90 transition-opacity">
-                Pesquisar
-              </button>
+              <Search className="absolute left-6 top-1/2 -translate-y-1/2 w-6 h-6" style={{ color: "var(--ds-content-subtle)" }} />
+              <div className="ds-input ds-input--full" style={{
+                borderRadius: "9999px",
+                height: "3.75rem",
+                paddingLeft: "3.5rem",
+                boxShadow: "var(--ds-shadow-lg)",
+                border: "2px solid var(--ds-border-default)",
+              }}>
+                <input
+                  name="q"
+                  type="text"
+                  className="ds-input__field"
+                  placeholder="Ex: gerir pessoal, transportar mercadoria, equipamento médico..."
+                  style={{ paddingLeft: 0, fontSize: "1rem" }}
+                />
+                <button type="submit" className="ds-button ds-button--brand ds-button--md" style={{ margin: "0.25rem", borderRadius: "9999px" }}>
+                  <span className="ds-button__label">Pesquisar</span>
+                </button>
+              </div>
             </div>
           </form>
         </div>
       </section>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* CATEGORIAS */}
+
+        {/* ── CATEGORIAS ── */}
         <section className="py-16">
           <div className="text-center mb-12">
-            <h2 className="text-2xl md:text-3xl mb-3">Explore por <span className="text-coral">Categoria</span></h2>
-            <p className="text-muted-foreground text-lg">Encontre exatamente o que a sua empresa precisa</p>
+            <h2 className="text-2xl md:text-3xl mb-3">
+              Explore por <span style={{ color: "var(--ds-primary-content-default)" }}>Categoria</span>
+            </h2>
+            <p style={{ color: "var(--ds-content-subtle)" }} className="text-lg">Encontre exatamente o que a sua empresa precisa</p>
           </div>
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
@@ -277,28 +280,32 @@ export function NewHome() {
                 <Link
                   key={cat.name}
                   to={`/marketplace?categoria=${encodeURIComponent(cat.name)}`}
-                  className="group p-6 border-2 border-border bg-white rounded-3xl text-center transition-all hover:scale-105 hover:shadow-xl hover:border-coral"
+                  className="ds-card ds-card--interactive"
+                  style={{ textAlign: "center", padding: "1.5rem" }}
                 >
-                  <div className="mb-4 flex items-center justify-center text-coral">
+                  <div style={{ marginBottom: "1rem", display: "flex", justifyContent: "center", color: "var(--ds-primary-content-default)" }}>
                     <Icon className="w-12 h-12" />
                   </div>
-                  <div className="text-sm mb-1 font-bold">{cat.name}</div>
-                  <div className="text-xs text-muted-foreground">{cat.count}</div>
+                  <div style={{ fontSize: "0.875rem", fontWeight: 700, marginBottom: "0.25rem" }}>{cat.name}</div>
+                  <div style={{ fontSize: "0.75rem", color: "var(--ds-content-subtle)" }}>{cat.count}</div>
                 </Link>
               );
             })}
           </div>
         </section>
 
-        {/* PRODUTOS EM DESTAQUE */}
+        {/* ── PRODUTOS EM DESTAQUE ── */}
         <section className="mb-16">
           <div className="flex items-center justify-between mb-8">
             <div>
-              <h2 className="mb-2">Produtos em <span className="text-coral">Destaque</span></h2>
-              <p className="text-muted-foreground">Os mais procurados pelas empresas angolanas</p>
+              <h2 className="mb-2">
+                Produtos em <span style={{ color: "var(--ds-primary-content-default)" }}>Destaque</span>
+              </h2>
+              <p style={{ color: "var(--ds-content-subtle)" }}>Os mais procurados pelas empresas angolanas</p>
             </div>
-            <Link to="/marketplace" className="text-coral hover:underline flex items-center gap-1">
-              Ver todos <ArrowRight className="w-4 h-4" />
+            <Link to="/marketplace" className="flex items-center gap-1"
+              style={{ color: "var(--ds-link-content-default)" }}>
+              Ver todos <ArrowRight className="ds-icon ds-icon--sm" />
             </Link>
           </div>
 
@@ -307,43 +314,47 @@ export function NewHome() {
               <Link
                 key={product.id}
                 to={`/marketplace/${product.id}`}
-                className="bg-white border-2 border-border rounded-2xl overflow-hidden hover:border-coral hover:shadow-xl transition-all group"
+                className="ds-card ds-card--interactive"
               >
-                <div className="h-44 bg-gray-100 relative overflow-hidden">
-                  <ImageWithFallback
-                    src={product.image}
-                    alt={product.name}
-                    className="w-full h-full object-cover"
-                  />
+                <div className="ds-card__media relative overflow-hidden" style={{ height: "11rem" }}>
+                  <ImageWithFallback src={product.image} alt={product.name} className="w-full h-full object-cover" />
                   {product.certified && (
-                    <div className="absolute top-3 left-3 bg-green-100 text-green-700 text-[10px] px-2 py-1 rounded-full flex items-center gap-1">
-                      <CheckCircle className="w-3 h-3" />
-                      Certificado
+                    <div className="absolute top-3 left-3">
+                      <span className="ds-badge ds-badge--success ds-badge--subtle" style={{ display: "flex", alignItems: "center", gap: "0.25rem" }}>
+                        <CheckCircle style={{ width: "0.75rem", height: "0.75rem" }} />
+                        Certificado
+                      </span>
                     </div>
                   )}
                   {product.isNew && (
-                    <div className="absolute top-3 right-3 bg-coral text-white text-[10px] px-2 py-1 rounded-full">
-                      NOVO
+                    <div className="absolute top-3 right-3">
+                      <span className="ds-badge ds-badge--brand ds-badge--solid">NOVO</span>
                     </div>
                   )}
                 </div>
-                <div className="p-5">
-                  <div className="text-[10px] text-coral mb-2 uppercase tracking-wide">{product.category}</div>
-                  <h3 className="text-sm mb-1 group-hover:text-coral transition-colors">{product.name}</h3>
-                  <div className="text-xs text-muted-foreground mb-3 flex items-center gap-1">
-                    <div className="w-1.5 h-1.5 rounded-full bg-green-600"></div>
+                <div className="ds-card__container">
+                  <div style={{ fontSize: "0.625rem", color: "var(--ds-primary-content-default)", textTransform: "uppercase", letterSpacing: "0.05em" }}>
+                    {product.category}
+                  </div>
+                  <h3 style={{ fontSize: "0.875rem", margin: 0 }}>{product.name}</h3>
+                  <div style={{ fontSize: "0.75rem", color: "var(--ds-content-subtle)", display: "flex", alignItems: "center", gap: "0.25rem" }}>
+                    <div style={{ width: "0.375rem", height: "0.375rem", borderRadius: "9999px", background: "#16a34a" }}></div>
                     {product.vendor}
                   </div>
-                  <div className="flex items-center gap-1 mb-3 text-xs text-yellow-500">
+                  <div style={{ display: "flex", alignItems: "center", gap: "0.25rem", fontSize: "0.75rem", color: "#eab308" }}>
                     {[...Array(5)].map((_, i) => (
-                      <Star key={i} className={`w-3 h-3 ${i < Math.floor(product.rating) ? "fill-yellow-500" : ""}`} />
+                      <Star key={i} style={{ width: "0.75rem", height: "0.75rem", fill: i < Math.floor(product.rating) ? "#eab308" : "none" }} />
                     ))}
-                    <span className="text-muted-foreground ml-1">{product.rating}</span>
+                    <span style={{ color: "var(--ds-content-subtle)", marginLeft: "0.25rem" }}>{product.rating}</span>
                   </div>
-                  <div className="flex items-center justify-between">
-                    <div className="font-extrabold text-coral">{product.price.toLocaleString()} Kz</div>
-                    <button className="w-9 h-9 bg-coral/10 hover:bg-coral hover:text-white text-coral rounded-full flex items-center justify-center transition-colors">
-                      <ShoppingCart className="w-4 h-4" />
+                  <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+                    <div style={{ fontWeight: 800, color: "var(--ds-primary-content-default)" }}>{product.price.toLocaleString()} Kz</div>
+                    <button
+                      className="ds-button ds-button--toned ds-button--sm"
+                      style={{ width: "2.25rem", height: "2.25rem", padding: 0, borderRadius: "9999px" }}
+                      onClick={(e) => e.preventDefault()}
+                    >
+                      <ShoppingCart className="ds-icon ds-icon--sm" />
                     </button>
                   </div>
                 </div>
@@ -352,115 +363,91 @@ export function NewHome() {
           </div>
         </section>
 
-        {/* BANNERS PROMOCIONAIS */}
+        {/* ── BANNERS PROMOCIONAIS ── */}
         <section className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-16">
-          <div className="relative text-white overflow-hidden rounded-2xl min-h-[280px] flex items-center">
-            <div className="absolute inset-0">
-              <ImageWithFallback
-                src="https://images.unsplash.com/photo-1521791136064-7986c2920216?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhZnJpY2FuJTIwYnVzaW5lc3MlMjBoYW5kc2hha2UlMjBwYXJ0bmVyc2hpcCUyMGFncmVlbWVudHxlbnwxfHx8fDE3Nzc5OTUyNDZ8MA&ixlib=rb-4.1.0&q=80&w=1080"
-                alt="Financiamento"
-                className="w-full h-full object-cover"
-              />
+          {[
+            {
+              src: "https://images.unsplash.com/photo-1521791136064-7986c2920216?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhZnJpY2FuJTIwYnVzaW5lc3MlMjBoYW5kc2hha2UlMjBwYXJ0bmVyc2hpcCUyMGFncmVlbWVudHxlbnwxfHx8fDE3Nzc5OTUyNDZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+              alt: "Financiamento",
+              title: "Financiamento até 1M Kz",
+              desc: "Aprovação rápida e taxas competitivas para impulsionar o seu negócio",
+              cta: "Solicitar",
+            },
+            {
+              src: "https://images.unsplash.com/photo-1740914994657-f1cdffdc418e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx3YXJlaG91c2UlMjBidXNpbmVzcyUyMGxvZ2lzdGljcyUyMHdhcmVob3VzZSUyMHdvcmtlcnxlbnwxfHx8fDE3Nzc5OTQ3MzJ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+              alt: "Fornecedor",
+              title: "É Fornecedor?",
+              desc: "Junte-se ao marketplace e venda para centenas de empresas",
+              cta: "Registar Empresa",
+            },
+          ].map((banner, i) => (
+            <div key={i} className="relative text-white overflow-hidden rounded-2xl min-h-[280px] flex items-center">
+              <div className="absolute inset-0">
+                <ImageWithFallback src={banner.src} alt={banner.alt} className="w-full h-full object-cover" />
+              </div>
+              <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-transparent" />
+              <div className="relative z-10 pl-8 pr-4 py-8">
+                <h3 className="text-2xl mb-3">{banner.title}</h3>
+                <p className="text-sm opacity-90 mb-6 max-w-xs leading-relaxed">{banner.desc}</p>
+                <button
+                  onClick={() => setLoginModalOpen(true)}
+                  className="ds-button ds-button--brand ds-button--lg"
+                  style={{ borderRadius: "9999px" }}
+                >
+                  <span className="ds-button__label">{banner.cta}</span>
+                  <ArrowRight className="ds-icon ds-icon--sm" />
+                </button>
+              </div>
             </div>
-            <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-transparent"></div>
-            <div className="relative z-10 pl-8 pr-4 py-8">
-              <h3 className="text-2xl mb-3">Financiamento até 1M Kz</h3>
-              <p className="text-sm opacity-90 mb-6 max-w-xs leading-relaxed">
-                Aprovação rápida e taxas competitivas para impulsionar o seu negócio
-              </p>
-              <button
-                onClick={() => setLoginModalOpen(true)}
-                className="inline-flex items-center gap-2 bg-coral text-white px-6 py-3 rounded-full hover:opacity-90 transition-opacity shadow-xl"
-              >
-                Solicitar
-                <ArrowRight className="w-4 h-4" />
-              </button>
-            </div>
-          </div>
-
-          <div className="relative text-white overflow-hidden rounded-2xl min-h-[280px] flex items-center">
-            <div className="absolute inset-0">
-              <ImageWithFallback
-                src="https://images.unsplash.com/photo-1740914994657-f1cdffdc418e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx3YXJlaG91c2UlMjBidXNpbmVzcyUyMGxvZ2lzdGljcyUyMHdhcmVob3VzZSUyMHdvcmtlcnxlbnwxfHx8fDE3Nzc5OTQ3MzJ8MA&ixlib=rb-4.1.0&q=80&w=1080"
-                alt="Fornecedor"
-                className="w-full h-full object-cover"
-              />
-            </div>
-            <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-transparent"></div>
-            <div className="relative z-10 pl-8 pr-4 py-8">
-              <h3 className="text-2xl mb-3">É Fornecedor?</h3>
-              <p className="text-sm opacity-90 mb-6 max-w-xs leading-relaxed">
-                Junte-se ao marketplace e venda para centenas de empresas
-              </p>
-              <button
-                onClick={() => setLoginModalOpen(true)}
-                className="inline-flex items-center gap-2 bg-coral text-white px-6 py-3 rounded-full hover:opacity-90 transition-opacity shadow-xl"
-              >
-                Registar Empresa
-                <ArrowRight className="w-4 h-4" />
-              </button>
-            </div>
-          </div>
+          ))}
         </section>
 
-        {/* DESTAQUES VISUAIS */}
+        {/* ── DESTAQUES VISUAIS ── */}
         <section className="mb-16">
-          <h2 className="mb-8">Escolhas <span className="text-coral">Populares</span></h2>
+          <h2 className="mb-8">Escolhas <span style={{ color: "var(--ds-primary-content-default)" }}>Populares</span></h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {highlights.map((item, index) => (
-              <div
-                key={index}
-                className="relative rounded-2xl overflow-hidden h-56 cursor-pointer group"
-              >
-                <ImageWithFallback
-                  src={item.image}
-                  alt={item.title}
-                  className="absolute inset-0 w-full h-full object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
+              <div key={index} className="relative rounded-2xl overflow-hidden h-56 cursor-pointer group">
+                <ImageWithFallback src={item.image} alt={item.title} className="absolute inset-0 w-full h-full object-cover" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
                 <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
-                  <div className="text-[10px] text-coral-foreground mb-2 uppercase tracking-wide">{item.category}</div>
+                  <div style={{ fontSize: "0.625rem", textTransform: "uppercase", letterSpacing: "0.05em", marginBottom: "0.5rem" }}>
+                    <span className="ds-badge ds-badge--brand ds-badge--solid">{item.category}</span>
+                  </div>
                   <h3 className="text-lg mb-2">{item.title}</h3>
-                  <div className="font-bold">{item.price.toLocaleString()} Kz</div>
+                  <div style={{ fontWeight: 700 }}>{item.price.toLocaleString()} Kz</div>
                 </div>
               </div>
             ))}
           </div>
         </section>
 
-        {/* ÚLTIMAS NOVIDADES */}
+        {/* ── ÚLTIMAS NOVIDADES ── */}
         <section className="mb-16">
           <div className="flex items-center justify-between mb-8">
             <div>
-              <h2 className="mb-2">Últimas <span className="text-coral">Novidades</span></h2>
-              <p className="text-muted-foreground">Fique a par do que acontece no marketplace</p>
+              <h2 className="mb-2">Últimas <span style={{ color: "var(--ds-primary-content-default)" }}>Novidades</span></h2>
+              <p style={{ color: "var(--ds-content-subtle)" }}>Fique a par do que acontece no marketplace</p>
             </div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {news.map((item, index) => (
-              <div
-                key={index}
-                className="bg-white border border-border rounded-2xl overflow-hidden hover:border-coral hover:shadow-lg transition-all cursor-pointer"
-              >
-                <div className="h-36 bg-gray-100 overflow-hidden">
-                  <ImageWithFallback
-                    src={item.image}
-                    alt={item.title}
-                    className="w-full h-full object-cover"
-                  />
+              <div key={index} className="ds-card ds-card--interactive">
+                <div className="ds-card__media" style={{ height: "9rem" }}>
+                  <ImageWithFallback src={item.image} alt={item.title} className="w-full h-full object-cover" />
                 </div>
-                <div className="p-5">
-                  <div className="text-[10px] text-coral mb-2 uppercase tracking-wide">{item.tag}</div>
-                  <h3 className="text-sm mb-3 leading-tight">{item.title}</h3>
-                  <div className="text-xs text-muted-foreground">{item.date}</div>
+                <div className="ds-card__container">
+                  <span className="ds-badge ds-badge--brand ds-badge--subtle">{item.tag}</span>
+                  <h3 style={{ fontSize: "0.875rem", lineHeight: 1.4, margin: 0 }}>{item.title}</h3>
+                  <p style={{ fontSize: "0.75rem", color: "var(--ds-content-subtle)", margin: 0 }}>{item.date}</p>
                 </div>
               </div>
             ))}
           </div>
         </section>
 
-        {/* RECOMENDADOS */}
+        {/* ── RECOMENDADOS ── */}
         {recommended.length > 0 && (
           <div className="mb-16">
             <RecommendedProducts
@@ -471,11 +458,12 @@ export function NewHome() {
           </div>
         )}
 
-        {/* CTA FINAL */}
-        <section className="bg-gradient-to-r from-coral to-coral/80 rounded-3xl p-12 mb-16 text-center text-white relative overflow-hidden">
+        {/* ── CTA FINAL ── */}
+        <section className="rounded-3xl p-12 mb-16 text-center text-white relative overflow-hidden"
+          style={{ background: "linear-gradient(135deg, var(--ds-primary-background-default), var(--ds-primary-background-hover))" }}>
           <div className="absolute inset-0 opacity-10">
-            <div className="absolute top-0 left-1/4 w-64 h-64 bg-white rounded-full blur-3xl"></div>
-            <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-white rounded-full blur-3xl"></div>
+            <div className="absolute top-0 left-1/4 w-64 h-64 bg-white rounded-full blur-3xl" />
+            <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-white rounded-full blur-3xl" />
           </div>
           <div className="relative z-10 max-w-2xl mx-auto">
             <h2 className="text-3xl mb-4">Pronto para Crescer?</h2>
@@ -485,58 +473,65 @@ export function NewHome() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <button
                 onClick={handlePedirFinanciamento}
-                className="bg-white text-coral px-8 py-4 rounded-full hover:shadow-2xl transition-shadow inline-flex items-center justify-center gap-2"
+                className="ds-button ds-button--lg"
+                style={{
+                  background: "white",
+                  color: "var(--ds-primary-content-default)",
+                  borderRadius: "9999px",
+                  boxShadow: "var(--ds-shadow-xl)",
+                }}
               >
-                Pedir Financiamento
-                <ArrowRight className="w-5 h-5" />
+                <span className="ds-button__label">Pedir Financiamento</span>
+                <ArrowRight className="ds-icon ds-icon--sm" />
               </button>
               <Link
                 to="/empresas"
-                className="bg-white/10 border-2 border-white/30 backdrop-blur-sm px-8 py-4 rounded-full hover:bg-white/20 transition-colors inline-flex items-center justify-center gap-2"
-              >Saber Mais</Link>
+                className="ds-button ds-button--lg"
+                style={{
+                  background: "rgba(255,255,255,0.12)",
+                  border: "2px solid rgba(255,255,255,0.3)",
+                  color: "white",
+                  borderRadius: "9999px",
+                  backdropFilter: "blur(4px)",
+                }}
+              >
+                <span className="ds-button__label">Saber Mais</span>
+              </Link>
             </div>
           </div>
         </section>
 
-        {/* BIG NUMBERS */}
-        <section className="py-16 bg-secondary mb-16 -mx-4 sm:-mx-6 lg:-mx-8 px-4 sm:px-6 lg:px-8">
+        {/* ── BIG NUMBERS ── */}
+        <section className="py-16 mb-16 -mx-4 sm:-mx-6 lg:-mx-8 px-4 sm:px-6 lg:px-8"
+          style={{ background: "var(--ds-background-subtle)" }}>
           <div className="max-w-7xl mx-auto">
             <div className="grid grid-cols-2 md:grid-cols-3 gap-8 text-center">
-              <div>
-                <div className="flex justify-center mb-4">
-                  <CompaniesIcon className="w-12 h-12 text-coral" />
+              {[
+                { Icon: CompaniesIcon, value: "500+", label: "Empresas Apoiadas" },
+                { Icon: SuppliersIcon, value: "1.000", label: "Fornecedores" },
+                { Icon: CreditIcon, value: "100+", label: "Créditos Aprovados" },
+              ].map(({ Icon, value, label }) => (
+                <div key={label}>
+                  <div className="flex justify-center mb-4">
+                    <Icon className="w-12 h-12" style={{ color: "var(--ds-primary-content-default)" }} />
+                  </div>
+                  <div className="text-4xl md:text-5xl font-extrabold mb-2" style={{ color: "var(--ds-primary-content-default)" }}>
+                    {value}
+                  </div>
+                  <div style={{ color: "var(--ds-content-subtle)" }}>{label}</div>
                 </div>
-                <div className="text-4xl md:text-5xl font-extrabold text-coral mb-2">500+</div>
-                <div className="text-muted-foreground">Empresas Apoiadas</div>
-              </div>
-              <div>
-                <div className="flex justify-center mb-4">
-                  <SuppliersIcon className="w-12 h-12 text-coral" />
-                </div>
-                <div className="text-4xl md:text-5xl font-extrabold text-coral mb-2">1.000</div>
-                <div className="text-muted-foreground">Fornecedores</div>
-              </div>
-              <div>
-                <div className="flex justify-center mb-4">
-                  <CreditIcon className="w-12 h-12 text-coral" />
-                </div>
-                <div className="text-4xl md:text-5xl font-extrabold text-coral mb-2">100+ </div>
-                <div className="text-muted-foreground">Créditos Aprovados</div>
-              </div>
+              ))}
             </div>
           </div>
         </section>
 
-        {/* PARCEIROS */}
+        {/* ── PARCEIROS ── */}
         <section className="mb-16">
           <div className="text-center mb-8">
-            <h3 className="text-sm text-muted-foreground mb-6">Parceiros Financeiros</h3>
+            <h3 style={{ fontSize: "0.875rem", color: "var(--ds-content-subtle)", marginBottom: "1.5rem" }}>Parceiros Financeiros</h3>
             <div className="flex flex-wrap gap-8 items-center justify-center">
-              {["BDA", "BCI", "BAI", "Atlantico", "Fundo I00NAPEM"].map((partner) => (
-                <div
-                  key={partner}
-                  className="px-6 py-3 border-2 border-border rounded-xl text-sm text-muted-foreground bg-white"
-                >
+              {["BDA", "BCI", "BAI", "Atlantico", "Fundo INAPEM"].map((partner) => (
+                <div key={partner} className="ds-card ds-card--outlined" style={{ padding: "0.75rem 1.5rem", fontSize: "0.875rem", color: "var(--ds-content-subtle)" }}>
                   {partner}
                 </div>
               ))}

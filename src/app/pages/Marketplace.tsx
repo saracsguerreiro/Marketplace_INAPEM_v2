@@ -17,7 +17,6 @@ import { allProducts } from "../data/products";
 import { trackProduct } from "../hooks/useRecommendations";
 import { semanticSearch, getSearchIntent } from "../utils/semanticSearch";
 
-
 export function Marketplace() {
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
@@ -26,31 +25,23 @@ export function Marketplace() {
   const [selectedCategory, setSelectedCategory] = useState("Todos");
   const [currentPage, setCurrentPage] = useState(1);
 
-  // Lê parâmetros da URL ao carregar
   useEffect(() => {
     const cat = searchParams.get("categoria");
     if (cat) setSelectedCategory(cat);
     const q = searchParams.get("q");
     if (q) setSearchTerm(q);
   }, [searchParams]);
+
   const [quantities, setQuantities] = useState<Record<string, number>>({});
   const itemsPerPage = 8;
   const { addToCart } = useCart();
 
   const getQuantity = (productId: string) => quantities[productId] || 1;
-
   const incrementQuantity = (productId: string) => {
-    setQuantities((prev) => ({
-      ...prev,
-      [productId]: (prev[productId] || 1) + 1,
-    }));
+    setQuantities((prev) => ({ ...prev, [productId]: (prev[productId] || 1) + 1 }));
   };
-
   const decrementQuantity = (productId: string) => {
-    setQuantities((prev) => ({
-      ...prev,
-      [productId]: Math.max(1, (prev[productId] || 1) - 1),
-    }));
+    setQuantities((prev) => ({ ...prev, [productId]: Math.max(1, (prev[productId] || 1) - 1) }));
   };
 
   const categories = [
@@ -65,7 +56,6 @@ export function Marketplace() {
     { name: "Outros", icon: OthersIcon },
   ];
 
-  // Pesquisa semântica sobre todos os produtos
   const searchResults = semanticSearch(searchTerm, allProducts);
   const intent = searchTerm.trim() ? getSearchIntent(searchTerm) : null;
   const isSemanticMatch = intent !== null;
@@ -91,31 +81,29 @@ export function Marketplace() {
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
       <button
         onClick={() => navigate(-1)}
-        className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground mb-6 transition-colors"
+        className="ds-button ds-button--ghost ds-button--sm mb-6"
+        style={{ paddingLeft: 0 }}
       >
-        <ArrowLeft className="w-4 h-4" />
-        Voltar
+        <ArrowLeft className="ds-icon ds-icon--sm" />
+        <span className="ds-button__label">Voltar</span>
       </button>
 
       <div className="mb-8">
         <h1 className="mb-4">Produtos e Serviços</h1>
-        <p className="text-muted-foreground">
+        <p style={{ color: "var(--ds-content-subtle)" }}>
           Explore mais de 1.200 produtos e serviços para a sua empresa
         </p>
       </div>
 
       {/* Tabs Produto / Serviço */}
       <div className="mb-8">
-        <div className="flex gap-1 bg-gray-100 p-1 rounded-full w-fit">
+        <div className="ds-tabs" style={{ width: "fit-content" }}>
           {["Todos", "Produto", "Serviço"].map((tab) => (
             <button
               key={tab}
               onClick={() => { setSelectedType(tab); setCurrentPage(1); }}
-              className={`px-6 py-2 rounded-full text-sm font-medium transition-all ${
-                selectedType === tab
-                  ? "bg-white text-coral shadow-sm"
-                  : "text-muted-foreground hover:text-foreground"
-              }`}
+              className={`ds-tab${selectedType === tab ? " ds-tab--active" : ""}`}
+              style={{ padding: "0.5rem 1.5rem" }}
             >
               {tab}
             </button>
@@ -123,61 +111,62 @@ export function Marketplace() {
         </div>
       </div>
 
-      {/* Filtro de Pesquisa */}
+      {/* Campo de Pesquisa */}
       <div className="mb-8">
         <div className="relative">
-          <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
-          <input
-            type="text"
-            placeholder="Pesquisar produtos e serviços..."
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full pl-12 pr-4 py-4 border-2 border-border rounded-full focus:outline-none focus:border-coral transition-colors text-base"
-          />
+          <Search className="absolute left-4 top-1/2 -translate-y-1/2 ds-icon" style={{ color: "var(--ds-content-subtle)" }} />
+          <div className="ds-input ds-input--lg ds-input--full" style={{ paddingLeft: "3rem", borderRadius: "9999px" }}>
+            <input
+              type="text"
+              className="ds-input__field"
+              placeholder="Pesquisar produtos e serviços..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              style={{ paddingLeft: 0 }}
+            />
+          </div>
         </div>
       </div>
 
-      {/* Indicador de pesquisa semântica */}
+      {/* Pesquisa semântica */}
       {isSemanticMatch && (
-        <div className="mb-4 flex items-center gap-2 px-4 py-3 bg-coral/5 border border-coral/20 rounded-xl text-sm">
-          <Sparkles className="w-4 h-4 text-coral flex-shrink-0" />
-          <span className="text-muted-foreground">
+        <div className="mb-4 flex items-center gap-2 px-4 py-3 rounded-xl text-sm"
+          style={{ background: "var(--ds-toned-background-default)", border: "1px solid rgba(233,78,27,0.2)" }}>
+          <Sparkles className="ds-icon ds-icon--sm flex-shrink-0" style={{ color: "var(--ds-primary-content-default)" }} />
+          <span style={{ color: "var(--ds-content-subtle)" }}>
             Pesquisa inteligente: a mostrar resultados relacionados com{" "}
-            <span className="font-semibold text-coral">"{intent}"</span>
+            <span style={{ fontWeight: 600, color: "var(--ds-primary-content-default)" }}>"{intent}"</span>
           </span>
         </div>
       )}
 
       {/* Filtro de Categorias */}
       <div className="mb-10">
-        <h3 className="text-sm text-muted-foreground mb-4 uppercase tracking-wide">Filtrar por Categoria</h3>
+        <h3 style={{ fontSize: "0.75rem", color: "var(--ds-content-subtle)", marginBottom: "1rem", textTransform: "uppercase", letterSpacing: "0.05em" }}>
+          Filtrar por Categoria
+        </h3>
         <div className="flex flex-wrap gap-3">
           {categories.map((cat) => {
             const Icon = cat.icon;
+            const isActive = selectedCategory === cat.name;
             return (
               <button
                 key={cat.name}
-                onClick={() => {
-                  setSelectedCategory(cat.name);
-                  setCurrentPage(1);
-                }}
-                className={`flex items-center gap-2 px-4 py-2 rounded-full border-2 transition-all ${
-                  selectedCategory === cat.name
-                    ? "border-coral bg-coral text-white"
-                    : "border-border bg-white hover:border-coral"
-                }`}
+                onClick={() => { setSelectedCategory(cat.name); setCurrentPage(1); }}
+                className={`ds-button ds-button--sm${isActive ? " ds-button--brand" : " ds-button--outline"}`}
+                style={{ borderRadius: "9999px", gap: "0.375rem" }}
               >
-                {Icon && <Icon className="w-5 h-5" />}
-                <span>{cat.name}</span>
+                {Icon && <Icon style={{ width: "1rem", height: "1rem" }} />}
+                <span className="ds-button__label">{cat.name}</span>
               </button>
             );
           })}
         </div>
       </div>
 
-      {/* Resultados */}
+      {/* Contagem de resultados */}
       <div className="mb-6">
-        <p className="text-muted-foreground">
+        <p style={{ color: "var(--ds-content-subtle)" }}>
           {filteredProducts.length} {filteredProducts.length === 1 ? "produto encontrado" : "produtos encontrados"}
         </p>
       </div>
@@ -185,46 +174,49 @@ export function Marketplace() {
       {/* Grid de Produtos */}
       <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6 mb-10">
         {paginatedProducts.map((product) => (
-          <div
-            key={product.id}
-            className="bg-white border-2 border-border rounded-2xl overflow-hidden hover:border-coral hover:shadow-xl transition-all group"
-          >
+          <div key={product.id} className="ds-card ds-card--interactive" style={{ display: "flex", flexDirection: "column" }}>
             <Link to={`/marketplace/${product.id}`} onClick={() => trackProduct(product.id, product.category)}>
-              <div className="aspect-[4/3] overflow-hidden bg-gray-100">
+              <div className="ds-card__media" style={{ aspectRatio: "4/3" }}>
                 <ImageWithFallback
                   src={product.image}
                   alt={product.name}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                  className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                 />
               </div>
             </Link>
-            <div className="p-4">
-              <div className="text-xs text-coral mb-2 uppercase tracking-wide">{product.category}</div>
+            <div className="ds-card__container" style={{ flex: 1, display: "flex", flexDirection: "column" }}>
+              <div style={{ fontSize: "0.625rem", color: "var(--ds-primary-content-default)", textTransform: "uppercase", letterSpacing: "0.05em" }}>
+                {product.category}
+              </div>
               <Link to={`/marketplace/${product.id}`}>
-                <h3 className="text-sm mb-2 line-clamp-2 group-hover:text-coral transition-colors">{product.name}</h3>
+                <h3 style={{ fontSize: "0.875rem", margin: 0, lineHeight: 1.4 }}>{product.name}</h3>
               </Link>
-              <div className="text-xs text-muted-foreground mb-3 flex items-center gap-1">
-                <div className="w-1.5 h-1.5 rounded-full bg-green-600"></div>
+              <div style={{ fontSize: "0.75rem", color: "var(--ds-content-subtle)", display: "flex", alignItems: "center", gap: "0.25rem" }}>
+                <div style={{ width: "0.375rem", height: "0.375rem", borderRadius: "9999px", background: "#16a34a" }} />
                 {product.supplier}
               </div>
-              <div className="flex items-center justify-between mb-3">
-                <div className="font-extrabold text-coral text-lg">{product.price.toLocaleString()} Kz</div>
+              <div style={{ fontWeight: 800, color: "var(--ds-primary-content-default)", fontSize: "1.125rem" }}>
+                {product.price.toLocaleString()} Kz
               </div>
 
               {/* Seletor de Quantidade */}
-              <div className="flex items-center justify-center gap-2 mb-3">
+              <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "0.5rem", marginBottom: "0.5rem" }}>
                 <button
                   onClick={() => decrementQuantity(product.id)}
-                  className="w-8 h-8 rounded-full border-2 border-border hover:border-coral flex items-center justify-center transition-colors"
+                  className="ds-button ds-button--outline ds-button--sm"
+                  style={{ width: "2rem", height: "2rem", padding: 0, borderRadius: "9999px" }}
                 >
-                  <Minus className="w-4 h-4" />
+                  <Minus className="ds-icon ds-icon--sm" />
                 </button>
-                <span className="text-sm font-semibold w-8 text-center">{getQuantity(product.id)}</span>
+                <span style={{ fontSize: "0.875rem", fontWeight: 600, width: "2rem", textAlign: "center" }}>
+                  {getQuantity(product.id)}
+                </span>
                 <button
                   onClick={() => incrementQuantity(product.id)}
-                  className="w-8 h-8 rounded-full border-2 border-border hover:border-coral flex items-center justify-center transition-colors"
+                  className="ds-button ds-button--outline ds-button--sm"
+                  style={{ width: "2rem", height: "2rem", padding: 0, borderRadius: "9999px" }}
                 >
-                  <Plus className="w-4 h-4" />
+                  <Plus className="ds-icon ds-icon--sm" />
                 </button>
               </div>
 
@@ -232,19 +224,14 @@ export function Marketplace() {
                 onClick={() => {
                   const qty = getQuantity(product.id);
                   for (let i = 0; i < qty; i++) {
-                    addToCart({
-                      id: product.id,
-                      name: product.name,
-                      price: product.price,
-                      supplier: product.supplier,
-                      image: product.image,
-                    });
+                    addToCart({ id: product.id, name: product.name, price: product.price, supplier: product.supplier, image: product.image });
                   }
                 }}
-                className="w-full bg-coral text-white py-2 px-3 rounded-full hover:opacity-90 transition-opacity flex items-center justify-center gap-1.5 text-sm"
+                className="ds-button ds-button--brand ds-button--full ds-button--md"
+                style={{ borderRadius: "9999px" }}
               >
-                <ShoppingCart className="w-3.5 h-3.5" />
-                Adicionar
+                <ShoppingCart className="ds-icon ds-icon--sm" />
+                <span className="ds-button__label">Adicionar</span>
               </button>
             </div>
           </div>
@@ -257,20 +244,18 @@ export function Marketplace() {
           <button
             onClick={() => handlePageChange(currentPage - 1)}
             disabled={currentPage === 1}
-            className="p-2 rounded-full border-2 border-border hover:border-coral disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+            className="ds-button ds-button--outline ds-button--sm"
+            style={{ width: "2.5rem", height: "2.5rem", padding: 0, borderRadius: "9999px" }}
           >
-            <ChevronLeft className="w-5 h-5" />
+            <ChevronLeft className="ds-icon" />
           </button>
 
           {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
             <button
               key={page}
               onClick={() => handlePageChange(page)}
-              className={`w-10 h-10 rounded-full border-2 transition-all ${
-                currentPage === page
-                  ? "border-coral bg-coral text-white"
-                  : "border-border hover:border-coral"
-              }`}
+              className={`ds-button ds-button--sm${currentPage === page ? " ds-button--brand" : " ds-button--outline"}`}
+              style={{ width: "2.5rem", height: "2.5rem", padding: 0, borderRadius: "9999px" }}
             >
               {page}
             </button>
@@ -279,9 +264,10 @@ export function Marketplace() {
           <button
             onClick={() => handlePageChange(currentPage + 1)}
             disabled={currentPage === totalPages}
-            className="p-2 rounded-full border-2 border-border hover:border-coral disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+            className="ds-button ds-button--outline ds-button--sm"
+            style={{ width: "2.5rem", height: "2.5rem", padding: 0, borderRadius: "9999px" }}
           >
-            <ChevronRight className="w-5 h-5" />
+            <ChevronRight className="ds-icon" />
           </button>
         </div>
       )}

@@ -82,10 +82,11 @@ export function ProductDetail() {
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
       <button
         onClick={() => navigate(-1)}
-        className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground mb-6 transition-colors"
+        className="ds-button ds-button--ghost ds-button--sm mb-6"
+        style={{ paddingLeft: 0 }}
       >
-        <ArrowLeft className="w-4 h-4" />
-        Voltar
+        <ArrowLeft className="ds-icon ds-icon--sm" />
+        <span className="ds-button__label">Voltar</span>
       </button>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
@@ -109,7 +110,7 @@ export function ProductDetail() {
             <ul className="space-y-3">
               {product.features.map((feature) => (
                 <li key={feature} className="flex items-start gap-3">
-                  <CheckCircle className="w-5 h-5 text-coral flex-shrink-0 mt-0.5" />
+                  <CheckCircle style={{ width: "1.25rem", height: "1.25rem", color: "var(--ds-primary-content-default)", flexShrink: 0, marginTop: "0.125rem" }} />
                   <span>{feature}</span>
                 </li>
               ))}
@@ -119,7 +120,7 @@ export function ProductDetail() {
 
         {/* Coluna direita: info + ações */}
         <div>
-          <div className="text-sm text-coral mb-2 uppercase tracking-wide">{product.category}</div>
+          <div style={{ fontSize: "0.75rem", color: "var(--ds-primary-content-default)", textTransform: "uppercase", letterSpacing: "0.05em", marginBottom: "0.5rem" }}>{product.category}</div>
           <h1 className="mb-4">{product.name}</h1>
 
           <div className="flex items-center gap-2 mb-6">
@@ -141,7 +142,7 @@ export function ProductDetail() {
           </div>
 
           <div className="mb-6">
-            <div className="text-2xl text-coral mb-2 font-extrabold">
+            <div style={{ fontSize: "1.5rem", color: "var(--ds-primary-content-default)", marginBottom: "0.5rem", fontWeight: 800 }}>
               {product.price.toLocaleString()} Kz
             </div>
             <div className="text-muted-foreground flex items-center gap-2">
@@ -170,40 +171,30 @@ export function ProductDetail() {
 
           {/* Seleção de Quantidade */}
           <div className="mb-6">
-            <label className="block mb-3 text-sm">Quantidade</label>
+            <label style={{ display: "block", marginBottom: "0.75rem", fontSize: "0.875rem", fontWeight: 500 }}>Quantidade</label>
             <div className="flex items-center gap-4">
-              <button
-                onClick={decrementQuantity}
-                className="w-12 h-12 rounded-full border-2 border-border hover:border-coral flex items-center justify-center transition-colors"
-              >
-                <Minus className="w-5 h-5" />
+              <button onClick={decrementQuantity} className="ds-button ds-button--outline"
+                style={{ width: "3rem", height: "3rem", padding: 0, borderRadius: "9999px" }}>
+                <Minus className="ds-icon" />
               </button>
-              <span className="text-2xl font-semibold w-16 text-center">{quantity}</span>
-              <button
-                onClick={incrementQuantity}
-                className="w-12 h-12 rounded-full border-2 border-border hover:border-coral flex items-center justify-center transition-colors"
-              >
-                <Plus className="w-5 h-5" />
+              <span style={{ fontSize: "1.5rem", fontWeight: 600, width: "4rem", textAlign: "center" }}>{quantity}</span>
+              <button onClick={incrementQuantity} className="ds-button ds-button--outline"
+                style={{ width: "3rem", height: "3rem", padding: 0, borderRadius: "9999px" }}>
+                <Plus className="ds-icon" />
               </button>
-              <div className="text-muted-foreground">
-                Total: <span className="text-coral font-bold">{(product.price * quantity).toLocaleString()} Kz</span>
+              <div style={{ color: "var(--ds-content-subtle)" }}>
+                Total: <span style={{ color: "var(--ds-primary-content-default)", fontWeight: 700 }}>{(product.price * quantity).toLocaleString()} Kz</span>
               </div>
             </div>
           </div>
 
-          <div className="space-y-3 mb-8">
-            <button
-              onClick={handleSolicitarFinanciamento}
-              className="w-full bg-coral text-white py-4 rounded-full text-center hover:opacity-90 transition-opacity font-semibold"
-            >
-              Solicitar Financiamento
+          <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem", marginBottom: "2rem" }}>
+            <button onClick={handleSolicitarFinanciamento} className="ds-button ds-button--brand ds-button--lg ds-button--full" style={{ borderRadius: "9999px" }}>
+              <span className="ds-button__label">Solicitar Financiamento</span>
             </button>
-            <button
-              onClick={handleAddToCart}
-              className="w-full bg-white border-2 border-coral text-coral py-4 rounded-full hover:bg-coral hover:text-white transition-colors flex items-center justify-center gap-2 font-semibold"
-            >
-              <ShoppingCart className="w-5 h-5" />
-              Adicionar ao Carrinho
+            <button onClick={handleAddToCart} className="ds-button ds-button--outline ds-button--lg ds-button--full" style={{ borderRadius: "9999px" }}>
+              <ShoppingCart className="ds-icon" />
+              <span className="ds-button__label">Adicionar ao Carrinho</span>
             </button>
           </div>
         </div>

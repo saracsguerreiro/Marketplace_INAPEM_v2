@@ -46,9 +46,9 @@ export function Financing() {
         ].map((item) => {
           const Icon = item.icon;
           return (
-            <div key={item.title} className="bg-card border border-border rounded-lg p-6 text-center">
-              <div className="bg-coral/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Icon className="w-8 h-8 text-coral" />
+            <div key={item.title} className="ds-card ds-card--default" style={{ padding: "1.5rem", textAlign: "center" }}>
+              <div style={{ width: "4rem", height: "4rem", borderRadius: "9999px", background: "var(--ds-toned-background-default)", display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto 1rem" }}>
+                <Icon style={{ width: "2rem", height: "2rem", color: "var(--ds-primary-content-default)" }} />
               </div>
               <h3 className="mb-2">{item.title}</h3>
               <p className="text-muted-foreground">{item.description}</p>
@@ -173,9 +173,10 @@ export function Financing() {
 
               <button
                 onClick={() => setFormStep(2)}
-                className="w-full bg-coral text-coral-foreground py-4 rounded-full hover:opacity-90 transition-opacity mt-6"
+                className="ds-button ds-button--brand ds-button--lg ds-button--full"
+                style={{ borderRadius: "9999px", marginTop: "1.5rem" }}
               >
-                Continuar
+                <span className="ds-button__label">Continuar</span>
               </button>
             </div>
           )}

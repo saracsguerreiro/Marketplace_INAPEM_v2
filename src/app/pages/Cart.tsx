@@ -29,17 +29,18 @@ export function Cart() {
   if (items.length === 0) {
     return (
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center">
-        <ShoppingBag className="w-24 h-24 mx-auto text-muted-foreground mb-6" />
+        <ShoppingBag style={{ width: "6rem", height: "6rem", margin: "0 auto 1.5rem", color: "var(--ds-content-subtle)" }} />
         <h1 className="text-3xl mb-4">O Seu Carrinho Está Vazio</h1>
-        <p className="text-muted-foreground mb-8">
+        <p style={{ color: "var(--ds-content-subtle)", marginBottom: "2rem" }}>
           Adicione produtos e serviços ao carrinho para solicitar financiamento
         </p>
         <Link
           to="/marketplace"
-          className="inline-flex items-center gap-2 bg-coral text-white px-8 py-4 rounded-full hover:opacity-90 transition-opacity"
+          className="ds-button ds-button--brand ds-button--lg"
+          style={{ borderRadius: "9999px", display: "inline-flex" }}
         >
-          Explorar Produtos e Serviços
-          <ArrowRight className="w-5 h-5" />
+          <span className="ds-button__label">Explorar Produtos e Serviços</span>
+          <ArrowRight className="ds-icon ds-icon--sm" />
         </Link>
       </div>
     );
@@ -53,54 +54,50 @@ export function Cart() {
         {/* Lista de Produtos */}
         <div className="lg:col-span-2 space-y-4">
           {items.map((item) => (
-            <div
-              key={item.id}
-              className="bg-white border-2 border-border rounded-2xl p-6 flex gap-6"
-            >
-              <div className="w-32 h-32 flex-shrink-0 bg-gray-100 rounded-xl overflow-hidden">
-                <ImageWithFallback
-                  src={item.image}
-                  alt={item.name}
-                  className="w-full h-full object-cover"
-                />
+            <div key={item.id} className="ds-card ds-card--outlined" style={{ display: "flex", flexDirection: "row", gap: "1.5rem", padding: "1.5rem" }}>
+              <div style={{ width: "8rem", height: "8rem", flexShrink: 0, borderRadius: "var(--ds-radius-lg)", overflow: "hidden", background: "var(--ds-neutral-background-default)" }}>
+                <ImageWithFallback src={item.image} alt={item.name} className="w-full h-full object-cover" />
               </div>
 
-              <div className="flex-1 min-w-0">
-                <div className="flex justify-between items-start mb-2">
+              <div style={{ flex: 1, minWidth: 0 }}>
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: "0.5rem" }}>
                   <div>
-                    <h3 className="mb-1">{item.name}</h3>
-                    <p className="text-sm text-muted-foreground">{item.supplier}</p>
+                    <h3 style={{ marginBottom: "0.25rem" }}>{item.name}</h3>
+                    <p style={{ fontSize: "0.875rem", color: "var(--ds-content-subtle)" }}>{item.supplier}</p>
                   </div>
                   <button
                     onClick={() => removeFromCart(item.id)}
-                    className="p-2 hover:bg-red-50 rounded-full text-red-600 transition-colors"
+                    className="ds-button ds-button--ghost ds-button--sm"
+                    style={{ width: "2.25rem", height: "2.25rem", padding: 0, borderRadius: "9999px", color: "var(--ds-feedback-error-content-default)" }}
                   >
-                    <Trash2 className="w-5 h-5" />
+                    <Trash2 className="ds-icon ds-icon--sm" />
                   </button>
                 </div>
 
-                <div className="flex items-center justify-between mt-4">
-                  <div className="flex items-center gap-3">
+                <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginTop: "1rem" }}>
+                  <div style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
                     <button
                       onClick={() => updateQuantity(item.id, item.quantity - 1)}
-                      className="w-8 h-8 rounded-full border-2 border-border hover:border-coral flex items-center justify-center transition-colors"
+                      className="ds-button ds-button--outline ds-button--sm"
+                      style={{ width: "2rem", height: "2rem", padding: 0, borderRadius: "9999px" }}
                     >
-                      <Minus className="w-4 h-4" />
+                      <Minus className="ds-icon ds-icon--sm" />
                     </button>
-                    <span className="w-12 text-center font-medium">{item.quantity}</span>
+                    <span style={{ width: "3rem", textAlign: "center", fontWeight: 500 }}>{item.quantity}</span>
                     <button
                       onClick={() => updateQuantity(item.id, item.quantity + 1)}
-                      className="w-8 h-8 rounded-full border-2 border-border hover:border-coral flex items-center justify-center transition-colors"
+                      className="ds-button ds-button--outline ds-button--sm"
+                      style={{ width: "2rem", height: "2rem", padding: 0, borderRadius: "9999px" }}
                     >
-                      <Plus className="w-4 h-4" />
+                      <Plus className="ds-icon ds-icon--sm" />
                     </button>
                   </div>
 
-                  <div className="text-right">
-                    <div className="text-sm text-muted-foreground">
+                  <div style={{ textAlign: "right" }}>
+                    <div style={{ fontSize: "0.875rem", color: "var(--ds-content-subtle)" }}>
                       {item.price.toLocaleString()} Kz × {item.quantity}
                     </div>
-                    <div className="text-xl font-bold text-coral">
+                    <div style={{ fontSize: "1.25rem", fontWeight: 700, color: "var(--ds-primary-content-default)" }}>
                       {(item.price * item.quantity).toLocaleString()} Kz
                     </div>
                   </div>
@@ -112,58 +109,57 @@ export function Cart() {
 
         {/* Resumo do Pedido */}
         <div className="lg:col-span-1">
-          <div className="bg-white border-2 border-border rounded-2xl p-6 sticky top-4">
-            <h2 className="text-xl mb-6">Resumo do Pedido</h2>
+          <div className="ds-card ds-card--elevated" style={{ position: "sticky", top: "1rem" }}>
+            <div className="ds-card__container" style={{ padding: "1.5rem" }}>
+              <h2 style={{ fontSize: "1.25rem", marginBottom: "1.5rem" }}>Resumo do Pedido</h2>
 
-            <div className="space-y-3 mb-6 pb-6 border-b border-border">
-              <div className="flex justify-between text-muted-foreground">
-                <span>Subtotal ({items.reduce((sum, item) => sum + item.quantity, 0)} {items.reduce((sum, item) => sum + item.quantity, 0) === 1 ? "item" : "itens"})</span>
-                <span>{totalPrice.toLocaleString()} Kz</span>
-              </div>
-              <div className="flex justify-between text-muted-foreground">
-                <span>Taxa de Serviço</span>
-                <span>0 Kz</span>
-              </div>
-            </div>
-
-            <div className="flex justify-between items-center mb-6 text-xl">
-              <span>Total</span>
-              <span className="font-bold text-coral">{totalPrice.toLocaleString()} Kz</span>
-            </div>
-
-            {/* Simulação de financiamento */}
-            <div className="bg-secondary rounded-xl p-4 mb-6">
-              <p className="text-xs text-muted-foreground uppercase tracking-wide mb-3">Financiamento disponível</p>
-              <div className="space-y-2 text-sm">
-                <div className="flex justify-between">
-                  <span className="text-muted-foreground">12x de</span>
-                  <span className="font-semibold">{Math.round(totalPrice / 12).toLocaleString()} Kz/mês</span>
+              <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem", marginBottom: "1.5rem", paddingBottom: "1.5rem", borderBottom: "1px solid var(--ds-border-default)" }}>
+                <div style={{ display: "flex", justifyContent: "space-between", color: "var(--ds-content-subtle)" }}>
+                  <span>Subtotal ({items.reduce((s, i) => s + i.quantity, 0)} itens)</span>
+                  <span>{totalPrice.toLocaleString()} Kz</span>
                 </div>
-                <div className="flex justify-between">
-                  <span className="text-muted-foreground">24x de</span>
-                  <span className="font-semibold">{Math.round(totalPrice / 24).toLocaleString()} Kz/mês</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-muted-foreground">36x de</span>
-                  <span className="font-semibold">{Math.round(totalPrice / 36).toLocaleString()} Kz/mês</span>
+                <div style={{ display: "flex", justifyContent: "space-between", color: "var(--ds-content-subtle)" }}>
+                  <span>Taxa de Serviço</span>
+                  <span>0 Kz</span>
                 </div>
               </div>
+
+              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "1.5rem", fontSize: "1.25rem" }}>
+                <span style={{ fontWeight: 600 }}>Total</span>
+                <span style={{ fontWeight: 700, color: "var(--ds-primary-content-default)" }}>{totalPrice.toLocaleString()} Kz</span>
+              </div>
+
+              {/* Simulação de financiamento */}
+              <div style={{ background: "var(--ds-background-subtle)", borderRadius: "var(--ds-radius-lg)", padding: "1rem", marginBottom: "1.5rem" }}>
+                <p style={{ fontSize: "0.6875rem", color: "var(--ds-content-subtle)", textTransform: "uppercase", letterSpacing: "0.05em", marginBottom: "0.75rem" }}>
+                  Financiamento disponível
+                </p>
+                <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem", fontSize: "0.875rem" }}>
+                  {[12, 24, 36].map((months) => (
+                    <div key={months} style={{ display: "flex", justifyContent: "space-between" }}>
+                      <span style={{ color: "var(--ds-content-subtle)" }}>{months}x de</span>
+                      <span style={{ fontWeight: 600 }}>{Math.round(totalPrice / months).toLocaleString()} Kz/mês</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <button
+                onClick={handleSolicitarFinanciamento}
+                className="ds-button ds-button--brand ds-button--lg ds-button--full"
+                style={{ borderRadius: "9999px", marginBottom: "0.75rem" }}
+              >
+                <span className="ds-button__label">Solicitar Financiamento</span>
+                <ArrowRight className="ds-icon ds-icon--sm" />
+              </button>
+
+              <Link
+                to="/marketplace"
+                style={{ display: "block", textAlign: "center", color: "var(--ds-link-content-default)", fontSize: "0.875rem" }}
+              >
+                Continuar Comprando
+              </Link>
             </div>
-
-            <button
-              onClick={handleSolicitarFinanciamento}
-              className="w-full bg-coral text-white py-4 rounded-full hover:opacity-90 transition-opacity flex items-center justify-center gap-2 font-semibold mb-3"
-            >
-              Solicitar Financiamento
-              <ArrowRight className="w-5 h-5" />
-            </button>
-
-            <Link
-              to="/marketplace"
-              className="block text-center text-coral hover:underline text-sm"
-            >
-              Continuar Comprando
-            </Link>
           </div>
         </div>
       </div>

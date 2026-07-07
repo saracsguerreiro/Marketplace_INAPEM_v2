@@ -99,11 +99,8 @@ export function Notifications() {
           <button
             key={f}
             onClick={() => setFilter(f)}
-            className={`px-4 py-2 rounded-full text-sm font-medium border-2 transition-all capitalize ${
-              filter === f
-                ? "border-coral bg-coral text-white"
-                : "border-border bg-white text-muted-foreground hover:border-coral"
-            }`}
+            className={filter === f ? "ds-button ds-button--brand ds-button--sm" : "ds-button ds-button--outline ds-button--sm"}
+            style={{ borderRadius: "9999px" }}
           >
             {f === "todas" ? "Todas" : "Não lidas"}
             {f === "não lidas" && unread > 0 && (
