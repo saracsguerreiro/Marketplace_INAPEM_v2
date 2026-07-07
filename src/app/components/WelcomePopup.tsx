@@ -1,65 +1,70 @@
 import { useState } from "react";
 import { X, Building2, Store, Eye } from "lucide-react";
-import inapemLogo from "../../imports/inapem-seeklogo-1.png";
+import tisLogo from "../../imports/tis_logo.png";
 
 interface WelcomePopupProps {
   onClose: (role: "pme" | "fornecedor" | "visitante" | "login" | "close") => void;
 }
 
 export function WelcomePopup({ onClose }: WelcomePopupProps) {
-  const [email, setEmail] = useState("");
+  const [email, setEmail]       = useState("");
   const [password, setPassword] = useState("");
 
   const options = [
-    {
-      icon: Building2,
-      role: "pme" as const,
-      title: "Sou uma Empresa",
-      description: "Quero solicitar financiamento para comprar produtos e serviços",
-    },
-    {
-      icon: Store,
-      role: "fornecedor" as const,
-      title: "Sou um Fornecedor",
-      description: "Quero registar a minha empresa e vender no marketplace",
-    },
-    {
-      icon: Eye,
-      role: "visitante" as const,
-      title: "Procurar Produtos e Serviços",
-      description: "Quero explorar o catálogo do marketplace",
-    },
+    { icon: Building2, role: "pme"       as const, title: "Sou uma Empresa",               description: "Quero solicitar financiamento para comprar produtos e serviços" },
+    { icon: Store,     role: "fornecedor" as const, title: "Sou um Fornecedor",              description: "Quero registar a minha empresa e vender no marketplace"        },
+    { icon: Eye,       role: "visitante"  as const, title: "Procurar Produtos e Serviços",  description: "Quero explorar o catálogo do marketplace"                       },
   ];
 
   return (
     <div className="ds-modal-overlay animate-in fade-in duration-300">
-      <div className="ds-modal ds-modal--sm animate-in slide-in-from-bottom-10 duration-500"
-        role="dialog" aria-modal="true" aria-labelledby="welcome-title">
+      <div
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="welcome-title"
+        className="animate-in slide-in-from-bottom-10 duration-500"
+        style={{
+          background: "var(--ds-surface-default, #fff)",
+          borderRadius: "var(--ds-radius-xl, 1rem)",
+          boxShadow: "var(--ds-shadow-modal, 0 20px 60px rgba(0,0,0,0.18))",
+          width: "100%",
+          maxWidth: "30rem",
+          maxHeight: "calc(100dvh - 2.5rem)",
+          overflowY: "auto",
+          overflowX: "hidden",
+          margin: "1.25rem",
+          display: "flex",
+          flexDirection: "column",
+          position: "relative",
+        }}
+      >
+        {/* Botão fechar */}
+        <button
+          onClick={() => onClose("close")}
+          aria-label="Fechar"
+          className="ds-button ds-button--ghost ds-button--icon-only ds-button--sm"
+          style={{ position: "absolute", top: "0.75rem", right: "0.75rem", zIndex: 1 }}
+        >
+          <X className="ds-icon ds-icon--sm" />
+        </button>
 
-        <div className="ds-modal__header" style={{ padding: "2rem 2rem 0" }}>
-          <div style={{ flex: 1, display: "flex", justifyContent: "center" }}>
-            <img src={inapemLogo} alt="INAPEM" style={{ height: "3rem", objectFit: "contain" }} />
+        <div style={{ padding: "2rem 1.75rem 1.75rem" }}>
+
+          {/* Logo */}
+          <div style={{ display: "flex", justifyContent: "center", marginBottom: "1.25rem" }}>
+            <img src={tisLogo} alt="TIS" style={{ height: "2.25rem", objectFit: "contain" }} />
           </div>
-          <button
-            className="ds-modal__close"
-            onClick={() => onClose("close")}
-            aria-label="Fechar"
-            style={{ position: "absolute", top: "1rem", right: "1rem" }}
-          >
-            <X className="ds-icon ds-icon--sm" />
-          </button>
-        </div>
 
-        <div className="ds-modal__body" style={{ padding: "1.5rem 2rem 2rem" }}>
-          <h2 id="welcome-title" style={{ textAlign: "center", marginBottom: "0.5rem", fontSize: "1.25rem", fontWeight: 600 }}>
-            Bem-vindo ao Marketplace INAPEM
+          {/* Título */}
+          <h2 id="welcome-title" style={{ textAlign: "center", marginBottom: "0.375rem", fontSize: "1.125rem", fontWeight: 600, color: "var(--ds-content-default)" }}>
+            Bem-vindo ao Marketplace
           </h2>
-          <p style={{ textAlign: "center", color: "var(--ds-content-subtle)", marginBottom: "1.5rem", fontSize: "0.875rem", lineHeight: 1.6 }}>
+          <p style={{ textAlign: "center", color: "var(--ds-content-subtle)", marginBottom: "1.5rem", fontSize: "0.8125rem", lineHeight: 1.55 }}>
             Diga-nos o que gostaria de fazer para personalizarmos a sua experiência.
           </p>
 
           {/* Opções de perfil */}
-          <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem", marginBottom: "1.5rem" }}>
+          <div style={{ display: "flex", flexDirection: "column", gap: "0.625rem", marginBottom: "1.25rem" }}>
             {options.map((option) => {
               const Icon = option.icon;
               return (
@@ -70,16 +75,15 @@ export function WelcomePopup({ onClose }: WelcomePopupProps) {
                   style={{
                     width: "100%",
                     height: "auto",
-                    padding: "0.875rem 1rem",
-                    borderRadius: "var(--ds-radius-lg)",
+                    padding: "0.75rem 1rem",
                     justifyContent: "flex-start",
-                    gap: "0.875rem",
+                    gap: "0.75rem",
                     textAlign: "left",
                   }}
                 >
                   <div style={{
-                    width: "2.75rem",
-                    height: "2.75rem",
+                    width: "2.25rem",
+                    height: "2.25rem",
                     background: "var(--ds-toned-background-default)",
                     borderRadius: "var(--ds-radius-md)",
                     display: "flex",
@@ -87,28 +91,28 @@ export function WelcomePopup({ onClose }: WelcomePopupProps) {
                     justifyContent: "center",
                     flexShrink: 0,
                   }}>
-                    <Icon style={{ width: "1.25rem", height: "1.25rem", color: "var(--ds-primary-content-default)" }} />
+                    <Icon style={{ width: "1.125rem", height: "1.125rem", color: "var(--ds-primary-content-default)" }} />
                   </div>
-                  <div style={{ flex: 1 }}>
-                    <div style={{ fontWeight: 500, fontSize: "0.875rem", color: "var(--ds-content-default)" }}>{option.title}</div>
-                    <div style={{ fontSize: "0.75rem", color: "var(--ds-content-subtle)", marginTop: "0.125rem" }}>{option.description}</div>
+                  <div style={{ flex: 1, minWidth: 0 }}>
+                    <div style={{ fontWeight: 600, fontSize: "0.8125rem", color: "var(--ds-content-default)" }}>{option.title}</div>
+                    <div style={{ fontSize: "0.75rem", color: "var(--ds-content-subtle)", marginTop: "0.125rem", lineHeight: 1.4 }}>{option.description}</div>
                   </div>
-                  <span style={{ color: "var(--ds-primary-content-default)", fontSize: "1.25rem" }}>›</span>
+                  <span style={{ color: "var(--ds-primary-content-default)", fontSize: "1.125rem", flexShrink: 0 }}>›</span>
                 </button>
               );
             })}
           </div>
 
           {/* Separador */}
-          <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", marginBottom: "1rem" }}>
+          <div style={{ display: "flex", alignItems: "center", gap: "0.625rem", marginBottom: "1rem" }}>
             <div className="ds-divider" style={{ flex: 1 }} />
-            <span style={{ fontSize: "0.75rem", color: "var(--ds-content-subtle)", whiteSpace: "nowrap" }}>ou entre se já tem conta</span>
+            <span style={{ fontSize: "0.6875rem", color: "var(--ds-content-subtle)", whiteSpace: "nowrap" }}>ou entre se já tem conta</span>
             <div className="ds-divider" style={{ flex: 1 }} />
           </div>
 
-          {/* Login rápido */}
-          <div style={{ display: "flex", gap: "0.5rem" }}>
-            <div className="ds-input ds-input--md" style={{ flex: 1 }}>
+          {/* Login — campos empilhados */}
+          <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
+            <div className="ds-input ds-input--md ds-input--full">
               <input
                 type="email"
                 className="ds-input__field"
@@ -117,7 +121,7 @@ export function WelcomePopup({ onClose }: WelcomePopupProps) {
                 onChange={(e) => setEmail(e.target.value)}
               />
             </div>
-            <div className="ds-input ds-input--md" style={{ flex: 1 }}>
+            <div className="ds-input ds-input--md ds-input--full">
               <input
                 type="password"
                 className="ds-input__field"
@@ -128,13 +132,13 @@ export function WelcomePopup({ onClose }: WelcomePopupProps) {
             </div>
             <button
               onClick={() => onClose("login")}
-              className="ds-button ds-button--brand"
-              style={{ borderRadius: "var(--ds-field-radius)" }}
+              className="ds-button ds-button--brand ds-button--md ds-button--full"
             >
               <span className="ds-button__label">Entrar</span>
             </button>
           </div>
 
+          {/* Link discreto */}
           <div style={{ textAlign: "center", marginTop: "1rem" }}>
             <button
               onClick={() => onClose("visitante")}
@@ -157,7 +161,7 @@ export function WelcomePopup({ onClose }: WelcomePopupProps) {
                 (e.currentTarget as HTMLButtonElement).style.borderColor = "var(--ds-border-default)";
               }}
             >
-              ✦ Explorar Marketplace — entrar directamente na plataforma
+              ✦ Explorar Marketplace sem conta
             </button>
           </div>
         </div>
