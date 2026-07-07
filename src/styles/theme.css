@@ -150,6 +150,119 @@
 
   /* Overlay */
   --ds-modal-overlay: rgba(0, 0, 0, 0.55);
+  --ds-background-overlay: rgba(0, 0, 0, 0.55);
+
+  /* Superfícies adicionais */
+  --ds-surface-elevated: #ffffff;
+  --ds-background-disabled: #F1F5F9;
+
+  /* Tokens de controlo (inputs/fields) */
+  --ds-border-control-default: #CBD5E1;
+  --ds-border-control-hover: #94A3B8;
+  --ds-border-control-disabled: #E2E8F0;
+  --ds-border-error: #DC2626;
+  --ds-border-error-hover: #B91C1C;
+
+  /* Tokens de outline (botão outline) */
+  --ds-outline-content-default: #0F172A;
+  --ds-outline-content-disabled: #94A3B8;
+  --ds-outline-border-default: #CBD5E1;
+  --ds-outline-border-hover: #64748B;
+  --ds-outline-background-hover: #F1F5F9;
+
+  /* Tokens de ghost (botão ghost) */
+  --ds-ghost-content-default: #0F172A;
+  --ds-ghost-content-disabled: #94A3B8;
+  --ds-ghost-background-hover: #F1F5F9;
+  --ds-ghost-background-active: #E2E8F0;
+
+  /* Tokens de ícone */
+  --ds-icon-color-default: #475569;
+  --ds-icon-color-disabled: #94A3B8;
+
+  /* Content brand (para tabs activas) */
+  --ds-content-brand: #2563EB;
+
+  /* Toned adicional */
+  --ds-toned-background-active: rgba(37, 99, 235, 0.28);
+  --ds-toned-content-disabled: rgba(37, 99, 235, 0.40);
+
+  /* Feedback adicional (hover/active/contrast/disabled) */
+  --ds-feedback-success-background-hover: #BBF7D0;
+  --ds-feedback-success-background-active: #86EFAC;
+  --ds-feedback-success-background-disabled: #F0FDF4;
+  --ds-feedback-success-background-subtle: #F0FDF4;
+  --ds-feedback-success-content-contrast: #ffffff;
+  --ds-feedback-success-content-disabled: #86EFAC;
+  --ds-feedback-error-background-hover: #FECACA;
+  --ds-feedback-error-background-active: #FCA5A5;
+  --ds-feedback-error-background-disabled: #FEF2F2;
+  --ds-feedback-error-background-subtle: #FEF2F2;
+  --ds-feedback-error-content-contrast: #ffffff;
+  --ds-feedback-error-content-disabled: #FCA5A5;
+  --ds-feedback-warning-background-hover: #FDE68A;
+  --ds-feedback-warning-background-active: #FCD34D;
+  --ds-feedback-warning-background-disabled: #FFFBEB;
+  --ds-feedback-warning-background-subtle: #FFFBEB;
+  --ds-feedback-warning-content-contrast: #0F172A;
+  --ds-feedback-info-background-hover: #BFDBFE;
+  --ds-feedback-info-background-subtle: #EFF6FF;
+  --ds-focus-ring-color-success: rgba(22, 101, 52, 0.4);
+  --ds-focus-ring-color-error: rgba(220, 38, 38, 0.4);
+
+  /* Brand border */
+  --ds-brand-border-default: #2563EB;
+  --ds-brand-content-disabled: rgba(255, 255, 255, 0.50);
+
+  /* Tamanhos (spacing scale TIS DS para componentes) */
+  --ds-size-xs: 1rem;
+  --ds-size-sm: 1.25rem;
+  --ds-size-md: 1.5rem;
+  --ds-size-lg: 2rem;
+  --ds-size-xl: 2.5rem;
+  --ds-size-2xl: 3rem;
+  --ds-space-2xs: 0.25rem;
+  --ds-space-xs: 0.5rem;
+  --ds-space-sm: 0.75rem;
+  --ds-space-md: 1rem;
+  --ds-space-lg: 1.25rem;
+  --ds-space-xl: 1.5rem;
+  --ds-space-2xl: 2rem;
+  --ds-space-control-padding-6: 0.375rem;
+  --ds-space-control-padding-10: 0.625rem;
+  --ds-control-button-min-width-sm: 2rem;
+  --ds-control-button-min-width-md: 2.5rem;
+  --ds-control-button-min-width-lg: 3rem;
+
+  /* Tipografia DS */
+  --ds-body-font-family-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --ds-body-font-weight-regular: 400;
+  --ds-body-font-weight-bold: 600;
+  --ds-body-font-weight-semibold: 600;
+  --ds-body-font-size-xs:  0.6875rem;
+  --ds-body-font-size-sm:  0.875rem;
+  --ds-body-font-size-md:  1rem;
+  --ds-body-font-size-xl:  1.125rem;
+  --ds-body-line-height-2xs: 1;
+  --ds-body-line-height-xs:  1.2;
+  --ds-body-line-height-sm:  1.4;
+  --ds-body-line-height-md:  1.5;
+  --ds-body-line-height-xl:  1.6;
+  --ds-body-letter-spacing-normal: 0;
+  --ds-icon-stroke-width-regular-16: 1.5;
+  --ds-icon-stroke-width-regular-20: 1.5;
+  --ds-icon-stroke-width-regular-24: 1.75;
+
+  /* Motion */
+  --ds-motion-duration-fast: 150ms;
+  --ds-motion-ease-default: ease;
+
+  /* Sombra modal */
+  --ds-shadow-modal: 0 20px 60px rgba(0,0,0,0.18);
+  --ds-shadow-overlay: 0 8px 24px rgba(0,0,0,0.12);
+
+  /* Z-index */
+  --ds-z-modal: 9000;
 }
 
 .dark {
