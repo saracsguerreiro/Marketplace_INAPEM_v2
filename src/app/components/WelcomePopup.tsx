@@ -11,9 +11,9 @@ export function WelcomePopup({ onClose }: WelcomePopupProps) {
   const [password, setPassword] = useState("");
 
   const options = [
-    { icon: Building2, role: "pme"       as const, title: "Sou uma Empresa",               description: "Quero solicitar financiamento para comprar produtos e serviços" },
-    { icon: Store,     role: "fornecedor" as const, title: "Sou um Fornecedor",              description: "Quero registar a minha empresa e vender no marketplace"        },
-    { icon: Eye,       role: "visitante"  as const, title: "Procurar Produtos e Serviços",  description: "Quero explorar o catálogo do marketplace"                       },
+    { icon: Building2, role: "pme"       as const, title: "Sou uma Empresa",              description: "Solicitar financiamento e comprar produtos" },
+    { icon: Store,     role: "fornecedor" as const, title: "Sou um Fornecedor",             description: "Registar empresa e vender no marketplace"   },
+    { icon: Eye,       role: "visitante"  as const, title: "Explorar Produtos e Serviços", description: "Explorar o catálogo sem registo"             },
   ];
 
   return (
@@ -110,9 +110,9 @@ export function WelcomePopup({ onClose }: WelcomePopupProps) {
             <div className="ds-divider" style={{ flex: 1 }} />
           </div>
 
-          {/* Login — campos empilhados */}
-          <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
-            <div className="ds-input ds-input--md ds-input--full">
+          {/* Login — email + password + botão na mesma linha */}
+          <div style={{ display: "flex", gap: "0.375rem", alignItems: "center" }}>
+            <div className="ds-input ds-input--sm" style={{ flex: 1, minWidth: 0 }}>
               <input
                 type="email"
                 className="ds-input__field"
@@ -121,7 +121,7 @@ export function WelcomePopup({ onClose }: WelcomePopupProps) {
                 onChange={(e) => setEmail(e.target.value)}
               />
             </div>
-            <div className="ds-input ds-input--md ds-input--full">
+            <div className="ds-input ds-input--sm" style={{ flex: 1, minWidth: 0 }}>
               <input
                 type="password"
                 className="ds-input__field"
@@ -132,7 +132,8 @@ export function WelcomePopup({ onClose }: WelcomePopupProps) {
             </div>
             <button
               onClick={() => onClose("login")}
-              className="ds-button ds-button--brand ds-button--md ds-button--full"
+              className="ds-button ds-button--brand ds-button--sm"
+              style={{ flexShrink: 0 }}
             >
               <span className="ds-button__label">Entrar</span>
             </button>
