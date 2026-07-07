@@ -100,8 +100,7 @@ export function Notifications() {
             key={f}
             onClick={() => setFilter(f)}
             className={filter === f ? "ds-button ds-button--brand ds-button--sm" : "ds-button ds-button--outline ds-button--sm"}
-            style={{ borderRadius: "9999px" }}
-          >
+            >
             {f === "todas" ? "Todas" : "Não lidas"}
             {f === "não lidas" && unread > 0 && (
               <span className="ml-2 bg-white/20 px-1.5 py-0.5 rounded-full text-xs">{unread}</span>

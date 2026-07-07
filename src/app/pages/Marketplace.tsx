@@ -115,7 +115,7 @@ export function Marketplace() {
       <div className="mb-8">
         <div className="relative">
           <Search className="absolute left-4 top-1/2 -translate-y-1/2 ds-icon" style={{ color: "var(--ds-content-subtle)" }} />
-          <div className="ds-input ds-input--lg ds-input--full" style={{ paddingLeft: "3rem", borderRadius: "9999px" }}>
+          <div className="ds-input ds-input--lg ds-input--full" style={{ paddingLeft: "3rem" }}>
             <input
               type="text"
               className="ds-input__field"
@@ -154,7 +154,7 @@ export function Marketplace() {
                 key={cat.name}
                 onClick={() => { setSelectedCategory(cat.name); setCurrentPage(1); }}
                 className={`ds-button ds-button--sm${isActive ? " ds-button--brand" : " ds-button--outline"}`}
-                style={{ borderRadius: "9999px", gap: "0.375rem" }}
+                style={{ gap: "0.375rem" }}
               >
                 {Icon && <Icon style={{ width: "1rem", height: "1rem" }} />}
                 <span className="ds-button__label">{cat.name}</span>
@@ -204,7 +204,7 @@ export function Marketplace() {
                 <button
                   onClick={() => decrementQuantity(product.id)}
                   className="ds-button ds-button--outline ds-button--sm"
-                  style={{ width: "2rem", height: "2rem", padding: 0, borderRadius: "9999px" }}
+                  style={{ width: "2rem", height: "2rem", padding: 0 }}
                 >
                   <Minus className="ds-icon ds-icon--sm" />
                 </button>
@@ -214,7 +214,7 @@ export function Marketplace() {
                 <button
                   onClick={() => incrementQuantity(product.id)}
                   className="ds-button ds-button--outline ds-button--sm"
-                  style={{ width: "2rem", height: "2rem", padding: 0, borderRadius: "9999px" }}
+                  style={{ width: "2rem", height: "2rem", padding: 0 }}
                 >
                   <Plus className="ds-icon ds-icon--sm" />
                 </button>
@@ -228,7 +228,6 @@ export function Marketplace() {
                   }
                 }}
                 className="ds-button ds-button--brand ds-button--full ds-button--md"
-                style={{ borderRadius: "9999px" }}
               >
                 <ShoppingCart className="ds-icon ds-icon--sm" />
                 <span className="ds-button__label">Adicionar</span>
@@ -245,7 +244,7 @@ export function Marketplace() {
             onClick={() => handlePageChange(currentPage - 1)}
             disabled={currentPage === 1}
             className="ds-button ds-button--outline ds-button--sm"
-            style={{ width: "2.5rem", height: "2.5rem", padding: 0, borderRadius: "9999px" }}
+            style={{ width: "2.5rem", height: "2.5rem", padding: 0 }}
           >
             <ChevronLeft className="ds-icon" />
           </button>
@@ -255,7 +254,7 @@ export function Marketplace() {
               key={page}
               onClick={() => handlePageChange(page)}
               className={`ds-button ds-button--sm${currentPage === page ? " ds-button--brand" : " ds-button--outline"}`}
-              style={{ width: "2.5rem", height: "2.5rem", padding: 0, borderRadius: "9999px" }}
+              style={{ width: "2.5rem", height: "2.5rem", padding: 0 }}
             >
               {page}
             </button>
@@ -265,7 +264,7 @@ export function Marketplace() {
             onClick={() => handlePageChange(currentPage + 1)}
             disabled={currentPage === totalPages}
             className="ds-button ds-button--outline ds-button--sm"
-            style={{ width: "2.5rem", height: "2.5rem", padding: 0, borderRadius: "9999px" }}
+            style={{ width: "2.5rem", height: "2.5rem", padding: 0 }}
           >
             <ChevronRight className="ds-icon" />
           </button>

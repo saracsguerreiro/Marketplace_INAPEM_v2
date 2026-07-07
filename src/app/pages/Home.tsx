@@ -61,12 +61,12 @@ export function Home() {
               Encontre produtos e serviços de fornecedores certificados. Peça financiamento e pague directamente ao fornecedor — sem intermediários.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link to="/pme/fluxo" className="ds-button ds-button--brand ds-button--lg" style={{ borderRadius: "9999px" }}>
+              <Link to="/pme/fluxo" className="ds-button ds-button--brand ds-button--lg">
                 <span className="ds-button__label">Pedir Financiamento</span>
                 <ArrowRight className="ds-icon ds-icon--sm" />
               </Link>
               <Link to="/marketplace" className="ds-button ds-button--lg"
-                style={{ borderRadius: "9999px", background: "rgba(255,255,255,0.12)", border: "2px solid rgba(255,255,255,0.3)", color: "white" }}>
+                style={{ borderRadius: "var(--ds-button-radius-default)", background: "rgba(255,255,255,0.12)", border: "2px solid rgba(255,255,255,0.3)", color: "white" }}>
                 <span className="ds-button__label">Explorar Marketplace</span>
               </Link>
             </div>

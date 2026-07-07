@@ -210,7 +210,7 @@ export function NewHome() {
             <button
               onClick={handlePedirFinanciamento}
               className="ds-button ds-button--brand ds-button--lg"
-              style={{ borderRadius: "9999px", paddingLeft: "1.75rem", paddingRight: "0.75rem" }}
+              style={{ paddingLeft: "1.75rem", paddingRight: "0.75rem" }}
             >
               <span className="ds-button__label">Pedir Financiamento</span>
               <span className="w-9 h-9 bg-white rounded-full flex items-center justify-center flex-shrink-0"
@@ -253,7 +253,7 @@ export function NewHome() {
                   placeholder="Ex: gerir pessoal, transportar mercadoria, equipamento médico..."
                   style={{ paddingLeft: 0, fontSize: "1rem" }}
                 />
-                <button type="submit" className="ds-button ds-button--brand ds-button--md" style={{ margin: "0.25rem", borderRadius: "9999px" }}>
+                <button type="submit" className="ds-button ds-button--brand ds-button--md" style={{ margin: "0.25rem" }}>
                   <span className="ds-button__label">Pesquisar</span>
                 </button>
               </div>
@@ -351,7 +351,7 @@ export function NewHome() {
                     <div style={{ fontWeight: 800, color: "var(--ds-primary-content-default)" }}>{product.price.toLocaleString()} Kz</div>
                     <button
                       className="ds-button ds-button--toned ds-button--sm"
-                      style={{ width: "2.25rem", height: "2.25rem", padding: 0, borderRadius: "9999px" }}
+                      style={{ width: "2.25rem", height: "2.25rem", padding: 0 }}
                       onClick={(e) => e.preventDefault()}
                     >
                       <ShoppingCart className="ds-icon ds-icon--sm" />
@@ -392,7 +392,6 @@ export function NewHome() {
                 <button
                   onClick={() => setLoginModalOpen(true)}
                   className="ds-button ds-button--brand ds-button--lg"
-                  style={{ borderRadius: "9999px" }}
                 >
                   <span className="ds-button__label">{banner.cta}</span>
                   <ArrowRight className="ds-icon ds-icon--sm" />

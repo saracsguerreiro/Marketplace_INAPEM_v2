@@ -108,7 +108,7 @@ export function Layout() {
             {userType ? (
               <button
                 onClick={logout}
-                className="ds-button ds-button--ghost flex items-center gap-2 text-[#1a1a1a] border border-gray-200 rounded-full px-4"
+                className="ds-button ds-button--ghost ds-button--sm"
               >
                 <LogOut className="ds-icon ds-icon--sm" />
                 <span className="ds-button__label hidden sm:inline">Sair</span>
@@ -116,7 +116,7 @@ export function Layout() {
             ) : (
               <button
                 onClick={() => setLoginModalOpen(true)}
-                className="ds-button ds-button--brand rounded-full px-5"
+                className="ds-button ds-button--brand ds-button--sm"
               >
                 <span className="ds-button__label">Entrar</span>
                 <span className="w-6 h-6 bg-white/20 rounded-full flex items-center justify-center flex-shrink-0">

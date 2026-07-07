@@ -174,7 +174,7 @@ export function Financing() {
               <button
                 onClick={() => setFormStep(2)}
                 className="ds-button ds-button--brand ds-button--lg ds-button--full"
-                style={{ borderRadius: "9999px", marginTop: "1.5rem" }}
+                style={{ marginTop: "1.5rem" }}
               >
                 <span className="ds-button__label">Continuar</span>
               </button>
@@ -203,9 +203,10 @@ export function Financing() {
               </div>
               <button
                 onClick={() => setFormStep(1)}
-                className="w-full bg-secondary text-secondary-foreground py-4 rounded-full hover:bg-secondary/80 transition-colors mt-6"
+                className="ds-button ds-button--outline ds-button--lg ds-button--full"
+                style={{ marginTop: "1.5rem" }}
               >
-                Nova Solicitação
+                <span className="ds-button__label">Nova Solicitação</span>
               </button>
             </div>
           )}

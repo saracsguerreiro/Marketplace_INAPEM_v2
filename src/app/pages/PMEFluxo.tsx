@@ -117,7 +117,7 @@ function Step1({ onNext }: { onNext: () => void }) {
         </div>
       </div>
 
-      <button onClick={onNext} className="ds-button ds-button--brand ds-button--lg ds-button--full" style={{ borderRadius: "9999px", marginTop: "1.5rem" }}>
+      <button onClick={onNext} className="ds-button ds-button--brand ds-button--lg ds-button--full" style={{ marginTop: "1.5rem" }}>
         Continuar
         <ArrowRight className="w-5 h-5" />
       </button>
@@ -343,7 +343,7 @@ function Step2({ onNext, onBack }: { onNext: () => void; onBack: () => void }) {
         <button
           onClick={onNext}
           disabled={phase !== "done"}
-          className="ds-button ds-button--brand ds-button--lg" style={{ flex: 1, borderRadius: "9999px" }}
+          className="ds-button ds-button--brand ds-button--lg" style={{ flex: 1 }}
         >
           Confirmar Dados
           <ArrowRight className="w-5 h-5" />

@@ -36,12 +36,12 @@ export function FornecedoresInfo() {
               Junte-se ao maior marketplace B2B de Angola. Venda os seus produtos e serviços de forma fácil e rápida.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link to="/fornecedores/registo" className="ds-button ds-button--brand ds-button--lg" style={{ borderRadius: "9999px" }}>
+              <Link to="/fornecedores/registo" className="ds-button ds-button--brand ds-button--lg">
                 <span className="ds-button__label">Registar Empresa</span>
                 <ArrowRight className="ds-icon ds-icon--sm" />
               </Link>
               <Link to="/marketplace" className="ds-button ds-button--lg"
-                style={{ borderRadius: "9999px", background: "rgba(255,255,255,0.12)", border: "2px solid rgba(255,255,255,0.3)", color: "white" }}>
+                style={{ borderRadius: "var(--ds-button-radius-default)", background: "rgba(255,255,255,0.12)", border: "2px solid rgba(255,255,255,0.3)", color: "white" }}>
                 <span className="ds-button__label">Ver Produtos e Serviços</span>
               </Link>
             </div>
@@ -163,12 +163,12 @@ export function FornecedoresInfo() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link to="/fornecedores/registo" className="ds-button ds-button--lg"
-                style={{ borderRadius: "9999px", background: "white", color: "var(--ds-primary-content-default)", boxShadow: "var(--ds-shadow-xl)" }}>
+                style={{ borderRadius: "var(--ds-button-radius-default)", background: "white", color: "var(--ds-primary-content-default)", boxShadow: "var(--ds-shadow-xl)" }}>
                 <span className="ds-button__label">Registar Agora</span>
                 <ArrowRight className="ds-icon ds-icon--sm" />
               </Link>
               <Link to="/marketplace" className="ds-button ds-button--lg"
-                style={{ borderRadius: "9999px", background: "rgba(255,255,255,0.12)", border: "2px solid rgba(255,255,255,0.3)", color: "white" }}>
+                style={{ borderRadius: "var(--ds-button-radius-default)", background: "rgba(255,255,255,0.12)", border: "2px solid rgba(255,255,255,0.3)", color: "white" }}>
                 <span className="ds-button__label">Ver Produtos</span>
               </Link>
             </div>

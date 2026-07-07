@@ -185,7 +185,6 @@ function ItemList({
         <button
           onClick={onAdd}
           className="ds-button ds-button--brand ds-button--sm"
-          style={{ borderRadius: "9999px" }}
         >
           Adicionar {isService ? "Serviço" : "Produto"}
         </button>
@@ -527,14 +526,12 @@ export function SupplierDashboard() {
                   <button
                     onClick={() => setActiveTab("products")}
                     className="ds-button ds-button--brand ds-button--sm"
-                    style={{ borderRadius: "9999px" }}
                   >
                     <span className="ds-button__label">Gerir Produtos</span>
                   </button>
                   <button
                     onClick={() => setActiveTab("services")}
                     className="ds-button ds-button--toned ds-button--sm"
-                    style={{ borderRadius: "9999px" }}
                   >
                     <span className="ds-button__label">Gerir Serviços</span>
                   </button>
@@ -582,7 +579,6 @@ export function SupplierDashboard() {
               <button
                 onClick={() => openAddModal("produto")}
                 className="ds-button ds-button--brand ds-button--sm"
-                style={{ borderRadius: "9999px" }}
               >
                 <Plus className="ds-icon ds-icon--sm" />
                 <span className="ds-button__label">Adicionar Produto</span>
@@ -612,7 +608,6 @@ export function SupplierDashboard() {
               <button
                 onClick={() => openAddModal("serviço")}
                 className="ds-button ds-button--toned ds-button--sm"
-                style={{ borderRadius: "9999px" }}
               >
                 <Plus className="ds-icon ds-icon--sm" />
                 <span className="ds-button__label">Adicionar Serviço</span>

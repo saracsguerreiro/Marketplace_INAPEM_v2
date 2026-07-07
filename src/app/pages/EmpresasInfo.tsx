@@ -74,15 +74,14 @@ export function EmpresasInfo() {
               <button
                 onClick={handleSolicitarFinanciamento}
                 className="ds-button ds-button--brand ds-button--lg"
-                style={{ borderRadius: "9999px" }}
-              >
+                >
                 <span className="ds-button__label">Solicitar Financiamento</span>
                 <ArrowRight className="ds-icon ds-icon--sm" />
               </button>
               <Link
                 to="/marketplace"
                 className="ds-button ds-button--lg"
-                style={{ borderRadius: "9999px", background: "rgba(255,255,255,0.12)", border: "2px solid rgba(255,255,255,0.3)", color: "white" }}
+                style={{ background: "rgba(255,255,255,0.12)", border: "2px solid rgba(255,255,255,0.3)", color: "white" }}
               >
                 <span className="ds-button__label">Ver Produtos e Serviços</span>
               </Link>
@@ -161,7 +160,7 @@ export function EmpresasInfo() {
               <Link
                 to="/empresas/registo"
                 className="ds-button ds-button--lg"
-                style={{ borderRadius: "9999px", background: "white", color: "var(--ds-primary-content-default)", boxShadow: "var(--ds-shadow-xl)" }}
+                style={{ background: "white", color: "var(--ds-primary-content-default)", boxShadow: "var(--ds-shadow-xl)" }}
               >
                 <span className="ds-button__label">Começar Agora</span>
                 <ArrowRight className="ds-icon ds-icon--sm" />
@@ -169,7 +168,7 @@ export function EmpresasInfo() {
               <Link
                 to="/marketplace"
                 className="ds-button ds-button--lg"
-                style={{ borderRadius: "9999px", background: "rgba(255,255,255,0.12)", border: "2px solid rgba(255,255,255,0.3)", color: "white" }}
+                style={{ background: "rgba(255,255,255,0.12)", border: "2px solid rgba(255,255,255,0.3)", color: "white" }}
               >
                 <span className="ds-button__label">Explorar Produtos</span>
               </Link>

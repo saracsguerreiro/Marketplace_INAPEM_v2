@@ -174,12 +174,12 @@ export function ProductDetail() {
             <label style={{ display: "block", marginBottom: "0.75rem", fontSize: "0.875rem", fontWeight: 500 }}>Quantidade</label>
             <div className="flex items-center gap-4">
               <button onClick={decrementQuantity} className="ds-button ds-button--outline"
-                style={{ width: "3rem", height: "3rem", padding: 0, borderRadius: "9999px" }}>
+                style={{ width: "3rem", height: "3rem", padding: 0 }}>
                 <Minus className="ds-icon" />
               </button>
               <span style={{ fontSize: "1.5rem", fontWeight: 600, width: "4rem", textAlign: "center" }}>{quantity}</span>
               <button onClick={incrementQuantity} className="ds-button ds-button--outline"
-                style={{ width: "3rem", height: "3rem", padding: 0, borderRadius: "9999px" }}>
+                style={{ width: "3rem", height: "3rem", padding: 0 }}>
                 <Plus className="ds-icon" />
               </button>
               <div style={{ color: "var(--ds-content-subtle)" }}>
@@ -189,10 +189,10 @@ export function ProductDetail() {
           </div>
 
           <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem", marginBottom: "2rem" }}>
-            <button onClick={handleSolicitarFinanciamento} className="ds-button ds-button--brand ds-button--lg ds-button--full" style={{ borderRadius: "9999px" }}>
+            <button onClick={handleSolicitarFinanciamento} className="ds-button ds-button--brand ds-button--lg ds-button--full">
               <span className="ds-button__label">Solicitar Financiamento</span>
             </button>
-            <button onClick={handleAddToCart} className="ds-button ds-button--outline ds-button--lg ds-button--full" style={{ borderRadius: "9999px" }}>
+            <button onClick={handleAddToCart} className="ds-button ds-button--outline ds-button--lg ds-button--full">
               <ShoppingCart className="ds-icon" />
               <span className="ds-button__label">Adicionar ao Carrinho</span>
             </button>

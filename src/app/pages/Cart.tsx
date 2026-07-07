@@ -37,7 +37,7 @@ export function Cart() {
         <Link
           to="/marketplace"
           className="ds-button ds-button--brand ds-button--lg"
-          style={{ borderRadius: "9999px", display: "inline-flex" }}
+          style={{ display: "inline-flex" }}
         >
           <span className="ds-button__label">Explorar Produtos e Serviços</span>
           <ArrowRight className="ds-icon ds-icon--sm" />
@@ -68,7 +68,7 @@ export function Cart() {
                   <button
                     onClick={() => removeFromCart(item.id)}
                     className="ds-button ds-button--ghost ds-button--sm"
-                    style={{ width: "2.25rem", height: "2.25rem", padding: 0, borderRadius: "9999px", color: "var(--ds-feedback-error-content-default)" }}
+                    style={{ width: "2.25rem", height: "2.25rem", padding: 0, color: "var(--ds-feedback-error-content-default)" }}
                   >
                     <Trash2 className="ds-icon ds-icon--sm" />
                   </button>
@@ -79,7 +79,7 @@ export function Cart() {
                     <button
                       onClick={() => updateQuantity(item.id, item.quantity - 1)}
                       className="ds-button ds-button--outline ds-button--sm"
-                      style={{ width: "2rem", height: "2rem", padding: 0, borderRadius: "9999px" }}
+                      style={{ width: "2rem", height: "2rem", padding: 0 }}
                     >
                       <Minus className="ds-icon ds-icon--sm" />
                     </button>
@@ -87,7 +87,7 @@ export function Cart() {
                     <button
                       onClick={() => updateQuantity(item.id, item.quantity + 1)}
                       className="ds-button ds-button--outline ds-button--sm"
-                      style={{ width: "2rem", height: "2rem", padding: 0, borderRadius: "9999px" }}
+                      style={{ width: "2rem", height: "2rem", padding: 0 }}
                     >
                       <Plus className="ds-icon ds-icon--sm" />
                     </button>
@@ -147,7 +147,7 @@ export function Cart() {
               <button
                 onClick={handleSolicitarFinanciamento}
                 className="ds-button ds-button--brand ds-button--lg ds-button--full"
-                style={{ borderRadius: "9999px", marginBottom: "0.75rem" }}
+                style={{ marginBottom: "0.75rem" }}
               >
                 <span className="ds-button__label">Solicitar Financiamento</span>
                 <ArrowRight className="ds-icon ds-icon--sm" />
